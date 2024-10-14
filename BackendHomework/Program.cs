@@ -142,7 +142,7 @@ namespace BackendHomework
             //Console.WriteLine($"稅 = {tax}");
             //Console.ReadKey();
 
-            //習題2-6-------------------------------------------------------------------
+            //習題2-7-------------------------------------------------------------------
             //int x, y;
             //Console.WriteLine("請輸入x,y:");
             //Console.Write("x = ");
@@ -189,6 +189,30 @@ namespace BackendHomework
             //    }
             //}
             //Console.ReadKey();
+
+            //補充習題 1
+            int correctAnswerCount,score = 0;
+            Console.Write("請輸入答對題數:");
+            correctAnswerCount = Convert.ToInt32(Console.ReadLine());
+            if (correctAnswerCount > 40)
+            {
+                score = 100;
+            }  
+            else if (correctAnswerCount <= 10)
+            {
+                score = correctAnswerCount * 6;
+            } else if (correctAnswerCount>10 && correctAnswerCount <= 20)
+            {
+                int elevenTotwenty = correctAnswerCount - 10;
+                score = (elevenTotwenty * 2) + 60;
+            }
+            else if (correctAnswerCount > 20 && correctAnswerCount <= 40)
+            {
+                int twentyOneToForty = correctAnswerCount - 20;
+                score = (twentyOneToForty * 1) + 80;
+            }
+            Console.WriteLine($"得分:{score}");
+            Console.ReadKey();
         }
     }
 }
