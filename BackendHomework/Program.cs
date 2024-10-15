@@ -283,79 +283,99 @@ namespace BackendHomework
 
 
             //補充習題4
-            double profit, bonus =0, bonusRate = 0.1;
-            profit = Convert.ToDouble(Console.ReadLine());
+            //double profit, bonus =0, bonusRate = 0.1;
+            //profit = Convert.ToDouble(Console.ReadLine());
+            //if (profit <= 100000)
+            //{
+            //    bonus = profit * bonusRate;
+            //}
+            //else if (profit<200000)
+            //{
+            //    bonus = 100000 * bonusRate;
+            //    bonusRate = 0.075;
+            //    double aboveTwoHundred = (profit - 100000)*bonusRate;
+            //    bonus += aboveTwoHundred;
+            //} else if (profit < 400000)
+            //{
+            //    bonus = 100000 * bonusRate;
+            //    bonusRate = 0.075;
+            //    double toTwoHundred = 100000 * bonusRate;
+            //    bonus += toTwoHundred;
+            //    bonusRate = 0.05;
+            //    double aboveThreeHundred = (profit - 200000) *bonusRate;
+            //    bonus += aboveThreeHundred;
+            //} else if (profit < 600000)
+            //{
+            //    bonus = 100000 * bonusRate;
+            //    bonusRate = 0.075;
+            //    double toTwoHundred = 100000 * bonusRate;
+            //    bonus += toTwoHundred;
+            //    bonusRate = 0.05;
+            //    double toThreeHundred = 200000 * bonusRate;
+            //    bonus += toThreeHundred;
+            //    bonusRate = 0.03;
+            //    double aboveFourHundred = (profit - 400000) * bonusRate;
+            //    bonus += aboveFourHundred;
 
+            //} else if (profit < 1000000)
+            //{
+            //    bonus = 100000 * bonusRate;
+            //    bonusRate = 0.075;
+            //    double toTwoHundred = 100000 * bonusRate;
+            //    bonus += toTwoHundred;
+            //    bonusRate = 0.05;
+            //    double toThreeHundred = 200000 * bonusRate;
+            //    bonus += toThreeHundred;
+            //    bonusRate = 0.03;
+            //    double toFourHundred = 200000 * bonusRate;
+            //    bonus += toFourHundred;
+            //    bonusRate = 0.015;
+            //    double aboveSixHundred = (profit - 600000) * bonusRate;
+            //    bonus += aboveSixHundred;
+            //} else
+            //{
+            //    bonus = 100000 * bonusRate;
+            //    bonusRate = 0.075;
+            //    double toTwoHundred = 100000 * bonusRate;
+            //    bonus += toTwoHundred;
+            //    bonusRate = 0.05;
+            //    double toThreeHundred = 200000 * bonusRate;
+            //    bonus += toThreeHundred;
+            //    bonusRate = 0.03;
+            //    double toSixHundred = 200000 * bonusRate;
+            //    bonus += toSixHundred;
+            //    bonusRate = 0.015;
+            //    double toOneThousand = 400000 * bonusRate;
+            //    bonus += toOneThousand;
+            //    bonusRate = 0.01;
+            //    double aboveOneThousand = (profit - 1000000) * bonusRate;
+            //    bonus += aboveOneThousand;
+            //}
+            //Console.WriteLine(bonus);
+            //Console.ReadKey();
 
-            if (profit <= 100000)
+            double score = Convert.ToDouble(Console.ReadLine());
+            double result = Math.Floor(score/10);
+            switch (result) 
             {
-                bonus = profit * bonusRate;
+                case 10:
+                case 9:
+                    Console.WriteLine("A");
+                    break;
+                case 8:
+                    Console.WriteLine("B");
+                    break;
+                case 7:
+                    Console.WriteLine("C");
+                    break;
+                case 6:
+                    Console.WriteLine("D");
+                    break;
+                default:
+                    Console.WriteLine("F");
+                    break;
+
             }
-            else if (profit<200000)
-
-            {
-                bonus = 100000 * bonusRate;
-                bonusRate = 0.075;
-                double aboveTwoHundred = (profit - 100000)*bonusRate;
-                bonus += aboveTwoHundred;
-            } else if (profit < 400000)
-            {
-                bonus = 100000 * bonusRate;
-                bonusRate = 0.075;
-                double toTwoHundred = 100000 * bonusRate;
-                bonus += toTwoHundred;
-                bonusRate = 0.05;
-                double aboveThreeHundred = (profit - 200000) *bonusRate;
-                bonus += aboveThreeHundred;
-            } else if (profit < 600000)
-            {
-                bonus = 100000 * bonusRate;
-                bonusRate = 0.075;
-                double toTwoHundred = 100000 * bonusRate;
-                bonus += toTwoHundred;
-                bonusRate = 0.05;
-                double toThreeHundred = 200000 * bonusRate;
-                bonus += toThreeHundred;
-                bonusRate = 0.03;
-                double aboveFourHundred = (profit - 400000) * bonusRate;
-                bonus += aboveFourHundred;
-
-            } else if (profit < 1000000)
-            {
-                bonus = 100000 * bonusRate;
-                bonusRate = 0.075;
-                double toTwoHundred = 100000 * bonusRate;
-                bonus += toTwoHundred;
-                bonusRate = 0.05;
-                double toThreeHundred = 200000 * bonusRate;
-                bonus += toThreeHundred;
-                bonusRate = 0.03;
-                double toFourHundred = 200000 * bonusRate;
-                bonus += toFourHundred;
-                bonusRate = 0.015;
-                double aboveSixHundred = (profit - 600000) * bonusRate;
-                bonus += aboveSixHundred;
-            } else
-            {
-                bonus = 100000 * bonusRate;
-                bonusRate = 0.075;
-                double toTwoHundred = 100000 * bonusRate;
-                bonus += toTwoHundred;
-                bonusRate = 0.05;
-                double toThreeHundred = 200000 * bonusRate;
-                bonus += toThreeHundred;
-                bonusRate = 0.03;
-                double toSixHundred = 200000 * bonusRate;
-                bonus += toSixHundred;
-                bonusRate = 0.015;
-                double toOneThousand = 400000 * bonusRate;
-                bonus += toOneThousand;
-                bonusRate = 0.01;
-                double aboveOneThousand = (profit - 1000000) * bonusRate;
-                bonus += aboveOneThousand;
-            }
-
-            Console.WriteLine(bonus);
 
             Console.ReadKey();
         }
