@@ -354,28 +354,33 @@ namespace BackendHomework
             //Console.WriteLine(bonus);
             //Console.ReadKey();
 
+            //追加習題
+            Console.Write("請輸入成績:");
             double score = Convert.ToDouble(Console.ReadLine());
             double result = Math.Floor(score/10);
-            switch (result) 
+            string grade;
+            switch (result)
             {
                 case 10:
                 case 9:
-                    Console.WriteLine("A");
+                    grade = "A";
                     break;
                 case 8:
-                    Console.WriteLine("B");
+                    grade = "B";
                     break;
                 case 7:
-                    Console.WriteLine("C");
+                    grade = "C";
                     break;
                 case 6:
-                    Console.WriteLine("D");
+                    grade = "D";
                     break;
                 default:
-                    Console.WriteLine("F");
+                    grade = "F";
                     break;
 
             }
+
+            Console.WriteLine($"分數為{grade}");
 
             Console.ReadKey();
         }
