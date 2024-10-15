@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -191,27 +192,171 @@ namespace BackendHomework
             //Console.ReadKey();
 
             //補充習題 1
-            int correctAnswerCount,score = 0;
-            Console.Write("請輸入答對題數:");
-            correctAnswerCount = Convert.ToInt32(Console.ReadLine());
-            if (correctAnswerCount > 40)
+            //int correctAnswerCount,score = 0;
+            //Console.Write("請輸入答對題數:");
+            //correctAnswerCount = Convert.ToInt32(Console.ReadLine());
+            //if (correctAnswerCount > 40)
+            //{
+            //    score = 100;
+            //}  
+            //else if (correctAnswerCount <= 10)
+            //{
+            //    score = correctAnswerCount * 6;
+            //} else if (correctAnswerCount>10 && correctAnswerCount <= 20)
+            //{
+            //    int elevenTotwenty = correctAnswerCount - 10;
+            //    score = (elevenTotwenty * 2) + 60;
+            //}
+            //else if (correctAnswerCount > 20 && correctAnswerCount <= 40)
+            //{
+            //    int twentyOneToForty = correctAnswerCount - 20;
+            //    score = (twentyOneToForty * 1) + 80;
+            //}
+            //Console.WriteLine($"得分:{score}");
+            //Console.ReadKey();
+            //補充習題2
+            //BMI 體重÷身高(公尺)的平方
+            //過輕BMI < 18.5  正常18.5 ≦ BMI < 24	過重 24 ≦ BMI < 27 過重肥胖BMI ≧ 27
+            //double height, weight, BMI;
+            //Console.WriteLine("要計算BMI，請計算身高體重: ");
+            //Console.Write("身高 = ");
+            //height = Convert.ToDouble(Console.ReadLine()) / 100;
+            //Console.Write("體重 = ");
+            //weight = Convert.ToDouble(Console.ReadLine());
+            //BMI = Math.Round(weight / Math.Pow(height, 2), 2);
+            //if (BMI < 18.5)
+            //{
+            //    Console.WriteLine($"你的BMI是{BMI}，過輕");
+            //} else if (BMI >= 18.5 && BMI < 24)
+            //{
+            //    Console.WriteLine($"你的BMI是{BMI}，正常");
+            //} else
+            //{
+            //    Console.WriteLine($"你的BMI是{BMI}，過重");
+            //}
+            //Console.ReadKey();
+
+            //補充習題3
+            //int num1, num2, num3, max;
+            //string result="";
+            //Console.WriteLine("隨意輸入3個數字");
+            //Console.Write("num1 = ");
+            //num1 = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("num2 = ");
+            //num2 = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("num3 = ");
+            //num3 = Convert.ToInt32(Console.ReadLine());
+            //Console.WriteLine($"{num1}, {num2}, {num3}");
+            //max = Math.Max(num1, Math.Max(num2, num3));
+            //if ((num1 - num2) > 0)
+            //{
+            //    result += Convert.ToString(num1);
+            //    if ((num2 - num3) > 0)
+            //    {
+            //        result = result +" "+ Convert.ToString(num2);
+            //        result = result +" "+ Convert.ToString(num3);
+            //    }
+            //    else
+            //    {
+            //        result = result + " "+ Convert.ToString(num3);
+            //        result = result + " "+ Convert.ToString(num2);
+            //    }
+            //}
+            //else
+            //{
+            //    if ((num1 - num3) > 0)
+            //    {
+            //        result = result + Convert.ToString(num2) +" "+ Convert.ToString(num1);
+            //        result = result + Convert.ToString(num3);
+            //    }
+            //    else
+            //    {
+            //        result = result + Convert.ToString(num3) + " " + Convert.ToString(num2);
+            //        result = result + Convert.ToString(num1);
+            //    }
+
+            //}
+            //Console.WriteLine(result);
+            //Console.WriteLine();
+            //Console.ReadKey();
+
+
+
+            //補充習題4
+            double profit, bonus =0, bonusRate = 0.1;
+            profit = Convert.ToDouble(Console.ReadLine());
+
+
+            if (profit <= 100000)
             {
-                score = 100;
-            }  
-            else if (correctAnswerCount <= 10)
-            {
-                score = correctAnswerCount * 6;
-            } else if (correctAnswerCount>10 && correctAnswerCount <= 20)
-            {
-                int elevenTotwenty = correctAnswerCount - 10;
-                score = (elevenTotwenty * 2) + 60;
+                bonus = profit * bonusRate;
             }
-            else if (correctAnswerCount > 20 && correctAnswerCount <= 40)
+            else if (profit<200000)
+
             {
-                int twentyOneToForty = correctAnswerCount - 20;
-                score = (twentyOneToForty * 1) + 80;
+                bonus = 100000 * bonusRate;
+                bonusRate = 0.075;
+                double aboveTwoHundred = (profit - 100000)*bonusRate;
+                bonus += aboveTwoHundred;
+            } else if (profit < 400000)
+            {
+                bonus = 100000 * bonusRate;
+                bonusRate = 0.075;
+                double toTwoHundred = 100000 * bonusRate;
+                bonus += toTwoHundred;
+                bonusRate = 0.05;
+                double aboveThreeHundred = (profit - 200000) *bonusRate;
+                bonus += aboveThreeHundred;
+            } else if (profit < 600000)
+            {
+                bonus = 100000 * bonusRate;
+                bonusRate = 0.075;
+                double toTwoHundred = 100000 * bonusRate;
+                bonus += toTwoHundred;
+                bonusRate = 0.05;
+                double toThreeHundred = 200000 * bonusRate;
+                bonus += toThreeHundred;
+                bonusRate = 0.03;
+                double aboveFourHundred = (profit - 400000) * bonusRate;
+                bonus += aboveFourHundred;
+
+            } else if (profit < 1000000)
+            {
+                bonus = 100000 * bonusRate;
+                bonusRate = 0.075;
+                double toTwoHundred = 100000 * bonusRate;
+                bonus += toTwoHundred;
+                bonusRate = 0.05;
+                double toThreeHundred = 200000 * bonusRate;
+                bonus += toThreeHundred;
+                bonusRate = 0.03;
+                double toFourHundred = 200000 * bonusRate;
+                bonus += toFourHundred;
+                bonusRate = 0.015;
+                double aboveSixHundred = (profit - 600000) * bonusRate;
+                bonus += aboveSixHundred;
+            } else
+            {
+                bonus = 100000 * bonusRate;
+                bonusRate = 0.075;
+                double toTwoHundred = 100000 * bonusRate;
+                bonus += toTwoHundred;
+                bonusRate = 0.05;
+                double toThreeHundred = 200000 * bonusRate;
+                bonus += toThreeHundred;
+                bonusRate = 0.03;
+                double toSixHundred = 200000 * bonusRate;
+                bonus += toSixHundred;
+                bonusRate = 0.015;
+                double toOneThousand = 400000 * bonusRate;
+                bonus += toOneThousand;
+                bonusRate = 0.01;
+                double aboveOneThousand = (profit - 1000000) * bonusRate;
+                bonus += aboveOneThousand;
             }
-            Console.WriteLine($"得分:{score}");
+
+            Console.WriteLine(bonus);
+
             Console.ReadKey();
         }
     }
