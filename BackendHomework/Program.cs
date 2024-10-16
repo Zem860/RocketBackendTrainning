@@ -136,7 +136,7 @@ namespace BackendHomework
             //Console.WriteLine("大於12的數字總合為:" + moreThanTwelve);
 
             //-------------------------------------------------------------
-
+            //3-4 while
             //Console.WriteLine("輸入10個整數，列出其中所有大於12的數字的總和");
             //int moreThanTwelve = 0;
 
