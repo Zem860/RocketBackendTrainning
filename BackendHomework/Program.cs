@@ -79,41 +79,41 @@ namespace BackendHomework
 
             //4 - 5利用while寫一程式，讀入a1,a2,…,a5和b1,b2,…,b5。找到第一個ai > bi，即停止，並列印出ai及bi
             //照流程圖寫
-            int count = 0;
-            string ans = "";
-            bool found = false;
-            Console.WriteLine("題意要a1-a5和b1-b5的數字中找到第一個ai>bi");
-            Console.Write("請輸一個範圍:");
-            int i = Convert.ToInt32(Console.ReadLine());
-            int[] a = new int[i];
-            int[] b = new int[i];
-            while ( count < i)  //把a的範圍填滿
-            {
-                Console.Write($"請輸入a{count+1}:");
-                int num = Convert.ToInt32(Console.ReadLine());
-                a[count] = num;
-                count++;    
-            }
-            int n = 1;
-            //為了符合流程圖假設是1
-            while (!found && n <= i) //輸入b之後就和a比對，如果符合題意或已超過範圍就跳出迴圈
-            {
-                Console.Write($"請輸入b{n}的範圍:");
-                b[n-1] = Convert.ToInt32(Console.ReadLine());
-                for (int x =0; x <a.Length; x++)
-                {
-                    if (a[x] > b[n - 1])
-                    {
+            //int count = 0;
+            //string ans = "";
+            //bool found = false;
+            //Console.WriteLine("題意要a1-a5和b1-b5的數字中找到第一個ai>bi");
+            //Console.Write("請輸一個範圍:");
+            //int i = Convert.ToInt32(Console.ReadLine());
+            //int[] a = new int[i];
+            //int[] b = new int[i];
+            //while ( count < i)  //把a的範圍填滿
+            //{
+            //    Console.Write($"請輸入a{count+1}:");
+            //    int num = Convert.ToInt32(Console.ReadLine());
+            //    a[count] = num;
+            //    count++;    
+            //}
+            //int n = 1;
+            ////為了符合流程圖假設是1
+            //while (!found && n <= i) //輸入b之後就和a比對，如果符合題意或已超過範圍就跳出迴圈
+            //{
+            //    Console.Write($"請輸入b{n}的範圍:");
+            //    b[n-1] = Convert.ToInt32(Console.ReadLine());
+            //    for (int x =0; x <a.Length; x++)
+            //    {
+            //        if (a[x] > b[n - 1])
+            //        {
 
-                        ans = $"a{x+1}:{a[x+1]}, b{n}:{b[n-1]}";
-                        found = true;
-                        break;
-                    }
-                }
-                n++;
-            }
+            //            ans = $"a{x+1}:{a[x+1]}, b{n}:{b[n-1]}";
+            //            found = true;
+            //            break;
+            //        }
+            //    }
+            //    n++;
+            //}
 
-            Console.WriteLine(ans);
+            //Console.WriteLine(ans);
 
             //補充習題1漢堡
             //Console.WriteLine("請輸入時間範圍，以分鐘為基準:");
@@ -193,6 +193,45 @@ namespace BackendHomework
             //    }   
             //}
             //Console.WriteLine($"猜對了!答案是{ans}");
+
+            //Bonus聖誕樹
+            Console.Write("輸入聖誕樹的高度:");
+            int n = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < n; i++)
+            {
+                for (int x = n - i; x > 0; x--)
+                {
+                    Console.Write(" ");
+                }
+                //左-中間的星星
+                for (int j = 0; j < i; j++)
+                {
+                    Console.Write("*");
+                }
+                //右邊的星星
+
+                for (int y = 0; y < i - 1; y++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+
+            for (int i =0; i<n; i ++)
+            {
+                for (int x = (n-2) ; x > 0; x--)
+                {
+                    Console.Write(" ");
+                }
+
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.Write("*");
+                }
+
+                Console.WriteLine();
+
+            }
             Console.ReadKey();
         }
     }
