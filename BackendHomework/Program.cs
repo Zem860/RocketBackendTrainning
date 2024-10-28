@@ -146,33 +146,57 @@ namespace BackendHomework
             //Console.WriteLine($"每行最小值為{minRow}，每列最小值為{minCol}");
 
             //5-6.寫一程式，輸入兩組數字：a1,a2,…,a5和b1,b2,…,b5。求ai+bi，i=1到i=5。
-            int rowSize = 2;
-            int colSize = 5;
-            int[,] Test = new int[rowSize, colSize];
-            int[] flatten = new int[colSize];
+            //int rowSize = 2;
+            //int colSize = 5;
+            //int[,] Test = new int[rowSize, colSize];
+            //int[] flatten = new int[colSize];
 
-            for (int i = 0; i < rowSize; i++)
-            {
-                for (int j = 0; j < colSize; j++)
-                {
-                    Console.Write($"請輸入第{i + 1}行第{j + 1}個數字");
-                    Test[i, j] = Convert.ToInt32(Console.ReadLine());
-                }
-            }
+            //for (int i = 0; i < rowSize; i++)
+            //{
+            //    for (int j = 0; j < colSize; j++)
+            //    {
+            //        Console.Write($"請輸入第{i + 1}行第{j + 1}個數字");
+            //        Test[i, j] = Convert.ToInt32(Console.ReadLine());
+            //    }
+            //}
 
-            for (int i = 0; i<colSize; i++)
-            {
-                for (int j = 0; j <rowSize; j++)
-                {
-                    flatten[i] += Test[j,i];
-                }
-            }
+            //for (int i = 0; i<colSize; i++)
+            //{
+            //    for (int j = 0; j <rowSize; j++)
+            //    {
+            //        flatten[i] += Test[j,i];
+            //    }
+            //}
 
-            foreach(int i in flatten)
-            {
-                Console.WriteLine(i);
-            }
+            //foreach(int i in flatten)
+            //{
+            //    Console.WriteLine(i);
+            //}
 
+
+            //5-7.寫一程式，輸入兩組數字： a1,a2,…,a5和b1,b2,…,b5。令x為a中的最大值，令y為b中的最大值，求x與y中較小者。
+            //int[] A = new int [5];
+            //int[] B = new int [5];
+            //int x=int.MinValue, y =int.MinValue;
+            //for (int i = 0; i < A.Length; i++) { 
+            //    Console.WriteLine($"輸入A{i}:");
+            //    A[i] = Convert.ToInt32(Console.ReadLine());
+            //    if (A[i] > x) { 
+            //        x = A[i];
+            //    }
+            //    Console.WriteLine($"輸入B{i}:");
+            //    B[i] = Convert.ToInt32(Console.ReadLine());
+            //    if (A[i] > y)
+            //    {
+            //        y = B[i];
+            //    }
+            //}
+
+            //string result = (x > y )?$"x最大值為{x}，y最大值為{y}，x比較大" :$"x最大值為{x}，y最大值為{y}，y比較大";
+
+
+            //Console.WriteLine(result);
+            
 
             Console.ReadKey();
 
