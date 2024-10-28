@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.AccessControl;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,227 +13,169 @@ namespace BackendHomework
     {
         static void Main(string[] args)
         {
-            //4-1利用while寫一程式求N個數字的最大值。
-            //Console.Write("輸入範圍:");
-            //int range = Convert.ToInt32(Console.ReadLine());
-            //int i = 0;
-            //int maxNum = int.MinValue;
-            //while (i < range)
+            //5-1寫一程式，將10個數字讀入A陣列，然後逐一檢查此陣列，如A[i]>5，則令A[i]=A[i]-5，否則A[i]=A[i]+5
+            //int[] A = new  int [10];
+            //for (int i =0, n=A.Length; i <n; i++)
             //{
-            //    Console.Write($"數字{i+1}為:");
-            //    int num = Convert.ToInt32(Console.ReadLine());
-            //    if (num > maxNum)
+            //    Console.WriteLine($"請輸入第{i+1}個數字");
+            //    A[i] = Convert.ToInt32(Console.ReadLine());
+            //    if (A[i] > 5)
             //    {
-            //        maxNum = num;
-            //    }
-            //    i++;
-            //}
-            //Console.WriteLine($"最大的數字為{maxNum}");
-            //4-2 求等差級數數字的和
-            //int startValue, n, difference, count = 0, sum = 0;
-            //Console.Write("請輸入理想範圍: ");
-            //n = Convert.ToInt32(Console.ReadLine());
-            //Console.Write("請輸入起始值: ");
-            //startValue = Convert.ToInt32(Console.ReadLine());
-            //Console.Write("請輸入公差:");
-            //difference = Convert.ToInt32(Console.ReadLine());
-            //while (count < n)
-            //{
-            //    sum += startValue;
-            //    startValue += difference;
-            //    count++;
-            //}
-
-            //Console.Write($"等差級數數字的和{sum}");
-            //4-3  利用while寫一程式，讀入N個數字，然後找出所有小於13的數，再求這些數字的和。
-            //Console.Write("請輸入N個數字:");
-            //int n = Convert.ToInt32(Console.ReadLine());
-            //int temp = 0;
-            //while (n > 0)
-            //{
-            //    Console.WriteLine("請輸入隨機數字:");
-            //    int rndNum = Convert.ToInt32(Console.ReadLine());
-            //    if (rndNum < 13)
-            //    {
-            //        temp += rndNum;
-            //    }
-            //    n--;
-            //}
-            //Console.WriteLine($"所有小於13的數字的和為{temp}");
-
-            //4-4利用while寫一程式，讀入N個數字，找到第一個大於7而小於10的數字就停止，而且列印出這個數字。
-            //int  X, N =0;
-            //bool found = false;
-            //while (!found) {
-            //    try {
-            //        Console.Write("輸入數字:");
-            //        N = Convert.ToInt32(Console.ReadLine());
-            //        if (N > 7 && N < 10)
-            //        {
-            //            found = true;
-            //        }
-            //    } catch (FormatException) {
-            //        Console.WriteLine("請輸入正整數，目標是輸入7和10之間的數字");
+            //        A[i]-=5;
             //    }
             //}
-            //Console.WriteLine($"找到正確數字{N}");
-
-            //4 - 5利用while寫一程式，讀入a1,a2,…,a5和b1,b2,…,b5。找到第一個ai > bi，即停止，並列印出ai及bi
-            //照流程圖寫
-            //int count = 0;
-            //string ans = "";
-            //bool found = false;
-            //Console.WriteLine("題意要a1-a5和b1-b5的數字中找到第一個ai>bi");
-            //Console.Write("請輸一個範圍:");
-            //int i = Convert.ToInt32(Console.ReadLine());
-            //int[] a = new int[i];
-            //int[] b = new int[i];
-            //while ( count < i)  //把a的範圍填滿
+            //foreach(int i in A)
             //{
-            //    Console.Write($"請輸入a{count+1}:");
-            //    int num = Convert.ToInt32(Console.ReadLine());
-            //    a[count] = num;
-            //    count++;    
+            //    Console.WriteLine(i);
             //}
-            //int n = 1;
-            ////為了符合流程圖假設是1
-            //while (!found && n <= i) //輸入b之後就和a比對，如果符合題意或已超過範圍就跳出迴圈
-            //{
-            //    Console.Write($"請輸入b{n}的範圍:");
-            //    b[n-1] = Convert.ToInt32(Console.ReadLine());
-            //    for (int x =0; x <a.Length; x++)
-            //    {
-            //        if (a[x] > b[n - 1])
-            //        {
 
-            //            ans = $"a{x+1}:{a[x+1]}, b{n}:{b[n-1]}";
-            //            found = true;
-            //            break;
-            //        }
+            //5-2.寫一程式，將10個數字讀入A陣列，對每一個數字，令A[i]=A[i]+i。
+            //int size = 10;
+            //int[] A = new int[size];
+            //for (int i = 0; i < size; i++) { 
+            //Console.WriteLine($"輸入第{i+1}個數字: ");
+            //    A[i] = Convert.ToInt32(Console.ReadLine())+i;
+            //    Console.WriteLine($"第{i + 1}個數字為{A[i]}");
+            //}
+
+            //5-3.寫一程式，將10個數字讀入A陣列，並建立一個B陣列，如A[i]≥0，令B[i]=1，否則令B[i]=0。
+            //int size = 10;
+            //int[] A = new int[size], B = new int[size];
+            //for (int i =0; i < size; i++)
+            //{
+            //    Console.Write($"輸入陣列A第{i + 1}個數字:");
+            //    A[i] = Convert.ToInt32(Console.ReadLine());
+            //    if (A[i] >= 0)
+            //    {
+            //        B[i] = 1;
             //    }
-            //    n++;
+            //    else
+            //    {
+            //        B[i] = 0;
+            //    }
+
+            //    Console.WriteLine($"陣列A第{i+1}個數字為{A[i]}。陣列B第{i + 1}個數字為{B[i]}");
             //}
 
-            //Console.WriteLine(ans);
-
-            //補充習題1漢堡
-            //Console.WriteLine("請輸入時間範圍，以分鐘為基準:");
-            //int min = Convert.ToInt32(Console.ReadLine());
-            //int count = 0;
-            //while (min >= 5) {
-            //    Console.WriteLine($"Eric吃了第{count += 1}個漢堡包");
-            //    min -= 5;
-            //}
-
-            //補充習題2還錢 5,600,000
-            //int yearPayment = (12*40000)+10000;
-            //int totalLoan = 5600000;
-            //int yearCount = 0;
-            //int monthCount = 0;
-            //while (totalLoan > 0)
+            //5-4.寫一程式，將15數字存入3×5的二維陣列A中，求每一行及每一列數字的和。
+            //int row = 3, col = 5;
+            //int[,] A = new int[row, col];
+            //[[x, x, x, x, x],[x, x, x, x, x],[x, x, x, x, x]];
+            //行
+            //for (int i = 0; i < row; i++)
             //{
-            //    if (totalLoan - yearPayment >0)
+            //    for (int j = 0; j < col; j++)
             //    {
-            //        totalLoan -= yearPayment;
-            //        yearCount++;
-            //    } else if (totalLoan - 40000 > 0)
-            //    {
-            //        totalLoan -= 40000;
-            //        monthCount++;
-            //    } else
-            //    {
-            //        totalLoan = 0;
-            //        monthCount+=1;
-            //        break;
+            //        Console.WriteLine($"請輸入第{i + 1}行，第{j + 1}個數字");
+            //        A[i, j] = Convert.ToInt32(Console.ReadLine());
             //    }
             //}
-            //monthCount += yearCount * 12;
-            //Console.WriteLine($"小明貸款還了{monthCount}個月");
-            //補充習題3 猜數字
-            //Random rnd =  new Random();
-            //int high = rnd.Next(2, 10);
-            //int low = rnd.Next(0, high);
-            //int ans = rnd.Next(low, high);
-            //bool found = false;
-            //while (!found)
+            //for (int i = 0, n = A.GetLength(0); i < n; i++)
             //{
-            //    Console.WriteLine($"請猜一個{low}到{high}之間的數字{ans}:");
-            //    try {
+            //    int rowSum = 0;
 
-            //        int guess = Convert.ToInt32(Console.ReadLine());
-            //        if (guess == ans)
-            //        {
-            //            found = true;
-            //        }
-            //        else if (guess > high)
-            //        {
-            //            Console.WriteLine("請輸入範圍值");
-            //        }
-            //        else if (guess < low)
-            //        {
-            //            Console.WriteLine("請輸入範圍值");
-            //        }
-            //        else if (guess > ans)
-            //        {
-            //            Console.WriteLine("答案比你猜的數字小");
-            //            high = guess;
-            //        }
-            //        else
-            //        {
-            //            Console.Write("答案比你猜的數字大");
-            //            low = guess;
-            //        }
-            //    }
-            //    catch (FormatException)
+            //    for (int j = 0, m = A.GetLength(1); j < m; j++)
             //    {
-            //        Console.WriteLine("請輸入整數");
+            //        rowSum += A[i, j];
             //    }
-            //    catch (System.OverflowException)
-            //    {
-            //        Console.WriteLine("請輸入有效範圍值");
-            //    }   
+            //    Console.WriteLine($"第{i}行的總數為{rowSum}");
             //}
-            //Console.WriteLine($"猜對了!答案是{ans}");
+            //for (int i = 0; i < col; i++)
+            //{
+            //    for (int j = 0; j < row; j++)
+            //    {
+            //        Console.WriteLine($"請輸入第{i + 1}列，第{j + 1}個數字");
+            //        A[j, i] = Convert.ToInt32(Console.ReadLine());
+            //    }
+            //}
 
-            //Bonus聖誕樹
-            Console.Write("輸入聖誕樹的高度:");
-            int n = Convert.ToInt32(Console.ReadLine());
-            for (int i = 0; i < n; i++)
+            ////列
+
+            //for (int i = 0, n = A.GetLength(1); i < n; i++)
+            //{
+            //    int colSum = 0;
+
+            //    for (int j = 0, m = A.GetLength(0); j < m; j++)
+            //    {
+            //        colSum += A[j, i];
+            //    }
+            //    Console.WriteLine($"第{i+1}列的總數為{colSum}");
+            //}
+
+            //5-5.寫一程式，將15數字存入3×5的二維陣列A中，求每一行及每一列數字的最小值。
+            //int rowSize = 3, colSize = 5;
+            //int[,] A = new int[rowSize, colSize];
+            //int[] rowSum = new int[rowSize];
+            //int[] colSum = new int[colSize];
+            //int minRow = int.MaxValue;
+            //int minCol = int.MaxValue;
+            //for (int i = 0; i<rowSize; i++)
+            //{
+            //    for (int j = 0; j <colSize; j++)
+            //    {
+            //        Console.Write($"請輸入第{i + 1}行，第{j + 1}個數字:");
+            //        A[i, j] = Convert.ToInt32(Console.ReadLine());
+            //        rowSum[i] += A[i, j];
+            //        colSum[j] += A[i, j];   
+            //    }
+
+            //}            
+            //for (int i =0; i < rowSum.Length; i++)
+            //{
+            //    if (rowSum[i] < minRow){
+            //        minRow = rowSum[i];
+            //    }
+            //}
+
+            //for (int i = 0; i < colSum.Length; i++)
+            //{
+            //    if (colSum[i] < minCol)
+            //    {
+            //        minCol = colSum[i];
+            //    }
+            //}          
+            //for (int i = 0; i < rowSum.Length;i++)
+            //{
+            //    Console.WriteLine($"第{i + 1}行的總數{rowSum[i]}");
+            //}
+
+            //for (int i = 0; i < colSum.Length; i++)
+            //{
+            //    Console.WriteLine($"第{i + 1}列的總數{colSum[i]}");
+            //}
+            //Console.WriteLine($"每行最小值為{minRow}，每列最小值為{minCol}");
+
+            //5-6.寫一程式，輸入兩組數字：a1,a2,…,a5和b1,b2,…,b5。求ai+bi，i=1到i=5。
+            int rowSize = 2;
+            int colSize = 5;
+            int[,] Test = new int[rowSize, colSize];
+            int[] flatten = new int[colSize];
+
+            for (int i = 0; i < rowSize; i++)
             {
-                for (int x = n - i; x > 0; x--)
+                for (int j = 0; j < colSize; j++)
                 {
-                    Console.Write(" ");
+                    Console.Write($"請輸入第{i + 1}行第{j + 1}個數字");
+                    Test[i, j] = Convert.ToInt32(Console.ReadLine());
                 }
-                //左-中間的星星
-                for (int j = 0; j < i; j++)
-                {
-                    Console.Write("*");
-                }
-                //右邊的星星
-
-                for (int y = 0; y < i - 1; y++)
-                {
-                    Console.Write("*");
-                }
-                Console.WriteLine();
             }
 
-            for (int i =0; i<n; i ++)
+            for (int i = 0; i<colSize; i++)
             {
-                for (int x = (n-2) ; x > 0; x--)
+                for (int j = 0; j <rowSize; j++)
                 {
-                    Console.Write(" ");
+                    flatten[i] += Test[j,i];
                 }
-
-                for (int j = 0; j < 3; j++)
-                {
-                    Console.Write("*");
-                }
-
-                Console.WriteLine();
-
             }
+
+            foreach(int i in flatten)
+            {
+                Console.WriteLine(i);
+            }
+
+
             Console.ReadKey();
+
         }
     }
 }
