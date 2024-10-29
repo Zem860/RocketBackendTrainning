@@ -126,22 +126,18 @@ namespace BackendHomework
             //}
 
             //例題5.5-求2乘3的A矩陣乘以3乘1的B矩陣，結果存入2乘1的C矩陣，最後將C矩陣的內容顯示出來。
-
-
-            int[,] A = new int [2, 3];
-            int[,] B = new int [3, 1];
-            int[,] C = new int [2, 1];
-            for (int i =0, n = A.GetLength(0); i < n; i++)
+            int[,] A = new int[2, 3];
+            int[,] B = new int[3, 1];
+            int[,] C = new int[2, 1];
+            for (int i = 0, n = A.GetLength(0); i < n; i++)
             {
                 for (int j = 0, m = A.GetLength(1); j < m; j++)
                 {
                     Console.WriteLine("輸入A矩陣");
-                    Console.Write($"請輸入{i+1}行第{j+1}列的數字:");
-                    A[i,j] = Convert.ToInt32(Console.ReadLine());
+                    Console.Write($"請輸入{i + 1}行第{j + 1}列的數字:");
+                    A[i, j] = Convert.ToInt32(Console.ReadLine());
                 }
             }
-
-
             for (int i = 0, n = B.GetLength(0); i < n; i++)
             {
                 for (int j = 0, m = B.GetLength(1); j < m; j++)
@@ -152,22 +148,32 @@ namespace BackendHomework
                 }
             }
 
-            //目前想不出來怎麼把矩陣給放到迴圈相加
-            C[0, 0] = A[0, 0] * B[0, 0] + A[0, 1] * B[1, 0] + A[0, 2] * B[2, 0];
-            C[1,0] = A[1, 0]* B[0, 0] + A[1,1] * B[1, 0] + A[1,2] * B[2,0];
+            //目前想不出來怎麼把矩陣給放到迴圈相加，用兩個迴圈好像
+            //C[0, 0] = A[0, 0] * B[0, 0] + A[0, 1] * B[1, 0] + A[0, 2] * B[2, 0];
+            //C[1, 0] = A[1, 0] * B[0, 0] + A[1, 1] * B[1, 0] + A[1, 2] * B[2, 0];
+
+
+            for (int i = 0, n = C.GetLength(0); i < n; i++) 
+            {
+                for (int j = 0, m = C.GetLength(1);j< m; j++)  //1，2迴圈是要定義數字放入C的順序
+                {
+                    for (int k = 0, o= A.GetLength(1); k<o ; k++) //第3個迴圈是要確保 能夠將A和B裡面的值取出來
+                    {
+                        C[i,j] += A[i,k] * B[k,j];
+                    }
+                }
+            }
 
 
             for (int i = 0, n = C.GetLength(0); i < n; i++)
             {
                 for (int j = 0, m = C.GetLength(1); j < m; j++)
                 {
-                    Console.WriteLine("C陣列為9");
+                    Console.WriteLine("C陣列為");
                     Console.Write($"{C[i, j]}\t");
                 }
                 Console.WriteLine();
             }
-
-
 
             //5-1寫一程式，將10個數字讀入A陣列，然後逐一檢查此陣列，如A[i]>5，則令A[i]=A[i]-5，否則A[i]=A[i]+5
             //int[] A = new  int [10];
