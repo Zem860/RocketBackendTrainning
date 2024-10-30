@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Globalization;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace BackendHomework
 {
@@ -61,6 +63,91 @@ namespace BackendHomework
             //Console.ReadKey();
 
             //8.輸入一個日期，把把該日期轉成民國XX年XX月XX日 星期X 格式
+            //Console.Write("輸入西元年:");
+            //int year = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("輸入月份:");
+            //int month = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("輸入日:");
+            //int day = Convert.ToInt32(Console.ReadLine());
+            //Console.WriteLine(ConvertToTaiwanCalendarWithDayOfWeek(year, month, day));
+
+            //9.寫一個function，回傳輸入的年是否閏年(1992, 2024, 2000, 1993, 2005)
+            //Console.Write("請輸入年分，我可以判斷當年是否為閏年:");
+            //int year = Convert.ToInt32(Console.ReadLine());
+            //bool isLeapYear = CheckIsLeapYear(year);
+            //string result = isLeapYear ? "是" : "不是";
+            //Console.WriteLine($"{year}{result}閏年");
+
+            //10.寫一個function，輸入手機號碼，回傳今天運勢(手機運勢算法：
+            //用你的手機號碼的最後四位數除以80，再減去整數部分（只留小數），
+            //再乘以80，就會得到一個數，這就是代表吉凶的數字，印出結果。)
+            Console.WriteLine("輸入您的手機號碼(不需要-):");
+            string phoneNumber = Console.ReadLine();
+            Console.WriteLine(luckyNumber(phoneNumber));
+            Console.ReadKey();
+
+        }
+
+
+        static double luckyNumber(string number)
+        {
+
+            int len = number.Length;
+            int needLength = len - 4;
+            double lastFourNumber = Convert.ToDouble(number.Substring(needLength));
+            double baseNum = lastFourNumber / 80;
+            double integerPart = Math.Floor(baseNum);
+            double fractionalPart = baseNum - integerPart;
+            double result = fractionalPart *80;
+            return result;
+        }
+
+         static bool CheckIsLeapYear(int year)
+        {
+            if  ((year%4 ==0 && year%100!=0 )||(year %400==0))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        static string ConvertToTaiwanCalendarWithDayOfWeek(int y, int m, int d)
+
+
+        {
+           //轉成台灣時間的時候會有一天的誤差所以把星期寫在前面
+            DateTime date = new DateTime(y, m, d);
+            string weekday = "";
+            switch (date.DayOfWeek)
+            {
+                case DayOfWeek.Sunday:
+                    weekday = "星期日";
+                    break;
+                case DayOfWeek.Monday:
+                    weekday = "星期一";
+                    break;
+                case DayOfWeek.Tuesday:
+                    weekday = "星期二";
+                    break;
+                case DayOfWeek.Wednesday:
+                    weekday = "星期三";
+                    break;
+                case DayOfWeek.Thursday:
+                    weekday = "星期四";
+                    break;
+                case DayOfWeek.Friday:
+                    weekday = "星期五";
+                    break;
+                case DayOfWeek.Saturday:
+                    weekday = "星期六";
+                    break;
+            }
+            TaiwanCalendar taiwanCalendar = new TaiwanCalendar();
+            date = new DateTime(y, m, d, taiwanCalendar);
+            int year = taiwanCalendar.GetYear(date);
+            int month = taiwanCalendar.GetMonth(date);
+            int day = taiwanCalendar.GetDayOfMonth(date);
+            return $"民國{year}年{month}月{day}日{weekday}";
         }
 
 
