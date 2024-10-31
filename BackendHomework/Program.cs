@@ -124,6 +124,7 @@ namespace BackendHomework
             double height, weight, BMI;
             //體重÷身高(公尺)的平方
             Console.WriteLine("請輸入身高");
+            // 將輸入的身高從公分轉換為公尺
             height = Convert.ToDouble(Console.ReadLine()) / 100;
             Console.WriteLine("請輸入體重");
             weight = Convert.ToDouble(Console.ReadLine());
