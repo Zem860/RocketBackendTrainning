@@ -83,13 +83,13 @@ namespace BackendHomework
             //再乘以80，就會得到一個數，這就是代表吉凶的數字，印出結果。)
             Console.WriteLine("輸入您的手機號碼(不需要-):");
             string phoneNumber = Console.ReadLine();
-            Console.WriteLine(luckyNumber(phoneNumber));
+            Console.WriteLine(FortuneNumber(phoneNumber));
             Console.ReadKey();
 
         }
 
 
-        static double luckyNumber(string number)
+        static double FortuneNumber(string number)
         {
 
             int len = number.Length;
@@ -112,8 +112,6 @@ namespace BackendHomework
             return false;
         }
         static string ConvertToTaiwanCalendarWithDayOfWeek(int y, int m, int d)
-
-
         {
            //轉成台灣時間的時候會有一天的誤差所以把星期寫在前面
             DateTime date = new DateTime(y, m, d);
