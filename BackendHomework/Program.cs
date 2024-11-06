@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Activation;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BackendHomework
@@ -24,10 +26,6 @@ namespace BackendHomework
             //d = Convert.ToDouble(Console.ReadLine());
             //result = ((a + b) / (c + d)) * 2;
             //Console.WriteLine($"結果為{result}");
-
-
-
-
 
             //假設有一組二元一次方程式如下：
             //double a1, b1, c1, a2, b2, c2,x,y;
@@ -373,48 +371,78 @@ namespace BackendHomework
 
 
             //補充習題四
-            double profit, bonus=0;
-            double initNum = 1000;
+            //double profit, bonus = 0;
 
-            profit = Convert.ToInt32(Console.ReadLine());
-            double[] limits = { 100000, 200000, 400000, 600000, 1000000 };
-            double[] rates = { 0.1, 0.075, 0.05, 0.03, 0.015, 0.01 };
+            //profit = Convert.ToInt32(Console.ReadLine());
+            //double[] limits = { 100000, 200000, 400000, 600000, 1000000 };
+            //double[] rates = { 0.1, 0.075, 0.05, 0.03, 0.015, 0.01 };
+            //int level = 0;
+            //for (int limi = 0; limi < (limits.Length - 1); limi++)
+            //{
+            //    if (profit >= limits[limi])
+            //    {
+            //        level += 1;
+            //    }
+            //    else
+            //    {
+            //        break;
+            //    }
+            //}
+            //if (level == 0)
+            //{
+            //    bonus = profit * 0.1;
+            //}
+            //else
+            //{
+            //    for (int i = 0; i < level - 1; i++)
+            //    {
+            //        bonus += rates[i] * limits[i];
 
-            for (int limi = 0; limi <(limits.Length - 1); limi++)
-            {
-                if (profit >= limits[limi])
-                {
-                    double temp = profit - limits[limi];
+            //    }
+            //    bonus += profit - limits[level - 1] * rates[level]; 
+            //}
 
-                } else
-                {
-                    break;
-                }
-            }
-           
-            Console.WriteLine($"bonus是{bonus}");
-            
 
+            //Console.WriteLine($"bonus是{bonus}");
+
+            //MultiplicationTable2();
+            M();
             Console.ReadKey();
 
 
-            MultiplicationTable2();
 
         }
 
-     
+
         static void MultiplicationTable2()
         {
-           
+
+
         }
 
-        static void M(int n)
+        static void M()
         {
+            for (int h = 0; h <=6; h+=3)
+            {
+                for (int i = 1; i <= 9; i++)
+                {
+                    for (int j = 1; j <= 3; j++)
+                    {
+                        Console.Write($"{j+h}x{i} = {i * (j+h)} \t");
+                        Console.Write(" ");
 
+                    }
+                    Console.WriteLine();
+                }
+
+                Console.WriteLine();
+            }
         }
 
         static void MultiplicationTable()
         {
+            
+
             //九九乘法表
             for (int i = 1; i <= 9; i++)
             {
