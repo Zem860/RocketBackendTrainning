@@ -83,9 +83,6 @@ namespace BackendHomework
             //    count++;
             //}
 
-
-
-
             //補充習題2.
             //string target = "fifa";
             //for (int i =0; i<target.Length; i++)
@@ -162,11 +159,6 @@ namespace BackendHomework
             result = "<ul>\n" + result + "<ul>\n";
 
             Console.WriteLine(result);
-        }
-
-        public void demo2()
-        {
-            Console.WriteLine("demo2");
         }
     }
 }
