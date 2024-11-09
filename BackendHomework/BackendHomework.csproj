@@ -49,8 +49,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="files\" />
+    <Content Include="files\1.txt" />
+    <Content Include="files\index.html" />
+    <Content Include="files\lyrics.txt" />
+    <Content Include="files\MultiplyTable.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

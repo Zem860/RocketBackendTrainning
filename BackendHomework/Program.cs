@@ -12,14 +12,147 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.IO;
 using System.Diagnostics;
 using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Data;
 
 namespace BackendHomework
 {
     internal class Program
-    {   
+    {
 
         static void Main(string[] args)
         {
+            //----------------檔案-----------------------
+            //1.寫一篇中文歌的歌詞到到自己指定的文字檔(使用UTF-8編碼)。
+            //string path = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\lyrics.txt";
+            //while (true) {
+            //    Console.WriteLine("輸入歌詞，不輸入的話輸入stop");
+            //    string line = Console.ReadLine();
+
+            //    if (line == "stop")
+            //    {
+            //        break;
+            //    }
+            //    File.AppendAllText(path, line+Environment.NewLine);
+
+            //}
+
+            //2.讀取1.txt 顯示在畫面上。
+            //string path = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\1.txt";
+            //string[] content = File.ReadAllLines(path);
+            //foreach(string line in content)
+            //{
+            //    Console.WriteLine(line);
+            //}
+
+            //3. 把99乘法表寫入某個檔案裏面
+
+            //for (int i =1; i <= 9; i += 3)
+            //    //左邊起始1 4 7
+            //{
+            //    for (int j = 1; j <= 9; j++)
+            //    {
+            //        //確定可以左邊那排乘以147x9
+            //        for (int k = 0; k <= 2; k++)
+            //        {
+            //            //把右邊剩餘的補滿，每row做3次
+
+            //            Console.Write($"{i + k} x {j}= {(i + k) * j}\t");
+            //        }
+            //        Console.WriteLine();
+            //    }
+            //    Console.WriteLine();
+            //}
+
+            //string filePath = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\1.txt";
+
+            //using (StreamWriter writer = new StreamWriter(filePath))
+            //{
+
+            //    for (int i = 1; i <= 9; i += 3)
+            //    //左邊起始1 4 7
+            //    {
+            //        for (int j = 1; j <= 9; j++)
+            //        {
+            //            //確定可以左邊那排乘以147x9
+            //            for (int k = 0; k <= 2; k++)
+            //            {
+            //                //把右邊剩餘的補滿，每row做3次
+
+            //                writer.Write($"{i + k} x {j}= {(i + k) * j}\t");
+            //            }
+            //            writer.WriteLine();
+            //        }
+            //        writer.WriteLine();
+            //    }
+            //}
+
+            //讀取1.txt 顯示在畫面上，並將1.txt 裡的阿拉伯數字，轉換成中文數字(壹、貳、叁、肆…..)，並儲存到指定的路徑。(UTF-8)
+            //string filePath = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\1.txt";
+            //string destination = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\2.txt";
+            //string text = File.ReadAllText(filePath, Encoding.UTF8);
+            //char[] words = { '壹', '貳','參','肆','伍','陸','柒','捌', '玖' };
+            //text = text.Replace("1", "壹")
+            //       .Replace("2", "貳")
+            //       .Replace("3", "參")
+            //       .Replace("4", "肆")
+            //       .Replace("5", "伍")
+            //       .Replace("6", "陸")
+            //       .Replace("7", "柒")
+            //       .Replace("8", "捌")
+            //       .Replace("9", "玖")
+            //       .Replace("0", "零");
+            //using (StreamWriter writer = new StreamWriter(destination))
+            //{
+            //    writer.Write(text);
+            //}
+
+            //讀取fc4bb.csv，並將此資料轉成HTML TABLE 格式，並儲存到指定的HTML檔裡。
+            string path = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\fc4bb.csv";
+            string destination = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\index.html";
+            string[] contentArr = File.ReadAllLines(path, Encoding.UTF8);
+            string[,] tags = { { "<table>", "</table>" }, { "<td>", "</td>" }, { "<tr>", "</tr>" }, { "<thead>", "</thead>" }, { "<tbody>", "</tbody>" } };
+            string result = "";
+            for (int i = 0; i < contentArr.Length; i++)
+            {
+                string[] dataRow = contentArr[i].Split(',');
+                int len = dataRow.Length;
+
+                for (int j = 0; j < len; j++)
+                {
+                    dataRow[j] = tags[1, 0] + dataRow[j] + tags[1, 1];
+                }
+                if (i == 0)
+                {
+                    contentArr[i] = tags[0, 0] + Environment.NewLine + tags[3, 0] + tags[2, 0] + String.Join("", dataRow) + tags[2, 1] + tags[3, 1];
+                }
+                else if (i == 1)
+                {
+                    contentArr[i] = tags[4, 0] + tags[2, 0] + String.Join("", dataRow) + tags[2, 1];
+                }
+                else if (i == contentArr.Length - 1)
+                {
+                    contentArr[i] = tags[2, 0] + String.Join("", dataRow) + tags[2, 1] + tags[4, 1] + Environment.NewLine + tags[0, 1];
+                }
+
+                else
+                {
+                    contentArr[i] = tags[2, 0] + String.Join("", dataRow) + tags[2, 1];
+                }
+
+            }
+            result = String.Join("", contentArr);
+
+            File.WriteAllText(destination, result
+                );
+
+
+            //-------------------------亂數------------------------------
+            //請隨機由0~99產生一個數字輸出。
+            //Random rom = new Random();//亂數種子int I = rom.Next(0, 100);//回傳0-99的亂數
+
+
+
 
             //----------------日期-----------------------
             //1. 顯示現在日期與時間。
@@ -133,10 +266,10 @@ namespace BackendHomework
             //Console.WriteLine($"第一個日期和第二個日期差了{differences}天");
 
             //算命師的那題
-            DateTime thisYearEnd = new DateTime(2024, 12,31);
+            DateTime thisYearEnd = new DateTime(2024, 12, 31);
             DateTime thisYearStart = new DateTime(2024, 1, 1);
             TimeSpan thisYearRange = thisYearEnd - thisYearStart;
-            long range =(long)thisYearRange.Ticks;
+            long range = (long)thisYearRange.Ticks;
             Random rnd = new Random();
             double javascriptMathRandom = rnd.NextDouble();
             double randomTicks = range * javascriptMathRandom;
@@ -182,7 +315,7 @@ namespace BackendHomework
 
             //Next()沒範圍
             Random num = new Random();
-            Console.WriteLine($"亂數為{num.Next(1,3)}");
+            Console.WriteLine($"亂數為{num.Next(1, 3)}");
             Console.ReadKey();
 
             ////Next(Int32, Int32)指定範圍
@@ -194,7 +327,7 @@ namespace BackendHomework
             //寫法(一)
             DateTime a = DateTime.Now;
             Console.WriteLine($"今年 {a.Year}年 {a.Month}月 {a.Day}日 {a.Hour}時:{a.Minute}分:{a.Second}秒");
-            
+
             //寫法(二)
             //DateTime now = DateTime.Now;
             //int year = now.Year;
@@ -204,8 +337,8 @@ namespace BackendHomework
             //int minute = now.Minute;
             //int second = now.Second;
             //Console.WriteLine($"今年 {year}年 {month}月 {day}日 {hour}時:{minute}分:{second}秒");
-            
-            
+
+
 
             //2.DateTime.Today 今天日期
             DateTime b = DateTime.Today;
@@ -236,13 +369,13 @@ namespace BackendHomework
 
             string target = "fifa";
 
-            for (int i =0; i<target.Length; i++)
+            for (int i = 0; i < target.Length; i++)
             {
                 for (int j = 0; j < target.Length; j++)
                 {
                     if (i == j)
                     {
-                        Console.Write((char)((int)target[j]-32));
+                        Console.Write((char)((int)target[j] - 32));
                     }
                     else
                     {
