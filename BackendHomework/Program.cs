@@ -108,52 +108,104 @@ namespace BackendHomework
             //}
 
             //讀取fc4bb.csv，並將此資料轉成HTML TABLE 格式，並儲存到指定的HTML檔裡。
-            string path = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\fc4bb.csv";
-            string destination = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\index.html";
-            string[] contentArr = File.ReadAllLines(path, Encoding.UTF8);
-            string[,] tags = { { "<table>", "</table>" }, { "<td>", "</td>" }, { "<tr>", "</tr>" }, { "<thead>", "</thead>" }, { "<tbody>", "</tbody>" } };
-            string result = "";
-            for (int i = 0; i < contentArr.Length; i++)
-            {
-                string[] dataRow = contentArr[i].Split(',');
-                int len = dataRow.Length;
+            //string path = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\fc4bb.csv";
+            //string destination = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\index.html";
+            //string[] contentArr = File.ReadAllLines(path, Encoding.UTF8);
+            //string[,] tags = { { "<table>", "</table>" }, { "<td>", "</td>" }, { "<tr>", "</tr>" }, { "<thead>", "</thead>" }, { "<tbody>", "</tbody>" } };
+            //string result = "";
+            //for (int i = 0; i < contentArr.Length; i++)
+            //{
+            //    string[] dataRow = contentArr[i].Split(',');
+            //    int len = dataRow.Length;
 
-                for (int j = 0; j < len; j++)
-                {
-                    dataRow[j] = tags[1, 0] + dataRow[j] + tags[1, 1];
-                }
-                if (i == 0)
-                {
-                    contentArr[i] = tags[0, 0] + Environment.NewLine + tags[3, 0] + tags[2, 0] + String.Join("", dataRow) + tags[2, 1] + tags[3, 1];
-                }
-                else if (i == 1)
-                {
-                    contentArr[i] = tags[4, 0] + tags[2, 0] + String.Join("", dataRow) + tags[2, 1];
-                }
-                else if (i == contentArr.Length - 1)
-                {
-                    contentArr[i] = tags[2, 0] + String.Join("", dataRow) + tags[2, 1] + tags[4, 1] + Environment.NewLine + tags[0, 1];
-                }
+            //    for (int j = 0; j < len; j++)
+            //    {
+            //        dataRow[j] = tags[1, 0] + dataRow[j] + tags[1, 1];
+            //    }
+            //    if (i == 0)
+            //    {
+            //        contentArr[i] = tags[0, 0] + Environment.NewLine + tags[3, 0] + tags[2, 0] + String.Join("", dataRow) + tags[2, 1] + tags[3, 1];
+            //    }
+            //    else if (i == 1)
+            //    {
+            //        contentArr[i] = tags[4, 0] + tags[2, 0] + String.Join("", dataRow) + tags[2, 1];
+            //    }
+            //    else if (i == contentArr.Length - 1)
+            //    {
+            //        contentArr[i] = tags[2, 0] + String.Join("", dataRow) + tags[2, 1] + tags[4, 1] + Environment.NewLine + tags[0, 1];
+            //    }
 
-                else
-                {
-                    contentArr[i] = tags[2, 0] + String.Join("", dataRow) + tags[2, 1];
-                }
+            //    else
+            //    {
+            //        contentArr[i] = tags[2, 0] + String.Join("", dataRow) + tags[2, 1];
+            //    }
 
-            }
-            result = String.Join("", contentArr);
+            //}
+            //result = String.Join("", contentArr);
 
-            File.WriteAllText(destination, result
-                );
+            //File.WriteAllText(destination, result
+            //    );
 
 
             //-------------------------亂數------------------------------
             //請隨機由0~99產生一個數字輸出。
-            //Random rom = new Random();//亂數種子int I = rom.Next(0, 100);//回傳0-99的亂數
+            //Random rom = new Random();
+            //Console.WriteLine(rom.Next(0, 100));
+            ////請隨機由0~99產生10個數字輸出。
+            //Console.WriteLine("---------------------------");
+            //Random randomInt = new Random();
+            //for (int i =0, len = 10; i < len; i++)
+            //{   
+
+            //    Console.WriteLine(randomInt.Next(0,100));
+            //}
+
+            //隨機幫每位學員產生成績，並寫入文字檔(欄位之間用，分開，換行寫入下一筆)。
+            //path = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\studentGrades.txt";
+            //string[] students = { "楊雯茜", "鍾思瑩", "黃珮馨", "蔡東霖", "劉欣芸", "鄭柏易", "劉俊宏", "王誼楷", "江品學", "許雅琇", "陳郁婷", "翁梓航", "張子賢", "何宜駿", "鮑宥伶", "許喬雅" };
+            //Random grade = new Random();
+            //for (int i = 0; i<students.Length; i++)
+            //{
+            //    File.AppendAllText(path, $"{students[i]}\t {grade.Next(0,100)}\n");
+            //}
+
+            //請設計樂透開獎程式。
 
 
+            //請在文字檔裡輸入所有午餐的店家，
+            //讀取文字檔，隨機抽出今天中午要吃哪一家。
+            //path = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\Lunch.txt";
+            //string[] lunchList = File.ReadAllLines(path, Encoding.UTF8);
+            //Random randomInt = new Random();
+            //int choice =  randomInt.Next(0, lunchList.Length);
+            //Console.WriteLine(lunchList[choice]);
 
 
+            //請在文字檔裡輸入所有教室裡的學員名字，
+            //讀取文字檔，隨機抽出今天的值日生，抽過不能再被抽中，
+            //直到全部學員都被抽過，才可以再被抽。
+
+            string path = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\dutyPerson.txt";
+            string[] duty = File.ReadAllLines(path, Encoding.GetEncoding("big5"));
+            Random randomInt = new Random();
+            int len = duty.Length;
+            bool filled = false;
+            int count = 0;
+            do
+            {
+                int rom = randomInt.Next(0, len);
+                if (duty[rom] == null)
+                {
+                    continue;
+                }
+                Console.WriteLine($"{duty[rom]}今天是值日生");
+                duty[rom] = null;
+                count++;
+                if (count == len)
+                {
+                    filled = true;
+                }
+            } while (!filled);
             //----------------日期-----------------------
             //1. 顯示現在日期與時間。
             //DateTime currentTime = DateTime.Now;
@@ -293,109 +345,7 @@ namespace BackendHomework
 
 
 
-
-
-
-            //string path = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\test.txt";
-            //string createText = "麻ㄚㄚ";
-            //string[] createLines = {"米蒂","咪喵","麻ㄚㄚ" };
-            //string[] createLines2 = { "利可", "雷古", "娜娜奇" };
-            //string appendText = "殲滅卿";
-
-            ////File.WriteAllLines(path, createLines2);
-            //File.AppendAllText(path, appendText);
-            //string a = File.ReadAllText(path);
-            //string[] a = File.ReadAllLines(path);
-            //Process.Start(path);
-            //開檔案(路徑)
-            //foreach(string x in a)
-            //{
-            //    Console.WriteLine(x);
-            //}
-
-            //Next()沒範圍
-            Random num = new Random();
-            Console.WriteLine($"亂數為{num.Next(1, 3)}");
             Console.ReadKey();
-
-            ////Next(Int32, Int32)指定範圍
-            //Random num = new Random();
-            //int randomnum = num.Next(1, 50);
-            //Console.WriteLine($"亂數為{randomnum}");
-
-            //1.取得日期及時間
-            //寫法(一)
-            DateTime a = DateTime.Now;
-            Console.WriteLine($"今年 {a.Year}年 {a.Month}月 {a.Day}日 {a.Hour}時:{a.Minute}分:{a.Second}秒");
-
-            //寫法(二)
-            //DateTime now = DateTime.Now;
-            //int year = now.Year;
-            //int month = now.Month;
-            //int day = now.Day;
-            //int hour = now.Hour;
-            //int minute = now.Minute;
-            //int second = now.Second;
-            //Console.WriteLine($"今年 {year}年 {month}月 {day}日 {hour}時:{minute}分:{second}秒");
-
-
-
-            //2.DateTime.Today 今天日期
-            DateTime b = DateTime.Today;
-            Console.WriteLine($"今天是{b}");
-            #region
-            //3.DayOfWeek今天是禮拜幾(英文呈現)
-            //DateTime week = DateTime.Today;
-            //DayOfWeek todayweek = week.DayOfWeek;
-            //Console.WriteLine($"今天是{todayweek}");
-            //Console.ReadKey();
-
-            //寫法(二)
-            DateTime week = DateTime.Today;
-            Console.WriteLine($"今天是{week.DayOfWeek}");
-
-            //賦值給變數 today
-            DateTime today = DateTime.Today;
-            //賦值給變數 happyday 
-            DateTime happyday = new DateTime(today.Year, 4, 26);
-            //計算天數差
-            int next = (int)(happyday - today).TotalDays;
-            Console.WriteLine($"今天是{today:yyyy年MM月dd日}，距離4/26還有{next}天");
-            #endregion
-
-            //demo();
-            //Program pro = new Program();
-            //pro.demo2();
-
-            string target = "fifa";
-
-            for (int i = 0; i < target.Length; i++)
-            {
-                for (int j = 0; j < target.Length; j++)
-                {
-                    if (i == j)
-                    {
-                        Console.Write((char)((int)target[j] - 32));
-                    }
-                    else
-                    {
-                        Console.Write(target[j]);
-                    }
-                }
-                Console.WriteLine();
-            }
-
-            Console.ReadKey();
-        }
-
-        public static void demo()
-        {
-            Console.WriteLine("demo");
-        }
-
-        public void demo2()
-        {
-            Console.WriteLine("demo2");
         }
     }
 }
