@@ -6,6 +6,7 @@ using System.Runtime.Remoting.Activation;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace BackendHomework
 {
@@ -786,44 +787,327 @@ namespace BackendHomework
             //}
             //聖誕樹
 
-            Console.WriteLine("輸入聖誕樹高度:");
-            int size = Convert.ToInt32(Console.ReadLine()); 
-            for (int i = 0; i < size; i++)
+            //Console.WriteLine("輸入聖誕樹高度:");
+            //int size = Convert.ToInt32(Console.ReadLine()); 
+            //for (int i = 0; i < size; i++)
+            //{
+            //    for (int j = size; j > i; j--)
+            //    {
+            //        Console.Write(" ");
+            //    }
+
+            //    for (int k = 0; k < i; k++) { 
+            //        Console.Write("*");
+            //    }
+
+            //    for (int l = 1; l < i; l++)
+            //    {
+            //        Console.Write("*");
+            //    }
+            //    Console.WriteLine();
+
+            //}
+
+
+            //for (int m =0; m < size/2; m++)
+            //{
+            //    for (int n = size-2; n>0; n--)
+            //    {
+            //        Console.Write(" ");
+            //    }
+            //    for (int o= 0; o < 3; o++)
+            //    {
+            //        Console.Write("*");
+            //    }
+            //    Console.WriteLine();
+            //}
+
+            //例題5.1-利用一維陣列求10個數字的計算平均值。
+            //int[] num = new int[10];
+            //int average=0;
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    Console.WriteLine($"輸入{i+1}個數字");
+            //    num[i] = Convert.ToInt32(Console.ReadLine());
+            //}
+
+            //foreach(int x in num)
+            //{
+            //    average += x;
+            //}
+
+
+            //Console.WriteLine(average / num.Length);
+
+            //例題5.2-利用一維陣列求10個數字的最大值。
+            //int[] array = new int[10];
+            //int maxNumber = int.MinValue;
+            //for (int i =0, len = array.Length; i <len; i++)
+            //{
+            //    Console.WriteLine($"輸入第{i+1}個數字");
+            //    array[i] = Convert.ToInt32(Console.ReadLine());
+
+            //}
+
+            //foreach(int x in array)
+            //{
+            //    if (x > maxNumber)
+            //    {
+            //        maxNumber = x;
+            //    }
+            //}
+            //Console.WriteLine(maxNumber);
+
+            //例題5.3-搜尋問題：輸入10個數字至A[ ]，再輸入x，
+            //判斷x是否存在於A陣列中，如果存在，輸出所在的註標(索引)值，若不存在，則告知不存在
+            //int[] array = new int[10];
+            //int find;
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    array[i] = Convert.ToInt32(Console.ReadLine());
+            //}
+
+            //Console.Write("請輸入想搜尋的值:");
+            //find = Convert.ToInt32(Console.ReadLine());
+            //int count = 0;
+            //for (int i =0; i <10; i++)
+            //{
+            //    if (find == array[i])
+            //    {
+            //        Console.WriteLine($"符合搜尋數字的索引值為{i}");
+            //        count++;
+            //    }
+            //}
+
+            //if (count == 0)
+            //{
+            //    Console.WriteLine("搜尋的數字不存在於此陣列");
+            //}
+
+
+            //例題5.4求兩個2乘3的二維矩陣相加之結果，
+            //第一個及第二個矩陣分別以A及B表示，相加之結果存入C矩陣，
+            //最後將C矩陣內容顯示出來。
+
+            //int[,] A = new int[2, 3];
+            //int[,] B = new int[2, 3];
+            //int[,] C = new int[2, 3];
+
+
+            //for (int i =0; i < A.GetLength(0); i++)
+            //{
+            //    Console.Write("填入");
+            //    Console.WriteLine($"第{i + 1}排");
+            //    for (int j =0; j < A.GetLength(1); j++)
+            //    {
+            //        Console.WriteLine($"第{j+1}列的數字");
+            //        A[i,j] = Convert.ToInt32(Console.ReadLine());
+            //    }
+            //}
+
+            //for (int i = 0; i < B.GetLength(0); i++)
+            //{
+            //    Console.Write("填入");
+            //    Console.WriteLine($"第{i + 1}排");
+            //    for (int j = 0; j < B.GetLength(1); j++)
+            //    {
+            //        Console.WriteLine($"第{j + 1}列的數字");
+            //        B[i, j] = Convert.ToInt32(Console.ReadLine());
+            //    }
+            //}
+            //for (int i = 0; i < C.GetLength(0); i++)
+            //{
+            //    Console.Write("填入");
+            //    Console.WriteLine($"第{i + 1}排");
+            //    for (int j = 0; j < C.GetLength(1); j++)
+            //    {
+            //        Console.WriteLine($"第{j + 1}列的數字");
+            //        C[i, j] = A[i, j] + B[i, j];
+            //    }
+            //}
+
+            //for (int i = 0; i < C.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < C.GetLength(1); j++)
+            //    {
+            //        Console.WriteLine(C[i, j]);
+            //    }
+            //}
+
+            //例題5.5-求2乘3的A矩陣乘以3乘1的B矩陣，
+            //結果存入2乘1的C矩陣，最後將C矩陣的內容顯示出來。
+
+            //int[,] A = new int[2,3];
+            //int[,] B = new int[3,1];
+            //int[,] C = new int[2, 1];
+
+            //for (int i = 0; i <A.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < A.GetLength(1); j++)
+            //    {
+            //        Console.WriteLine($"請輸入第{i+1}行第{j+1}列元素:");
+            //        A[i, j] = Convert.ToInt32(Console.ReadLine());
+
+            //    }
+            //}
+
+
+
+            //for (int i = 0; i < B.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < B.GetLength(1); j++)
+            //    {
+            //        Console.WriteLine($"請輸入第{i + 1}行第{j + 1}列元素:");
+            //        B[i, j] = Convert.ToInt32(Console.ReadLine());
+
+            //    }
+            //}
+
+            //for (int i =0; i < A.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < B.GetLength(0); j++)
+            //    {
+            //        C[i, 0] += A[i, j] * B[j,0];
+            //    }
+            //}
+
+            //for (int i =0; i < C.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < C.GetLength(1); j++)
+            //    {
+            //        Console.WriteLine(C[i, j]);
+            //    }
+            //}
+
+
+            //5-5.寫一程式，將15數字存入3×5的二維陣列A中，
+            //求每一行及每一列數字的最小值。
+
+            //int[,] A = new int[3, 5];
+            //TwoDimensionInput(A);
+            //ShowTwoDimension(A);
+            //ShowRowMin(A);
+            //colMin(A);
+
+            //5-6.寫一程式，輸入兩組數字：a1,a2,…,a5和b1,b2,…,b5。求ai+bi，i=1到i=5。
+            //int len = 5;
+            //int[] result = new int[len];
+            //for (int i = 0; i < len; i++)
+            //{
+            //    Console.WriteLine($"輸入a{i+1}:");
+            //    int a = Convert.ToInt32(Console.ReadLine());
+            //    Console.WriteLine($"輸入b{i+1}:");
+            //    int b = Convert.ToInt32(Console.ReadLine());
+            //    result[i] = a + b;
+            //}
+            //for (int i = 0; i < result.Length; i++)
+            //{
+            //    Console.WriteLine($"a{i + 1}+b{i + 1} = {result[i]}");
+            //}
+
+
+            //5-7.寫一程式，輸入兩組數字： a1,a2,…,a5和b1,b2,…,b5。
+            //令x為a中的最大值，令y為b中的最大值，求x與y中較小者。
+            int len = 5;
+            int x = int.MinValue;
+            int y = int.MinValue;
+            for (int i =0; i < len; i++)
             {
-                for (int j = size; j > i; j--)
+                Console.WriteLine($"輸入a{i+1}:");
+                int a = Convert.ToInt32(Console.ReadLine());
+                if (a > x)
                 {
-                    Console.Write(" ");
+                    x = a;
                 }
-
-                for (int k = 0; k < i; k++) { 
-                    Console.Write("*");
-                }
-
-                for (int l = 1; l < i; l++)
+                Console.WriteLine($"輸入b{i + 1}:");
+                int b = Convert.ToInt32(Console.ReadLine());
+                if (b > y)
                 {
-                    Console.Write("*");
+                    y = b;
                 }
-                Console.WriteLine();
- 
             }
 
-
-            for (int m =0; m < size/2; m++)
+            if (x - y > 0)
             {
-                for (int n = size-2; n>0; n--)
-                {
-                    Console.Write(" ");
-                }
-                for (int o= 0; o < 3; o++)
-                {
-                    Console.Write("*");
-                }
-                Console.WriteLine();
+                Console.WriteLine("x比較大");
+            } else
+            {
+                Console.WriteLine("y比較大");
             }
-
 
             Console.ReadKey();
 
+        }
+
+
+        public static void TwoDimensionInput(int[,] arr)
+        {
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    Console.WriteLine($"請輸入第{i + 1}第{j + 1}列的數字:");
+                    arr[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+        }
+
+        public static void ShowTwoDimension(int[,] arr)
+        {
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    Console.WriteLine(arr[i, j]);
+                }
+            }
+        }
+
+        public static void ShowRowMin(int[,] arr)
+        {
+            int[] rowMin = new int[arr.GetLength(0)];
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                int minValue = int.MaxValue;
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    if (arr[i, j] < minValue)
+                    {
+                        minValue = arr[i, j];
+                    }
+                }
+                rowMin[i] = minValue;
+            }
+
+            for (int i = 0; i < rowMin.GetLength(0); i++)
+            {
+                Console.WriteLine($"第{i}行的最小值為{rowMin[i]}");
+            }
+        }
+
+        public static void colMin(int[,]arr)
+            
+        {
+            int[] colMin = new int[arr.GetLength(1)];
+            
+            for (int i = 0; i <arr.GetLength(1); i++)
+            {
+                int minValue = int.MaxValue;
+                for (int j = 0; j < arr.GetLength(0); j++)
+                {
+                    if (arr[j, i] < minValue)
+                    {
+                        minValue = arr[j, i];
+                    }
+                }
+                colMin[i] = minValue;
+           
+            }
+
+            for (int i = 0; i < colMin.GetLength(0); i++)
+            {
+                Console.WriteLine($"第{i}列的最小值為{colMin[i]}");
+            }
         }
     }
 }
