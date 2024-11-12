@@ -19,7 +19,6 @@ namespace BackendHomework
 {
     internal class Program
     {
-
         static void Main(string[] args)
         {
             //----------------檔案-----------------------
@@ -34,7 +33,6 @@ namespace BackendHomework
             //        break;
             //    }
             //    File.AppendAllText(path, line+Environment.NewLine);
-
             //}
 
             //2.讀取1.txt 顯示在畫面上。
@@ -65,10 +63,8 @@ namespace BackendHomework
             //}
 
             //string filePath = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\1.txt";
-
             //using (StreamWriter writer = new StreamWriter(filePath))
             //{
-
             //    for (int i = 1; i <= 9; i += 3)
             //    //左邊起始1 4 7
             //    {
@@ -78,7 +74,6 @@ namespace BackendHomework
             //            for (int k = 0; k <= 2; k++)
             //            {
             //                //把右邊剩餘的補滿，每row做3次
-
             //                writer.Write($"{i + k} x {j}= {(i + k) * j}\t");
             //            }
             //            writer.WriteLine();
@@ -139,7 +134,6 @@ namespace BackendHomework
             //    {
             //        contentArr[i] = tags[2, 0] + String.Join("", dataRow) + tags[2, 1];
             //    }
-
             //}
             //result = String.Join("", contentArr);
 
@@ -156,7 +150,6 @@ namespace BackendHomework
             //Random randomInt = new Random();
             //for (int i =0, len = 10; i < len; i++)
             //{   
-
             //    Console.WriteLine(randomInt.Next(0,100));
             //}
 
@@ -170,7 +163,97 @@ namespace BackendHomework
             //}
 
             //請設計樂透開獎程式。
+            try
+            {
+                Console.WriteLine("請從1-49的數字選擇6個號碼+1個特別號");
+                int[] pickedNum = new int[7];
+                int[] lottery = new int[7];
+                Random numbers = new Random();
+                int holder;
+                int count = 0;
+                int lotteryIndex =0;
+                bool skip = false;
+                //玩家輸入自己的號碼
+                for (int i = 0; i < 7; i++)
+                {
+                    if (i != 6)
+                    {
+                        Console.WriteLine("請輸入一般號:");
+                    }
+                    else
+                    {
+                        Console.WriteLine("請輸入特別號:");
+                    }
 
+                    holder = Convert.ToInt32(Console.ReadLine());
+                    if (holder < 1 || holder > 49 || pickedNum.Contains(holder))
+                    {
+                        Console.WriteLine("請重新來過");
+                        skip = true;
+                        break;
+                    }
+                    pickedNum[i] = holder;
+
+                }
+                //樂透彩開獎
+                do {
+                    int lotteryNum =  numbers.Next(1, 50);
+                    //不要重複
+                    if (lottery.Contains(lotteryNum))
+                    {
+                        lotteryIndex = 0;
+                    } else
+
+                    {
+                        if (lotteryIndex >= 7)
+                        {
+                            break;
+                        }
+                        lottery[lotteryIndex] = lotteryNum;
+                    }   
+                    lotteryIndex++;
+
+                } while (true);
+
+                if (!skip)
+                {
+                    foreach (int num in lottery)
+                    {
+                        foreach (int n in pickedNum)
+                        {
+                            if (n == num)
+                            {
+                                count++;
+                            }
+                        }
+                    }
+
+                    if (count < 6 && count >= 3)
+                    {
+                        Console.WriteLine("恭喜你中獎了");
+                    }
+                    else if (count >= 6)
+                    {
+                        Console.WriteLine("恭喜你中了頭獎!!!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("謝謝你繳納國庫");
+                    }
+
+                    Console.Write("開獎號碼為: ");
+
+                    foreach (int n in lottery)
+                    {
+                        Console.Write($"{n} ");
+                    }
+                }
+
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("請從1-49的數字選擇6個號碼+1個特別號");
+            }
 
             //請在文字檔裡輸入所有午餐的店家，
             //讀取文字檔，隨機抽出今天中午要吃哪一家。
@@ -185,27 +268,27 @@ namespace BackendHomework
             //讀取文字檔，隨機抽出今天的值日生，抽過不能再被抽中，
             //直到全部學員都被抽過，才可以再被抽。
 
-            string path = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\dutyPerson.txt";
-            string[] duty = File.ReadAllLines(path, Encoding.GetEncoding("big5"));
-            Random randomInt = new Random();
-            int len = duty.Length;
-            bool filled = false;
-            int count = 0;
-            do
-            {
-                int rom = randomInt.Next(0, len);
-                if (duty[rom] == null)
-                {
-                    continue;
-                }
-                Console.WriteLine($"{duty[rom]}今天是值日生");
-                duty[rom] = null;
-                count++;
-                if (count == len)
-                {
-                    filled = true;
-                }
-            } while (!filled);
+            //string path = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\dutyPerson.txt";
+            //string[] duty = File.ReadAllLines(path, Encoding.GetEncoding("big5"));
+            //Random randomInt = new Random();
+            //int len = duty.Length;
+            //bool filled = false;
+            //int count = 0;
+            //do
+            //{
+            //    int rom = randomInt.Next(0, len);
+            //    if (duty[rom] == null)
+            //    {
+            //        continue;
+            //    }
+            //    Console.WriteLine($"{duty[rom]}今天是值日生");
+            //    duty[rom] = null;
+            //    count++;
+            //    if (count == len)
+            //    {
+            //        filled = true;
+            //    }
+            //} while (!filled);
             //----------------日期-----------------------
             //1. 顯示現在日期與時間。
             //DateTime currentTime = DateTime.Now;
@@ -342,9 +425,6 @@ namespace BackendHomework
                     Console.WriteLine("大吉");
                     break;
             }
-
-
-
             Console.ReadKey();
         }
     }
