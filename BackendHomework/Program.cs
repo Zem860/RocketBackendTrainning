@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+using System.Globalization;
 using System.IO.Pipes;
 using System.Linq;
 using System.Runtime.Remoting.Activation;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Schema;
@@ -1008,35 +1011,211 @@ namespace BackendHomework
 
             //5-7.寫一程式，輸入兩組數字： a1,a2,…,a5和b1,b2,…,b5。
             //令x為a中的最大值，令y為b中的最大值，求x與y中較小者。
-            int len = 5;
-            int x = int.MinValue;
-            int y = int.MinValue;
-            for (int i =0; i < len; i++)
-            {
-                Console.WriteLine($"輸入a{i+1}:");
-                int a = Convert.ToInt32(Console.ReadLine());
-                if (a > x)
-                {
-                    x = a;
-                }
-                Console.WriteLine($"輸入b{i + 1}:");
-                int b = Convert.ToInt32(Console.ReadLine());
-                if (b > y)
-                {
-                    y = b;
-                }
-            }
+            //int len = 5;
+            //int x = int.MinValue;
+            //int y = int.MinValue;
+            //for (int i =0; i < len; i++)
+            //{
+            //    Console.WriteLine($"輸入a{i+1}:");
+            //    int a = Convert.ToInt32(Console.ReadLine());
+            //    if (a > x)
+            //    {
+            //        x = a;
+            //    }
+            //    Console.WriteLine($"輸入b{i + 1}:");
+            //    int b = Convert.ToInt32(Console.ReadLine());
+            //    if (b > y)
+            //    {
+            //        y = b;
+            //    }
+            //}
 
-            if (x - y > 0)
+            //if (x - y > 0)
+            //{
+            //    Console.WriteLine("x比較大");
+            //} else
+            //{
+            //    Console.WriteLine("y比較大");
+            //}
+
+            //1.寫一個function 可以把一般對話框的文字轉成HTML。> 轉成 &gt; < 轉成 & lt; \r\n 轉成<br> | 轉成 &brvbar; 空白 轉成 &nbsp;
+            //string example = @"Hans sagte: 'Gehe' > links <| und halt\r\n an.";
+            //Console.WriteLine(ToHTML(example));
+
+            //2.寫一個function，回傳輸入的值是否數字
+            //Console.WriteLine(IsBool(123));
+            //Console.WriteLine(IsBool(123.5));
+            //Console.WriteLine(IsBool(true));
+            //Console.WriteLine(IsBool("123"));
+            //Console.WriteLine(IsBool(null));
+            //Console.WriteLine(IsBool2("123"));
+            ////3.寫一個function，回傳輸入的值是否符合Ｅ－ｍａｉｌ格式
+            //Console.WriteLine(IsEmail("agmail.com"));
+            ////4.寫一個function，回傳輸入的值是否符合手機格式
+            //Console.WriteLine(IsCellPhone("09231"));
+            ////5.回傳輸入的值是否符合身分證字號格式
+            //Console.WriteLine(IsID("X20"));
+            //6. 寫一個function，若輸入的文字大於Ｎ個，則超過的字不要，變成點點點
+            //Console.WriteLine("輸入指定長度");
+            //int len = Convert.ToInt32(Console.ReadLine());
+            //Console.WriteLine("輸入文字:");
+            //string words = Console.ReadLine();
+            //Console.WriteLine(checkLength(words, len));
+            //7.寫一個function，輸入一個日期，把該日期轉成民國年.月.日格式
+            ChangeToTaiwanCalendar();
+
+            //8.輸入一個日期，把把該日期轉成民國XX年XX月XX日 星期X 格式
+            Console.WriteLine(ChangeToTaiwanCalendarWithWeek(1991, 3, 29));
+
+            //9.寫一個function，回傳輸入的年是否閏年(1992, 2024, 2000, 1993, 2005)
+            Console.WriteLine(IsLeapYear(1900));
+            Console.ReadKey();
+        }
+
+        public static string IsLeapYear(int year)
+        {
+            Console.WriteLine(DateTime.IsLeapYear(year));
+            string result;
+            if ((year % 4 ==0&& year % 100!=0)||(year % 400 == 0))
             {
-                Console.WriteLine("x比較大");
+                result = "是閏年";
             } else
             {
-                Console.WriteLine("y比較大");
+                result = "不是閏年";
+            }
+            return result;
+        }
+        public static string ChangeToTaiwanCalendarWithWeek(int year, int month, int day)
+        {
+            DateTime dateTime = new DateTime(year, month, day);
+            TaiwanCalendar taiwancalendar = new TaiwanCalendar();
+            int y = taiwancalendar.GetYear(dateTime);
+            int m = taiwancalendar.GetMonth(dateTime);
+            int d = taiwancalendar.GetDayOfMonth(dateTime);
+            string w = Convert.ToString(taiwancalendar.GetDayOfWeek(dateTime));
+            string weekofday="";
+            switch (w)
+            {
+                case "Monday":
+                    weekofday = "星期一";
+                    break;
+                case "Tuesday":
+                    weekofday = "星期二";
+                    break;
+                case "Wednesday":
+                    weekofday = "星期三";
+                    break;
+                case "Thursday":
+                    weekofday = "星期四";
+                    break;
+                case "Friday":
+                    weekofday = "星期五";
+                    break;
+                case "Saturday":
+                    weekofday = "星期六";
+                    break;
+                case "Sunday":
+                    weekofday = "星期天";
+                    break;
             }
 
-            Console.ReadKey();
+            return $"{y}/{m}/{d} {weekofday}";
+        }
+        public static string ChangeToTaiwanCalendar()
+        {
+            DateTime dateTime = new DateTime(1993, 3, 1);
+            TaiwanCalendar taiwanCalendar = new TaiwanCalendar();
+            int year = taiwanCalendar.GetYear(dateTime);
+            int month = taiwanCalendar.GetMonth(dateTime);
+            int day = taiwanCalendar.GetDayOfMonth(dateTime);
+            string result = $"{year}/{month}/{day}";
+            return result;
+        }
+        public static string checkLength(string value, int len )
+        {
+            string transformedString = value;
+            if (value.Length > len)
+            {
+                transformedString = transformedString.Substring(0, len) + "...";
+            }
 
+            return transformedString;
+        }
+        public static string IsID(string value)
+        {
+            string result = "";
+            string pattern = @"^[A-Za-z]+\d{9}$";
+            Regex regex = new Regex(pattern);
+            if (regex.IsMatch(value))
+            {
+                result = "這是身分證";
+            } else
+            {
+                result = "這不是身分證";
+            }
+            return result;
+        }
+
+        public static string IsCellPhone(string value)
+        {
+            string result = "";
+            string pattern = @"^(09)\d{8}|09\d{2}-\d{3}-\d{3}$";
+            Regex regex = new Regex(pattern);
+            if (regex.IsMatch(value))
+            {
+                result = "這是手機";
+            } else
+            {
+                result = "這不是手機";
+            }
+            return result;
+        }
+        public static string IsEmail(string value)
+        {
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            string result = "";
+            Regex regex = new Regex(pattern);
+            if (regex.IsMatch(value))
+            {
+                result = "這是email";
+            } else
+            {
+                result = "這不是email";
+            }
+
+
+            return result;
+        }
+        public static bool IsBool2(string value)
+        {
+            string pattern = @"^\d+$";
+            Regex regex = new Regex(pattern);
+            bool result = regex.IsMatch(value);
+            return result;
+        }
+        public static string IsBool(object value)
+        {
+            //getType 和typeof一起判斷類別
+            //或可以直接用is
+            //string result = "輸入值為數字";
+            if (value != null && value is int || value is double || value is float || value is decimal)
+            {
+                return "輸入值為數字";
+            } else
+            {
+                return "輸入值不是數字";
+            }
+        }
+
+        public static string ToHTML(string sentence)
+        {
+            string transformedText = "";
+            transformedText = sentence.Replace(">", "&gt;")
+                .Replace("<", "&lt;")
+                .Replace("\r\n", "<br>")
+                .Replace("|", "&brvbar")
+                .Replace(" ", "&nbsp;");
+            return transformedText;
         }
 
 
@@ -1085,12 +1264,12 @@ namespace BackendHomework
             }
         }
 
-        public static void colMin(int[,]arr)
-            
+        public static void colMin(int[,] arr)
+
         {
             int[] colMin = new int[arr.GetLength(1)];
-            
-            for (int i = 0; i <arr.GetLength(1); i++)
+
+            for (int i = 0; i < arr.GetLength(1); i++)
             {
                 int minValue = int.MaxValue;
                 for (int j = 0; j < arr.GetLength(0); j++)
@@ -1101,7 +1280,7 @@ namespace BackendHomework
                     }
                 }
                 colMin[i] = minValue;
-           
+
             }
 
             for (int i = 0; i < colMin.GetLength(0); i++)
