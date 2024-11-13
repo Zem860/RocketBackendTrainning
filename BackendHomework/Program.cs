@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Diagnostics.Tracing;
 using System.Globalization;
 using System.IO.Pipes;
@@ -1068,18 +1069,226 @@ namespace BackendHomework
             Console.WriteLine(ChangeToTaiwanCalendarWithWeek(1991, 3, 29));
 
             //9.寫一個function，回傳輸入的年是否閏年(1992, 2024, 2000, 1993, 2005)
-            Console.WriteLine(IsLeapYear(1900));
+            //Console.WriteLine(IsLeapYear(1900));
+
+
+            //----------------------字串---------------------------
+            //1. 輸入姓名，輸出 Hi~輸入的姓名，比如說輸入Justin，輸出Hi~Justin。
+            //Console.Write("輸入姓名:");
+            //string name = Console.ReadLine();
+            //Console.WriteLine(Hi(name));
+
+
+            //2.請輸入任何一個字，是否出現在”
+            //人人為我，我為人人、饒人不癡漢，癡漢不饒人”這個字串裡。
+            //Console.WriteLine("請輸入任何一個字，是否出現在”人人為我，我為人人、饒人不癡漢，癡漢不饒人”這個字串裡。");
+            //string quotation = "人人為我，我為人人、饒人不癡漢，癡漢不饒人";
+            //string str = Console.ReadLine();
+            //Console.WriteLine(detectString(str, quotation));
+
+            //3.輸入一段字，輸出每個之間多一個-，如輸入apple ，輸出a-p-p-l-e。
+            //Console.Write("輸入一段字，輸出每個之間多一個-，如輸入apple ，輸出a-p-p-l-e。");
+            //string target = Console.ReadLine();
+            //Console.WriteLine(dashWords(target));
+
+            //4.輸入一個檔名輸出副檔名，如輸入apple.jpg，輸出jpg。
+
+            //Console.WriteLine(extension("C#.txt"));
+            //5.輸入一個大於五個字的單字，若小於五個字輸出長度不夠
+            //，若大於五個字，則輸出前三個字。Length  Substring()
+            //string target = "Maaa";
+            //Console.WriteLine(substringFiveWords(target));
+
+            //6.輸入一段字，輸出把輸入的一段字裡面的我，
+            //改成小明，如輸入我在唱歌，輸出小明在唱歌。Replace()
+            //Console.WriteLine(replaceLyrics("我在唱歌我在唱歌我在唱歌我在唱歌我在唱歌"));
+            //7. 輸入一串字，顯示輸入幾個字。Length
+            //Console.WriteLine(CheckStringLength("Holly Purple Cow."));
+            //Console.WriteLine(CheckStringLength("我是神奇小寶。"));
+            //8.連續輸入10組字，若沒輸入過，就顯示沒出現過，若輸入過，就顯示輸入過。
+            //CheckIfAlreadyEntered10();
+            //9.用字母大小寫來模擬波浪舞的動作後輸出，
+            //比如輸入FiFa，輸出FifafIfafiFafifA
+            //wave("Fifa");
+            //10.輸入時間，顯示幾時幾分，例如輸入11:30，輸出11點30分。
+            //Console.Write("輸入時間(ex:11:30):");
+            //string t = Console.ReadLine();
+            //Console.WriteLine(time(t));
+
+            //11.輸入的字，轉成HTML，
+            //例如輸入Justin,Amy,David 輸出<ul>
+            //	<li>Justin<li>		<li>Amy<li>	<li>David<li></ul>
+            //Console.Write(htmlUl("Justin,Amy,David"));
+            //12. 輸入5處數字，用空白隔開，輸出結果。例如：輸入
+            //‘11 19 12 25 1 7 12，輸出總和是87
+            //Console.WriteLine(sumString("11 19 12 25 1 7 12"));
+            //13. 輸入一串文字，倒著輸出，例如輸入：Justin，輸出nitsuJ
+            //Console.WriteLine(reverse("Justin"));
+
+            //Test join結果，可用一行顯示一為陣列內的值，Select可以搭配做出ulli的tag
+            int[,] matrix = {
+            { 1, 2, 3 },
+            { 4, 5, 6 },
+            { 7, 8, 9 }
+        };
+
+            int[] colSum = new int[matrix.GetLength(1)];
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    colSum[i]+=Convert.ToInt32(String.Join("", matrix[i, j]));
+                }
+                
+            }
+            Console.WriteLine(String.Join(" ", colSum));
             Console.ReadKey();
         }
+        public static string reverse(string str)
+        {
+            return String.Join("", str.Reverse());
+            //join就是C#的list?如果有一坨東西丟進去看看
+        }
+        public static int sumString(string content)
+        {
+            int result = 0;
+            string[] str = content.Split(' ');
+            for (int i = 0; i < str.Length; i++)
+            {
+                result += Convert.ToInt32(str[i]);
+            }
 
+            return result;
+        }
+
+        public static string htmlUl(string str)
+        {
+            string result = "";
+            string[] strList = str.Split(',');
+            result = "<ul>\n" + String.Join("", strList.Select(s => "<li>" + s + "</li>\n")) + "</ul>";
+            return result;
+        }
+        public static string time(string t)
+        {
+            string result = t;
+
+            return result.Replace(":", "點") + "分";
+        }
+
+        public static void wave(string str)
+        {
+            string lowerStr = str.ToLower();
+            char[] target = lowerStr.ToCharArray();
+            int len = target.Length;
+            for (int i = 0; i < len; i++)
+            {
+                int targetNum = (int)target[i] - 32;
+                target[i] = Convert.ToChar(targetNum);
+                string result = String.Join("", target);
+                Console.WriteLine(result);
+                target[i] = Convert.ToChar((int)target[i] + 32);
+            }
+        }
+
+        public static void CheckIfAlreadyEntered10()
+        {
+            string[] entered = new string[10];
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine("輸入一些字:");
+                string check = (string)Console.ReadLine();
+                if (entered.Contains(check))
+                {
+                    Console.WriteLine("有出現過");
+                }
+                else
+                {
+                    Console.WriteLine("沒出現過");
+                }
+                entered[i] = check;
+            }
+        }
+
+        public static int CheckStringLength(string str)
+        {
+            int len;
+            string check = str.Replace(".", "").Replace("，", "").Replace(",", "").Replace("。", "");
+            Console.WriteLine(check);
+            if (check.Contains(" "))
+            {
+                len = check.Split(' ').Length;
+            }
+            else
+            {
+                len = check.Length;
+            }
+
+
+            return len;
+        }
+        public static string replaceLyrics(string lyrics)
+        {
+            string result;
+            result = lyrics.Replace("我", "小明");
+            return result;
+        }
+        public static string substringFiveWords(string str)
+        {
+            string result = "";
+            if (str.Length < 5)
+            {
+                result = "輸出長度不夠";
+            }
+            else
+            {
+                result = str.Substring(0, 3);
+            }
+
+            return result;
+        }
+        public static string extension(string words)
+        {
+            string result = words;
+
+            Console.WriteLine(result.IndexOf('.'));
+            int dotIndex = result.IndexOf('.');
+            result = result.Substring(dotIndex + 1);
+
+            return result;
+        }
+        public static string dashWords(string words)
+        {
+            string result = words;
+            char[] r = result.ToCharArray();
+            result = String.Join("-", r);
+            return result;
+        }
+        public static string detectString(string str, string quo)
+        {
+            string result;
+            if (quo.Contains(str))
+            {
+                result = "有包含";
+            }
+            else
+            {
+                result = "未包含";
+            }
+            return result;
+        }
+        public static string Hi(string str)
+        {
+            return $"Hi~{str}";
+        }
         public static string IsLeapYear(int year)
         {
             Console.WriteLine(DateTime.IsLeapYear(year));
             string result;
-            if ((year % 4 ==0&& year % 100!=0)||(year % 400 == 0))
+            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
             {
                 result = "是閏年";
-            } else
+            }
+            else
             {
                 result = "不是閏年";
             }
@@ -1093,7 +1302,7 @@ namespace BackendHomework
             int m = taiwancalendar.GetMonth(dateTime);
             int d = taiwancalendar.GetDayOfMonth(dateTime);
             string w = Convert.ToString(taiwancalendar.GetDayOfWeek(dateTime));
-            string weekofday="";
+            string weekofday = "";
             switch (w)
             {
                 case "Monday":
@@ -1131,7 +1340,7 @@ namespace BackendHomework
             string result = $"{year}/{month}/{day}";
             return result;
         }
-        public static string checkLength(string value, int len )
+        public static string checkLength(string value, int len)
         {
             string transformedString = value;
             if (value.Length > len)
@@ -1149,7 +1358,8 @@ namespace BackendHomework
             if (regex.IsMatch(value))
             {
                 result = "這是身分證";
-            } else
+            }
+            else
             {
                 result = "這不是身分證";
             }
@@ -1164,7 +1374,8 @@ namespace BackendHomework
             if (regex.IsMatch(value))
             {
                 result = "這是手機";
-            } else
+            }
+            else
             {
                 result = "這不是手機";
             }
@@ -1178,7 +1389,8 @@ namespace BackendHomework
             if (regex.IsMatch(value))
             {
                 result = "這是email";
-            } else
+            }
+            else
             {
                 result = "這不是email";
             }
@@ -1201,7 +1413,8 @@ namespace BackendHomework
             if (value != null && value is int || value is double || value is float || value is decimal)
             {
                 return "輸入值為數字";
-            } else
+            }
+            else
             {
                 return "輸入值不是數字";
             }
