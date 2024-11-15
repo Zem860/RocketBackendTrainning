@@ -24,3 +24,6 @@
 ### 檔案寫入附加模式
 如果將 `Write` 改成 `Append`，基本上字串不會完全刪掉，新的內容會接在舊的內容之後。
 
+###StreamReader和StreamWriter
+
+
