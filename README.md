@@ -26,5 +26,6 @@
 
 ### StreamReader和StreamWriter
 - 記得在reader讀取一個文件時，writer不能使用同一個路徑。
+- StreamReader使用的概念是開一條讀取一條關起來再開下一條(以\n作為分割)，所以會跑回圈while((r = reader.Readline)!=null){...} 這個就是跑一條直到最後面沒東西
 
 
