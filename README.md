@@ -25,5 +25,6 @@
 如果將 `Write` 改成 `Append`，基本上字串不會完全刪掉，新的內容會接在舊的內容之後。
 
 ###StreamReader和StreamWriter
+-記得在reader讀取一個文件時，writer不能使用同一個路徑。
 
 
