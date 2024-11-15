@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Diagnostics.Tracing;
 using System.Globalization;
 using System.IO.Pipes;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Activation;
 using System.Text;
@@ -1063,10 +1063,10 @@ namespace BackendHomework
             //string words = Console.ReadLine();
             //Console.WriteLine(checkLength(words, len));
             //7.寫一個function，輸入一個日期，把該日期轉成民國年.月.日格式
-            ChangeToTaiwanCalendar();
+            //ChangeToTaiwanCalendar();
 
             //8.輸入一個日期，把把該日期轉成民國XX年XX月XX日 星期X 格式
-            Console.WriteLine(ChangeToTaiwanCalendarWithWeek(1991, 3, 29));
+            //Console.WriteLine(ChangeToTaiwanCalendarWithWeek(1991, 3, 29));
 
             //9.寫一個function，回傳輸入的年是否閏年(1992, 2024, 2000, 1993, 2005)
             //Console.WriteLine(IsLeapYear(1900));
@@ -1126,23 +1126,339 @@ namespace BackendHomework
             //Console.WriteLine(reverse("Justin"));
 
             //Test join結果，可用一行顯示一為陣列內的值，Select可以搭配做出ulli的tag
-            int[,] matrix = {
-            { 1, 2, 3 },
-            { 4, 5, 6 },
-            { 7, 8, 9 }
-        };
+            //    int[,] matrix = {
+            //    { 1, 2, 3 },
+            //    { 4, 5, 6 },
+            //    { 7, 8, 9 }
+            //};
 
-            int[] colSum = new int[matrix.GetLength(1)];
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            //    int[] colSum = new int[matrix.GetLength(1)];
+            //    for (int i = 0; i < matrix.GetLength(0); i++)
+            //    {
+            //        for (int j = 0; j < matrix.GetLength(1); j++)
+            //        {
+            //            colSum[i]+=Convert.ToInt32(String.Join("", matrix[i, j]));
+            //        }
+
+            //    }
+            //    for (int i = 0; i < matrix.GetLength(0); i++)
+            //    {  
+            //           Console.WriteLine( Convert.ToInt32(String.Join("", matrix[i, 0])));
+            //    }
+            //    Console.WriteLine(String.Join(" ", colSum));
+
+
+            //寫一篇中文歌的歌詞到到自己指定的文字檔(使用UTF-8編碼)。
+            //string path = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\lyrics.txt";
+            //using (StreamWriter sw = File.CreateText(path))
+            //{
+            //    sw.WriteLine("馬爾濟斯");
+            //    sw.WriteLine("馬爾濟斯;");
+            //    sw.WriteLine("馬一濟二濟三濟四");
+            //    sw.WriteLine("馬爾濟斯");
+            //}
+
+            //using (StreamReader reader = File.OpenText(path))
+            //{
+            //    string r;
+            //    while ((r = reader.ReadLine()) != null)
+            //    {
+            //        Console.WriteLine(r);
+            //    }
+            //}
+
+            //string path = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\multiplyTable.txt";
+            //using
+            //    (StreamWriter writer = File.CreateText(path))
+            //{
+            //    for (int i = 1; i <= 9; i += 3)
+            //    {
+            //        for (int j = 1; j <= 9; j++)
+            //        {
+            //            for (int k = 0; k < 3; k++)
+            //            {
+            //                writer.Write($"{i + k} x {j} = {(i + k) * j}\t");
+            //            }
+            //            writer.WriteLine();
+            //        }
+            //        writer.WriteLine();
+
+            //    }
+            //}
+
+            //string chinesePath = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\ChineseMultiplierTable.txt";
+
+
+            //using (StreamReader reader = File.OpenText(path))
+            //{
+            //    string r;
+            //    using (StreamWriter writer = File.CreateText(chinesePath))
+            //    {
+            //        while ((r = reader.ReadLine()) != null)
+            //        {
+            //            r = r.Replace("0", "零").Replace("1", "壹").Replace("2", "貳").Replace("3", "參").Replace("4", "肆").Replace("5", "伍").Replace("6", "陸").Replace("7", "柒").Replace("8", "捌").Replace("9", "玖");
+
+            //            writer.WriteLine(r);
+            //        }
+            //    }
+            //}
+
+
+            //string csvPath = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\fc4bb.csv";
+            //string savingPath = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\index.html";
+            //using (StreamReader reader = File.OpenText(csvPath))
+            //{
+            //    string r;
+            //    using (StreamWriter writer = File.CreateText(savingPath))
+            //    {
+            //        int count = 0;
+            //        int len = File.ReadAllLines(csvPath).Length;
+            //        while ((r = reader.ReadLine()) != null)
+            //        {
+            //            string [] holder = r.Split(',');
+            //            string tableData = String.Join("", holder.Select(h => "<td>" + h + "</td>"));
+            //            tableData = "<tr>\n" + tableData + "</tr>\n";
+            //            if (count == 0)
+            //            {
+            //                writer.WriteLine("<table>\n<thead>\n"  + tableData  + "</thead>\n");
+
+            //            }
+            //            else if (count == len - 1)
+            //            {
+            //                writer.WriteLine(tableData  + "</tbody>\n</table>\n");
+
+            //            }
+            //            else if (count == 1)
+            //            {
+            //                writer.WriteLine("<tbody>\n" +  tableData);
+            //            }
+            //            else
+            //            {
+            //                writer.WriteLine( tableData );
+
+            //            }
+
+            //            count++;
+
+            //        }
+            //        writer.WriteLine();
+
+            //    }
+
+            //}
+
+            //請隨機由0~99產生一個數字輸出。
+            //Random randomInt = new Random();
+            //Console.WriteLine(randomInt.Next(0, 100));
+
+            //請隨機由0~99產生10個數字輸出。
+            //Random randomInt = new Random();
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    Console.WriteLine(randomInt.Next(0, 100));
+            //}
+
+            //隨機幫每位學員產生成績，並寫入文字檔(欄位之間用，分開，換行寫入下一筆)。
+            //string gradePath = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\grades.txt";
+            //string[] students = { "楊雯茜", "鍾思瑩", "黃珮馨", "蔡東霖", "劉欣芸", "鄭柏易", "劉俊宏", "王誼楷", "江品學", "許雅琇", "陳郁婷", "翁梓航", "張子賢", "何宜駿", "鮑宥伶", "許喬雅" };
+            //使用
+            //楊雯茜,鍾思瑩,黃珮馨,蔡東霖,劉欣芸,鄭柏易,劉俊宏,王誼楷,江品學,許雅琇,陳郁婷,翁梓航,張子賢,何宜駿,鮑宥伶,許喬雅
+            Random grades = new Random();
+            //using(StreamWriter writer = File.CreateText(gradePath)){
+            //    for (int i =0, len =students.Length; i < len; i++)
+            //    {
+            //        writer.WriteLine($"{students[i]} {grades.Next(0, 100)}"); 
+            //    }
+            //}
+
+            //請設計樂透開獎程式。
+            //Random lottery = new Random();
+            //int[] playerNums = new int[7];
+            //int[] lotteryResult = new int[6];
+            //int count = 0;
+            //int enterCount = 0;
+            ////----------玩家輸入6個一般號和1個特別號----------------------
+            //while (enterCount < 7)
+            //{
+            //    if (enterCount == 6)
+            //    {
+            //        Console.WriteLine("輸入特別號:");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine($"輸入你的第{enterCount + 1}個號碼");
+            //    }
+            //    int num = Convert.ToInt32(Console.ReadLine());
+            //    if (num < 50 && num > 0 && !playerNums.Contains(num))
+            //    {
+            //        playerNums[enterCount] = num;
+            //        count++;
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("請輸入介於1-49之間的數字，並且不能重複");
+            //        continue;
+            //    }
+            //    enterCount++;
+            //}
+
+            //////開獎--------------------------------------------------
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    lotteryResult[i] = lottery.Next(0, 50);
+            //}
+            //int[] lotteryResultCopy = (int[])lotteryResult.Clone();
+            //////對比------------------------------------------------
+
+
+            //foreach (int num in playerNums)
+            //{
+            //    count = 0;
+            //    if (lotteryResultCopy.Contains(num))
+            //    {
+            //        int pos = Array.IndexOf(lotteryResultCopy, num);
+            //        lotteryResultCopy[pos] = 0;
+            //        count++;
+            //    }
+            //}
+
+
+            ////結果-----------------------------------
+            //if (count >= 6)
+            //{
+            //    Console.WriteLine("恭喜妳種了頭獎");
+            //    Console.WriteLine(count);
+            //}
+            //else if (count >= 3)
+            //{
+            //    Console.WriteLine("恭喜中獎");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("國庫空虛");
+            //}
+            //Console.WriteLine(String.Join(" ", lotteryResult));
+
+            //請在文字檔裡輸入所有午餐的店家，讀取文字檔，隨機抽出今天中午要吃哪一家。
+            //string lunchPath = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\Lunch.txt";
+            //string[] lunch = File.ReadAllLines(lunchPath, Encoding.GetEncoding("Big5"));
+            //Random randomInt = new Random();
+            //int rom = randomInt.Next(0, lunch.Length);
+            //Console.WriteLine($"今天吃{lunch[rom]}");
+
+            //請在文字檔裡輸入所有教室裡的學員名字，讀取文字檔，
+            //隨機抽出今天的值日生，抽過不能再被抽中，直到全部學員都被抽過，才可以再被抽。
+            //string dutyStudents = @"C:\Users\zemmy\OneDrive\桌面\六角\火箭隊\第三周\backend\BackendHomework\BackendHomework\files\dutyPerson.txt";
+            //string[] students = File.ReadAllLines(dutyStudents, Encoding.GetEncoding("Big5"));
+            //Random randomInt = new Random();
+            //string[] selected = new string[students.Length];
+            //int count = 0;
+            //while (count < students.Length)
+            //{
+            //    int rom = randomInt.Next(0,students.Length);
+            //    if (selected.Contains(students[rom]))
+            //    {
+            //        continue;
+            //    }
+            //    selected[count] = students[rom];
+
+            //    Console.WriteLine($"今天值日生是{students[rom]}");
+            //    count++;
+            //}
+
+
+            //1.顯示現在日期與時間。
+            //DateTime now = DateTime.Now;
+            //Console.WriteLine(now);
+            //2.顯示再過30天為哪一天。
+            //DateTime now = DateTime.Now;
+            //Console.WriteLine(now.AddDays(30));
+            //3.顯示24小時前的年月日時分秒。
+            //DateTime now = DateTime.Now;
+            //Console.Write(now.AddHours(-24));
+            //取得目前是幾月。
+            //DateTime now = DateTime.Now;
+            //Console.WriteLine(now.Month);
+            //取得明年是否為閏年。(可以試試民國)
+            //DateTime now = DateTime.Now;
+            //DateTime nextYear = now.AddYears(1);
+            //if (DateTime.IsLeapYear(nextYear.Year))
+            //{
+            //    Console.WriteLine("明年是閏年");
+            //} else
+            //{
+            //    Console.WriteLine("明年不是閏年");
+            //}
+            //DateTime now = DateTime.Now;
+            //TaiwanCalendar taiwanTime = new TaiwanCalendar();
+            //int year = taiwanTime.GetYear(now);
+            //Console.WriteLine(taiwanTime.IsLeapYear(year+1));
+            //取得離2025年1月1日還有幾天。
+            //DateTime now = DateTime.Now;
+            //DateTime target = new DateTime(2025, 1, 1);
+            //Console.Write((target - now).Days);
+
+            //日期補充題1
+            //DateTime now = DateTime.Now;
+            //string dayOfWeek =Convert.ToString(now.DayOfWeek);
+            //switch (dayOfWeek)
+            //{
+            //    case "Monday":
+            //        Console.WriteLine("猴子穿新衣");
+            //        break;
+            //    case "Tuesday":
+            //        Console.WriteLine("猴子肚子餓");
+            //        break;
+            //    case "Wednesday":
+            //        Console.WriteLine("猴子去爬山");
+            //        break;
+            //    case "Thursday":
+            //        Console.WriteLine("猴子看電視");
+            //        break;
+            //    case "Friday":
+            //        Console.WriteLine("猴子去跳舞");
+            //        break;
+            //    case "Saturday":
+            //        Console.WriteLine("猴子去斗六");
+            //        break;
+            //    case "Sunday":
+            //        Console.WriteLine("猴子過生日");
+            //        break;
+            //}
+
+
+            //輸入‘兩個日期，輸出兩個日期相差幾天。
+            //DateTime date1 = new DateTime(2024, 11, 1);
+            //DateTime date2 = new DateTime(2024, 11, 8);
+            //Console.WriteLine((date2 - date1).Days);
+
+            //補充習題-兩光法師
+            DateTime start = new DateTime(2024, 1, 1);
+            DateTime end = new DateTime(2024, 12, 31);
+            int range = (end - start).Days + 1;
+            Random randomInt = new Random();
+            int randomDay = randomInt.Next(0, range);
+            DateTime randomDate = start.AddDays(randomDay);
+
+            int month = randomDate.Month;
+            int day = randomDate.Day;
+            int S = (month * 2 + day) % 3;
+            Console.WriteLine(randomDay);
+            switch (S)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    colSum[i]+=Convert.ToInt32(String.Join("", matrix[i, j]));
-                }
-                
+                case 0:
+                    Console.WriteLine("普通");
+                    break;
+                case 1:
+                    Console.WriteLine("吉");
+                    break;
+                case 2:
+                    Console.WriteLine("大吉");
+                    break;
             }
-            Console.WriteLine(String.Join(" ", colSum));
+
             Console.ReadKey();
+
         }
         public static string reverse(string str)
         {
