@@ -29,5 +29,6 @@
 
 - 記得在reader讀取一個文件時，writer不能使用同一個路徑。
 - StreamReader使用的概念是開一條讀取一條關起來再開下一條(以\n作為分割)，所以會跑回圈while((r = reader.Readline)!=null){...} 這個就是跑一條直到最後面沒東西
+- StreamWriter基本上就和你Console.WriteLine或Console.Write的做法一樣，using(StreamWriter writer = File.CreateText(path)){"這裡直接寫正常想要Console.WriteLine的東西，想跑回圈就跑回圈"} [用起來應該算是會比較直覺]。
 
 
