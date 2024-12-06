@@ -30,6 +30,7 @@ namespace JsonHomeWork
             {
                 text = sr.ReadToEnd();// 讀取整個數據流並將其存儲在text變數中
             }
+
             return text;// 將讀取到的文本返回
         }
     }

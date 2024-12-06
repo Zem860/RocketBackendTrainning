@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HomeWork1.aspx.cs" Inherits="JsonHomeWork.HomeWork1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HW1.aspx.cs" Inherits="JsonHomeWork.HW1" %>
 
 <!DOCTYPE html>
 
@@ -10,7 +10,6 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Literal ID="Literal1" runat="server"></asp:Literal>
         </div>
     </form>
 </body>

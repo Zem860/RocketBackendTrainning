@@ -149,9 +149,9 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="HomeWork1.aspx" />
     <Content Include="HW4.aspx" />
     <Content Include="HW2.aspx" />
+    <Content Include="HW1.aspx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -234,13 +234,6 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="HomeWork1.aspx.cs">
-      <DependentUpon>HomeWork1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="HomeWork1.aspx.designer.cs">
-      <DependentUpon>HomeWork1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="HW4.aspx.cs">
       <DependentUpon>HW4.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -254,6 +247,13 @@
     </Compile>
     <Compile Include="HW2.aspx.designer.cs">
       <DependentUpon>HW2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HW1.aspx.cs">
+      <DependentUpon>HW1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HW1.aspx.designer.cs">
+      <DependentUpon>HW1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

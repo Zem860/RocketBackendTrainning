@@ -21,10 +21,6 @@ namespace JsonHomeWork
             Class1[] data = JsonConvert.DeserializeObject<Class1[]>(content);
 
 
-
-
-
-
             string head = "<table>" + " <thead>" +
                 "<tr>" +
                 "<th rowspan=\"2\" style=\"border: 1px solid #000; padding: 8px; background-color: #f4f4f4;\">RouteUID</th>" +
