@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonHomeWork", "JsonHomeWork\JsonHomeWork.csproj", "{CBDFF3FD-B6B7-4935-BCD1-70C9902A75CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBDFF3FD-B6B7-4935-BCD1-70C9902A75CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBDFF3FD-B6B7-4935-BCD1-70C9902A75CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBDFF3FD-B6B7-4935-BCD1-70C9902A75CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBDFF3FD-B6B7-4935-BCD1-70C9902A75CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5714A491-1AEC-4A25-AB9F-8F43F434EDC3}
+	EndGlobalSection
+EndGlobal
