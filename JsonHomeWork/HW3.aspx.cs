@@ -17,9 +17,8 @@ namespace JsonHomeWork
         {
             string result = getJsonChunk("https://file.notion.so/f/f/50d1ed12-2c0e-4192-ba1a-6d1fd846f4b2/513bf788-333f-445f-963b-58316671e1c5/Realtime.json?table=block&id=64731531-1246-452e-a4f1-1e366a29e20b&spaceId=50d1ed12-2c0e-4192-ba1a-6d1fd846f4b2&expirationTimestamp=1733558400000&signature=SuCUdVNRYRvZq7YHkgYsSkKPh8DSj-UHneHuJOb7EeY&downloadName=Realtime.json");
             Car[] data = JsonConvert.DeserializeObject<Car[]>(result);
-
-
             StringBuilder form = new StringBuilder();
+
             form.AppendLine("<table>");
             form.AppendLine("<thead>");
             form.AppendLine("<tr>");
@@ -56,6 +55,7 @@ namespace JsonHomeWork
             form.AppendLine("</tr>");
             form.AppendLine("</thead>");
             form.AppendLine("<tbody>");
+
             foreach (var d in data)
             {
                 form.AppendLine("<tr>");
@@ -87,21 +87,8 @@ namespace JsonHomeWork
                 form.AppendLine($"</tr>");
             }
 
-
-
-            string tabelEnd = $"<tbody>" +
-                $"</tbody>" +
-                $"</table>";
-
-
-
-            string headContent = "";
-
             Response.Write(data.Length);
             Response.Write(form.ToString());
-
-
-
         }
 
         private string getJsonChunk(string url)
@@ -112,10 +99,8 @@ namespace JsonHomeWork
             var response = request.GetResponse();
             using (var reader = new StreamReader(response.GetResponseStream()))
             {
-
                 return reader.ReadToEnd();
             }
-
         }
     }
 
