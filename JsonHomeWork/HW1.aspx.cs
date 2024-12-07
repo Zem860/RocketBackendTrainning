@@ -21,7 +21,7 @@ namespace JsonHomeWork
             string head = "<table style='width: 100%; border-collapse: collapse; border: 1px solid black;'>" +
                           "<thead>" +
                           "<tr>" +
-                          "<td style='border: 1px solid black; padding: 8px; text-align:center'>statistic_yyy</td>" +
+                          "<tde style='border: 1px solid black; padding: 8px; text-align:center'>statistic_yyy</td>" +
                           "<td style='border: 1px solid black; padding: 8px; text-align:center'>according</td>" +
                           "<td style='border: 1px solid black; padding: 8px; text-align:center'>site_id</td>" +
                           "<td style='border: 1px solid black; padding: 8px; text-align:center'>birth_sex</td>" +

@@ -152,6 +152,7 @@
     <Content Include="HW4.aspx" />
     <Content Include="HW2.aspx" />
     <Content Include="HW1.aspx" />
+    <Content Include="HW3.aspx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -180,6 +181,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="styles\style.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -254,6 +256,13 @@
     </Compile>
     <Compile Include="HW1.aspx.designer.cs">
       <DependentUpon>HW1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HW3.aspx.cs">
+      <DependentUpon>HW3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HW3.aspx.designer.cs">
+      <DependentUpon>HW3.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
