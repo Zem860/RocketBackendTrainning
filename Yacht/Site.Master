@@ -1,0 +1,122 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Yacht.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - 我的 ASP.NET 應用程式</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <!--[if lt IE 7]>
+<script type="text/javascript" src="javascript/iepngfix_tilebg.js"></script>
+<![endif]-->
+    <link href="/Tayanahtml/html/tayana/html/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
+    <%----------------------------------%>
+    <link rel="stylesheet" type="text/css" href="/Tayanahtml/html/tayana/html/css/jquery.ad-gallery.css">
+    <link href="/Tayanahtml/html/tayana/html/css/homestyle.css" rel="stylesheet" type="text/css" />
+    <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+
+        <asp:ContentPlaceHolder ID="Home" runat="server">
+        </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="Yachts" runat="server">
+        </asp:ContentPlaceHolder>
+
+    </form>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+    </asp:PlaceHolder>
+
+
+    <script type="text/javascript" src="/Tayanahtml/html/tayana/html/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/Tayanahtml/html/tayana/html/Scripts/jquery.cycle.all.2.74.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/Tayanahtml/html/tayana/html/Scripts/jquery.ad-gallery.js"></script>
+
+<%--    <script type="text/javascript">
+
+        $(function () {
+            // 先取得 #abgne-block-20110111 , 必要參數及輪播間隔
+            var $block = $('#abgne-block-20110111'),
+                timrt, speed = 3000;
+
+
+            // 幫 #abgne-block-20110111 .title ul li 加上 hover() 事件
+            var $li = $('.title ul li', $block).hover(function () {
+                // 當滑鼠移上時加上 .over 樣式
+                $(this).addClass('over').siblings('.over').removeClass('over');
+            }, function () {
+                // 當滑鼠移出時移除 .over 樣式
+                $(this).removeClass('over');
+            }).click(function () {
+                // 當滑鼠點擊時, 顯示相對應的 li.info
+                // 並加上 .on 樣式
+                var $this = $(this);
+                $this.add($('.bd li.info', $block).eq($this.index())).addClass('on').siblings('.on').removeClass('on');
+            });
+
+            // 幫 $block 加上 hover() 事件
+            $block.hover(function () {
+                // 當滑鼠移上時停止計時器
+                clearTimeout(timer);
+            }, function () {
+                // 當滑鼠移出時啟動計時器
+                timer = setTimeout(move, speed);
+            });
+
+            // 控制輪播
+            function move() {
+                var _index = $('.title ul li.on', $block).index();
+                _index = (_index + 1) % $li.length;
+                $li.eq(_index).click();
+                timer = setTimeout(move, speed);
+
+            }
+
+            // 啟動計時器
+            timer = setTimeout(move, speed);
+        });
+
+
+
+        $(document).ready(function () {
+            $('.slideshow').cycle({
+                fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+            });
+        });
+    </script>--%>
+
+
+</body>
+</html>
