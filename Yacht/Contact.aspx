@@ -124,35 +124,48 @@
   <table>
     <tr>
       <td class="from01td01">Name :</td>
-      <td><span>*</span><input type="text" name="textfield" id="textfield" /> </td>
+      <td><span>*</span>
+
+          <asp:TextBox ID="Name" type="text" runat="server"></asp:TextBox>
+
+      </td>
     </tr>
     <tr>
       <td class="from01td01">Email :</td>
-      <td><span>*</span><input type="text" name="textfield" id="textfield" /></td>
+      <td><span>*</span>
+          <asp:TextBox  type="text" ID="Email" runat="server"></asp:TextBox>
+      </td>
     </tr>
     <tr>
       <td class="from01td01">Phone :</td>
-      <td><span>*</span><input type="text" name="textfield" id="textfield" /></td>
+      <td><span>*</span><asp:TextBox type="text" ID="Phone" runat="server"></asp:TextBox></td>
     </tr>
     <tr>
       <td class="from01td01">Country :</td>
       <td><span>*</span>
-                    <select name="select" id="select">
-                      <option>Annapolis</option>
-                                            </select></td>
+
+<asp:DropDownList ID="Country" runat="server">
+    <asp:ListItem Text="Annapolis" Value="Annapolis"></asp:ListItem>
+    <asp:ListItem Text="Baltimore" Value="Baltimore"></asp:ListItem>
+    <asp:ListItem Text="Chicago" Value="Chicago"></asp:ListItem>
+</asp:DropDownList>
+
     </tr>
     <tr>
       <td colspan="2" ><span>*</span>Brochure of interest  *Which Brochure would you like to view?</td>
       </tr>
     <tr>
       <td class="from01td01">&nbsp;</td>
-      <td><select name="select" id="select">
-        <option>Dynasty 72 </option>
-            </select>        </td>
+      <td><asp:DropDownList ID="Yachts" runat="server">
+    <asp:ListItem Text="Dynasty 72" Value="Dynasty 72"></asp:ListItem>
+    <asp:ListItem Text="Canary" Value="Canary"></asp:ListItem>
+    <asp:ListItem Text="Titanic" Value="Titanic"></asp:ListItem>
+</asp:DropDownList>       </td>
     </tr>
     <tr>
       <td class="from01td01">Comments:</td>
-      <td><textarea name="textarea" id="textarea" cols="45" rows="5"></textarea></td>
+      <td>    <asp:TextBox ID="Comments" runat="server" TextMode="MultiLine" Columns="45" Rows="5"></asp:TextBox>
+</td>
     </tr>
        <tr>
    <td class="from01td01">Verification:</td>
