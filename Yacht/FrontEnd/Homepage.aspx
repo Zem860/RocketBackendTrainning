@@ -6,8 +6,8 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>HomePage</title>
-        <link href="/Tayanahtml/html/tayana/html/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
+        <link href="../Tayanahtml/html/tayana/html/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="contain"> 
@@ -40,7 +40,7 @@
 
 <ul>
 <li class="info on"><a  href="#"><img src="/Tayanahtml/html/tayana/html/images/banner001b.jpg" /></a><!--文字開始--><div class="wordtitle">TAYANA <span>48</span><br /><p>SPECIFICATION SHEET</p></div><!--文字結束--></li>
-<li class="info"><a class="slideshow"  href="#"><img src="/Tayanahtml/html/tayana/html/images/banner002b.jpg" /></a><!--文字開始--><div class="wordtitle">TAYANA <span>54</span><br /><p>SPECIFICATION SHEET</p></div><!--文字結束--><!--新船型開始  54型才出現其於隱藏 -->
+<li class="info"><a class="slideshow"  href="#"><img src="../Tayanahtml/html/tayana/html/images/banner002b.jpg" /></a><!--文字開始--><div class="wordtitle">TAYANA <span>54</span><br /><p>SPECIFICATION SHEET</p></div><!--文字結束--><!--新船型開始  54型才出現其於隱藏 -->
 <div class="new"><img src="/Tayanahtml/html/tayana/html/images/new01.png" alt="new" /></div>
 <!--新船型結束--></li>
 <li class="info"><a href="#"><img src="/Tayanahtml/html/tayana/html/images/banner003b.jpg" /></a><!--文字開始--><div class="wordtitle">TAYANA <span>37</span><br /><p>SPECIFICATION SHEET</p></div><!--文字結束--></li>

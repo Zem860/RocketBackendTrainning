@@ -108,3 +108,7 @@ C:\Users\zemmy\Desktop\Yacht\Yacht\Yacht\bin\System.Numerics.Vectors.xml
 C:\Users\zemmy\Desktop\Yacht\Yacht\Yacht\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\zemmy\Desktop\Yacht\Yacht\Yacht\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\zemmy\Desktop\Yacht\Yacht\Yacht\bin\System.ValueTuple.xml
+C:\Users\zemmy\Desktop\Yacht\Yacht\Yacht\bin\Konscious.Security.Cryptography.Argon2.dll
+C:\Users\zemmy\Desktop\Yacht\Yacht\Yacht\bin\Konscious.Security.Cryptography.Blake2.dll
+C:\Users\zemmy\Desktop\Yacht\Yacht\Yacht\bin\Konscious.Security.Cryptography.Argon2.xml
+C:\Users\zemmy\Desktop\Yacht\Yacht\Yacht\bin\Konscious.Security.Cryptography.Blake2.xml

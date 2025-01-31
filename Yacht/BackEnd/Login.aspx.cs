@@ -5,13 +5,17 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Yacht
+namespace Yacht.BackEnd
 {
-    public partial class _Default : Page
+    public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("~/FrontEnd/Homepage.aspx");
+
+        }
+
+        protected void CheckLogin(object sender, EventArgs e)
+        {
 
         }
     }
