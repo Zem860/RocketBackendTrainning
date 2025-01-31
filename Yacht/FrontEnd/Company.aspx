@@ -1,17 +1,13 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Company.aspx.cs" Inherits="Yacht.FrontEnd.Company" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FrontEnd/HomeMaster.Master" AutoEventWireup="true" CodeBehind="Company.aspx.cs" Inherits="Yacht.FrontEnd.Company" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="Home" runat="server">
+</asp:Content>
 
-<!DOCTYPE html>
+<asp:Content ID="Content3" ContentPlaceHolderID="Company" runat="server">
+        <link href="/Tayanahtml/html/tayana/html/css/homestyle.css" rel="stylesheet" type="text/css" />
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Company</title>
-    <link href="/Tayanahtml/html/tayana/html/css/homestyle.css" rel="stylesheet" type="text/css" />
-    <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-
-    <div class="contain">
+        <div class="contain">
         <div class="sub">
             <p><a href="Homepage.aspx">Home</a></p>
         </div>
@@ -156,5 +152,4 @@
             });
         });
     </script>
-</body>
-</html>
+</asp:Content>

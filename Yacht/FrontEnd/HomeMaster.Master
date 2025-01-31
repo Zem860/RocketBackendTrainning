@@ -1,0 +1,23 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HomeMaster.master.cs" Inherits="Yacht.FrontEnd.HomeMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/Tayanahtml/html/tayana/html/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+        <asp:ContentPlaceHolder ID="Home" runat="server">
+        </asp:ContentPlaceHolder>
+         <asp:ContentPlaceHolder ID="Company" runat="server">
+        </asp:ContentPlaceHolder>
+
+<%--    <form id="form1" runat="server">
+    </form>--%>
+</body>
+</html>
