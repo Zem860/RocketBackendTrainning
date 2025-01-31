@@ -11,7 +11,13 @@ namespace Yacht.BackEnd
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    Response.Redirect("Login.aspx"); //導回登入頁
+                }
+            }
         }
     }
 }

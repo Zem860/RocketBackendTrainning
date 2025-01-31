@@ -23,7 +23,7 @@
             <asp:TextBox ID="Password" runat="server"></asp:TextBox>
             <asp:Button ID="Submit" runat="server" Text="Register" OnClick="addUser" />
             <asp:Label ID="Error" ForeColor="Red" Visible="false" runat="server" Text="Label"></asp:Label>
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Login.aspx">HyperLink</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/BackEnd/Login.aspx">HyperLink</asp:HyperLink>
         </div>
     </form>
 </body>
