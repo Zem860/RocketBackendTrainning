@@ -1,13 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FrontEnd/HomeMaster.Master" AutoEventWireup="true" CodeBehind="Company.aspx.cs" Inherits="Yacht.FrontEnd.Company" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Home" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Company" runat="server">
-        <link href="/Tayanahtml/html/tayana/html/css/homestyle.css" rel="stylesheet" type="text/css" />
-
-        <div class="contain">
+    <link href="/Tayanahtml/html/tayana/html/css/homestyle.css" rel="stylesheet" type="text/css" />
+    <div class="contain">
         <div class="sub">
             <p><a href="Homepage.aspx">Home</a></p>
         </div>
@@ -26,7 +26,8 @@
 
         <!--遮罩-->
         <div class="bannermasks">
-            <img src="images/company.jpg" alt="&quot;&quot;" width="967" height="371" /></div>
+            <img src="/Tayanahtml/html/tayana/html/images/company.jpg" alt="&quot;&quot;" width="967" height="371" />
+        </div>
         <!--遮罩結束-->
 
         <!--<div id="buttom01"><a href="#"><img src="images/buttom01.gif" alt="next" /></a></div>-->
@@ -84,64 +85,92 @@
                 <div class="left1">
                     <p><span>COMPANY </span></p>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Certificat</a></li>
+                        <li>
+                            <asp:HyperLink ID="btnAbout" runat="server" NavigateUrl="~/FrontEnd/Company.aspx?pos=about">About Us</asp:HyperLink></li>
+                        <li>
+                            <asp:HyperLink ID="btnCertificate" runat="server" NavigateUrl="~/FrontEnd/Company.aspx?pos=certificate">Certificate</asp:HyperLink>
+                        </li>
 
                     </ul>
-
-
-
                 </div>
 
-
-
-
             </div>
-
 
 
             <!--------------------------------左邊選單結束---------------------------------------------------->
 
             <!--------------------------------右邊選單開始---------------------------------------------------->
-            <div id="crumb"><a href="~/Homepage.aspx">Home</a> >> <a href="Company.aspx">Company </a>>> <a href="AboutUs.aspx"><span class="on1">About Us</span></a></div>
+            <div id="crumb">
+                <a href="Home.aspx">Home</a> >> <a href="Company.aspx">Company </a>>>                
+                <asp:HyperLink ID="Layer3Link" runat="server" NavigateUrl="~/FrontEnd/Company.aspx?pos=about">
+                    <span class="on1">
+                        <asp:Label ID="Layer3Label" runat="server" Text="Label"></asp:Label>
+                    </span>
+                </asp:HyperLink>
+            </div>
             <div class="right">
                 <div class="right1">
-                    <div class="title"><span>About Us</span></div>
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <asp:MultiView ID="MultiView1" runat="server">
+                                <asp:View ID="ViewAboutUs" runat="server">
+                                    <div class="title"><span>About Us</span></div>
+                                    <!--------------------------------內容開始---------------------------------------------------->
+                                    <div class="box3">
+                                        <h4>The Luxury Tayana 48 Pilothouse Lavish Woodwork Is Among</h4>
+                                        <p>
+                                            <img src="/Tayanahtml/html/tayana/html/images/pit010.jpg" alt="&quot;&quot;" width="274" height="192" />
+                                        </p>
+                                        Founded in 1973, Ta Yang Building Co., Ltd. Has built over 1400 blue water cruising yachts to date. This world renowned custom yacht builder offers a large compliment of sailboats ranging from 37’ to 72’, many offer aft or center cockpit design, deck saloon or pilothouse options.<br />
+                                        <br />
+                                        In 2003, Tayana introduced the new Tayana 64 Deck Saloon, designed by Robb Ladd, which offers the latest in building techniques, large sail area and a beam of 18 feet.
+             <br />
+                                        <br />
+                                        Tayana Yachts have been considered the leader in building custom interiors for the last two decades, offering it`s clients the luxury of a living arrangement they prefer rather than have to settle for the compromise of a production boat. Using the finest in exotic woods, the best equipment such as Lewmar, Whitlock, Yanmar engines, Selden spars to name a few, Ta yang has achieved the reputation for building one of the finest semi custom blue water cruising yachts in the world, at an affordable price.<br />
+                      <br />
+                                        <br />
+                                        Peter Chen was recently appointed the General Manager of Tayana. Peter has a wide-ranging knowledge of the yacht building industry; as part of the TAYANA team, Peter’s vision is genuinely rooted in honesty and integrity. “Our aim is to create outstanding styling, live aboard comfort, and safety at sea for every proud Tayana owner.”<br />
+                                    </div>
+                                    <!--------------------------------內容結束------------------------------------------------------>
+                                    </div>
+                                </asp:View>
+                                <asp:View ID="ViewCertificate" runat="server">
+                                    <div class="title"><span>Certificate</span></div>
+                                    
+                                    <div class="box3">
 
-                    <!--------------------------------內容開始---------------------------------------------------->
-                    <div class="box3">
-                        <h4>The Luxury Tayana 48 Pilothouse Lavish Woodwork Is Among</h4>
-                        <p>
-                            <img src="/Tayanahtml/html/tayana/html/images/pit010.jpg" alt="&quot;&quot;" width="274" height="192" /></p>
-                        Founded in 1973, Ta Yang Building Co., Ltd. Has built over 1400 blue water cruising yachts to date. This world renowned custom yacht builder offers a large compliment of sailboats ranging from 37’ to 72’, many offer aft or center cockpit design, deck saloon or pilothouse options.<br />
-                        <br />
-                        In 2003, Tayana introduced the new Tayana 64 Deck Saloon, designed by Robb Ladd, which offers the latest in building techniques, large sail area and a beam of 18 feet.
-                        <br />
-                        <br />
-                        Tayana Yachts have been considered the leader in building custom interiors for the last two decades, offering it`s clients the luxury of a living arrangement they prefer rather than have to settle for the compromise of a production boat. Using the finest in exotic woods, the best equipment such as Lewmar, Whitlock, Yanmar engines, Selden spars to name a few, Ta yang has achieved the reputation for building one of the finest semi custom blue water cruising yachts in the world, at an affordable price.
- <br />
-                        <br />
-                        Peter Chen was recently appointed the General Manager of Tayana. Peter has a wide-ranging knowledge of the yacht building industry; as part of the TAYANA team, Peter’s vision is genuinely rooted in honesty and integrity. “Our aim is to create outstanding styling, live aboard comfort, and safety at sea for every proud Tayana owner.”<br />
-                    </div>
-                    <!--------------------------------內容結束------------------------------------------------------>
+                                        <h4>This page contains certification information about Tayana Yachts.</h4>
+                                        <br />
+                                        <img src="https://i.pinimg.com/736x/3a/a9/22/3aa922544cc3b77e24572d4a77dc5b34.jpg" alt="Alternate Text" />
+                                        Overwatch has its development origins rooted in Titan, a Blizzard project that was cancelled in 2013. Elements of Titan were reworked into Overwatch, which was announced at BlizzCon in November 2014.<br />
+                                        <br />
+                                        Overwatch was an online team-based game generally played as a first-person shooter. The game featured several different game modes, principally designed around squad-based combat with two opposing teams of six players each.
+                                        <br />
+                                        At its heart, Overwatch has borrowed plenty from the superhero genre, but it does so while tipping the entire thing on its head, reinventing what has come before and pushing against the boundaries that have been set out in the past.<br />
+                                    </div>
+                                </asp:View>
+                            </asp:MultiView>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
+            </div>
             </div>
 
             <!--------------------------------右邊選單結束---------------------------------------------------->
-        </div>
 
 
-        <!--------------------------------落款開始---------------------------------------------------->
-        <div class="footer">
-            <p class="footerp01">© 1973-2011 Tayana Yachts, Inc. All Rights Reserved</p>
-            <div class="footer01">
-                <span>No. 60, Hai Chien Road, Chung Men Li, Lin Yuan District, Kaohsiung City, Taiwan, R.O.C.</span><br />
-                <span>TEL：+886(7)641-2721</span> <span>FAX：+886(7)642-3193</span><span><a href="mailto:tayangco@ms15.hinet.net">E-mail：tayangco@ms15.hinet.net</a>.</span>
+
+            <!--------------------------------落款開始---------------------------------------------------->
+            <div class="footer">
+                <p class="footerp01">© 1973-2011 Tayana Yachts, Inc. All Rights Reserved</p>
+                <div class="footer01">
+                    <span>No. 60, Hai Chien Road, Chung Men Li, Lin Yuan District, Kaohsiung City, Taiwan, R.O.C.</span><br />
+                    <span>TEL：+886(7)641-2721</span> <span>FAX：+886(7)642-3193</span><span><a href="mailto:tayangco@ms15.hinet.net">E-mail：tayangco@ms15.hinet.net</a>.</span>
+                </div>
             </div>
-        </div>
-        <!--------------------------------落款結束---------------------------------------------------->
+            <!--------------------------------落款結束---------------------------------------------------->
 
-    </div>
+        </div>
 
     <script type="text/javascript" src="/Tayanahtml/html/tayana/html/Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="/Tayanahtml/html/tayana/html/Scripts/jquery.cycle.all.2.74.js"></script>
