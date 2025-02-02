@@ -30,7 +30,7 @@
             <asp:TemplateField HeaderText="Ops">
                 <ItemTemplate>
                     <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="Edit" />
-                    <asp:Button ID="btnDelete" runat="server" Text="Delete" CommandName="Delete" />
+                    <asp:Button ID="btnDelete"  OnClientClick="return confirm('Are you sure you want to delete？')"  runat="server" Text="Delete" CommandName="Delete" />
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:Button ID="btnSave" runat="server" Text="Save" CommandName="Update" />
