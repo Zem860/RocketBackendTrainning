@@ -12,14 +12,28 @@
             height: auto;
             display: block;
         }
-        .operation{
-            display:flex;
-            flex-direction:column;
+
+        .operation {
+            display: flex;
+            flex-direction: column;
             gap: 30px;
         }
     </style>
+    <asp:DropDownList 
+        
+        ID="countrySwitch" 
+        runat="server" 
+        DataSourceID="SqlDataSource1" 
+        DataTextField="CountryName" 
+        DataValueField="Id" 
+        AppendDataBoundItems="True"      
+        OnSelectedIndexChanged="ChangeCategory" AutoPostBack="True">
+        <asp:ListItem Text="All" Value="0" Selected="True">All</asp:ListItem>
+    </asp:DropDownList>
 
-    <asp:GridView ID="DealersGrid" DataKeyNames="Id" AutoGenerateColumns="false" runat="server">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TestConnectionString2 %>" ProviderName="<%$ ConnectionStrings:TestConnectionString2.ProviderName %>" SelectCommand="SELECT * FROM [Countries]"></asp:SqlDataSource>
+
+    <asp:GridView ID="DealersGrid" DataKeyNames="Id" AutoGenerateColumns="false" runat="server" OnRowDeleting="DealersGrid_RowDeleting">
         <Columns>
             <asp:TemplateField HeaderText="Company">
                 <ItemTemplate>
@@ -67,8 +81,12 @@
             <asp:TemplateField HeaderText="Ops">
                 <ItemTemplate>
                     <div class="operation">
-                        <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="Edit" />
-                        <asp:Button ID="btnDelete" OnClientClick="return confirm('Are you sure you want to delete？')" runat="server" Text="Delete" CommandName="Delete" />
+
+                        <asp:HyperLink ID="btnEdit" CssClass="btn btn-info" runat="server" NavigateUrl='<%# "EditDealer.aspx?Id=" + Eval("Id") %>' >
+                            Edit
+                        </asp:HyperLink>
+
+                        <asp:Button ID="btnDelete" CssClass="btn btn-danger" OnClientClick="return confirm('Are you sure you want to delete？')" runat="server" Text="Delete" CommandName="Delete" />
                     </div>
                 </ItemTemplate>
             </asp:TemplateField>
