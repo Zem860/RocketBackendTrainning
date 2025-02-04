@@ -92,4 +92,14 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
+     <asp:Repeater ID="PageRepeater" runat="server">
+     <ItemTemplate>
+         <asp:HyperLink
+             ID="PageLink"
+             runat="server"
+             NavigateUrl='<%# "~/Dealers.aspx?page=" + Container.DataItem%>'>
+     <%# Container.DataItem %>
+         </asp:HyperLink>
+     </ItemTemplate>
+ </asp:Repeater>
 </asp:Content>

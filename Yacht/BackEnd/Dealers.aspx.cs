@@ -11,8 +11,15 @@ using System.Web.UI.WebControls;
 using static Yacht.DbHelper;
 namespace Yacht.BackEnd
 {
+
     public partial class Dealers : System.Web.UI.Page
     {
+
+        protected int pageSize = 5;
+        protected int currentPage = 1;
+        protected int totalPages;
+        protected string connectionString = WebConfigurationManager.ConnectionStrings["TestConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) // ✅ 只在首次載入時綁定
@@ -21,11 +28,32 @@ namespace Yacht.BackEnd
             }
         }
 
+
+        public void showPage()
+        {
+            string query = @"SELECT COUNT(*) FROM Companies";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                int dataAmount = (int)cmd.ExecuteScalar();
+                totalPages = (int)Math.Ceiling((double)dataAmount / pageSize);
+            }
+
+            List<int> pages = new List<int>();
+            for (int i = 1; i <= totalPages; i++)
+            {
+                pages.Add(i);
+            }
+
+            PageRepeater.DataSource = pages;
+            PageRepeater.DataBind();
+
+        }
         public void show()
         {
+            showPage();
             DbHelper helper = new DbHelper();
-            int pageSize = 5;
-            int currentPage = 1;
             int offset =  currentPage > 0 ? (currentPage - 1) * pageSize : 0;
             string query =
                 @"SELECT Com.Id AS Id, Com.CompnayName AS CName, Co.CountryName As CountryName, Ci.City AS City, D.DealerName AS DName,
@@ -76,8 +104,6 @@ namespace Yacht.BackEnd
         {
             string num = countrySwitch.SelectedValue;
             countrySwitch.SelectedValue = num;
-            string connectionString = WebConfigurationManager.ConnectionStrings["TestConnectionString"].ConnectionString;
-
             string query = @"UPDATE Companies SET SoftDelete= 1, UpdatedAt = GETDATE() WHERE Id = @id";
             string id = DealersGrid.DataKeys[e.RowIndex].Value.ToString();
             using (SqlConnection connection = new SqlConnection(connectionString))
