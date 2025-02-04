@@ -33,7 +33,7 @@
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TestConnectionString2 %>" ProviderName="<%$ ConnectionStrings:TestConnectionString2.ProviderName %>" SelectCommand="SELECT * FROM [Countries]"></asp:SqlDataSource>
 
-    <asp:GridView ID="DealersGrid" DataKeyNames="Id" AutoGenerateColumns="false" runat="server" OnRowDeleting="DealersGrid_RowDeleting">
+    <asp:GridView ID="DealersGrid" AllowPaging="True" DataKeyNames="Id" AutoGenerateColumns="false" runat="server" OnRowDeleting="DealersGrid_RowDeleting">
         <Columns>
             <asp:TemplateField HeaderText="Company">
                 <ItemTemplate>
