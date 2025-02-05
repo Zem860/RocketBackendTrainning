@@ -43,7 +43,7 @@ namespace Yacht.BackEnd
                 SELECT Cities.CountryId AS CountryId,
                 Dealers.DealerEmail AS DealerEmail,
                 Companies.CityId AS CityId,  
-                Companies.CompnayName AS CompanyName, 
+                Companies.CompanyName AS CompanyName, 
                 Dealers.DealerName AS DealerName, Dealers.DealerPhoto AS DealerPhoto,
                 Companies.Address AS CompanyAddress, Companies.Phone AS CompanyPhone, 
                 Companies.Email AS CompanyEmail
@@ -206,7 +206,7 @@ namespace Yacht.BackEnd
                 cmd.ExecuteNonQuery();
             }
             //Company
-            string countryCityUpdate = @"Update Companies SET CityId = @cityId, CompnayName = @companyName, Address = @address, Phone = @phone, Email = @email WHERE Id = @id";
+            string countryCityUpdate = @"Update Companies SET CityId = @cityId, CompanyName = @companyName, Address = @address, Phone = @phone, Email = @email WHERE Id = @id";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();

@@ -14,7 +14,6 @@ namespace Yacht.BackEnd
 
     public partial class Dealers : System.Web.UI.Page
     {
-
         protected int pageSize = 5;
         protected int currentPage = 1;
         protected int totalPages;
@@ -54,9 +53,10 @@ namespace Yacht.BackEnd
         {
             showPage();
             DbHelper helper = new DbHelper();
+            currentPage = Convert.ToInt32(Request.QueryString["page"]);
             int offset =  currentPage > 0 ? (currentPage - 1) * pageSize : 0;
             string query =
-                @"SELECT Com.Id AS Id, Com.CompnayName AS CName, Co.CountryName As CountryName, Ci.City AS City, D.DealerName AS DName,
+                @"SELECT Com.Id AS Id, Com.CompanyName AS CName, Co.CountryName As CountryName, Ci.City AS City, D.DealerName AS DName,
                 D.DealerPhoto AS DPhoto, D.DealerEmail AS DEmail, Com.Address AS Address, Com.Phone AS Phone, Com.Email AS CompanyEmail
                 FROM Companies Com
                 INNER JOIN Cities Ci ON Com.CityId = Ci.Id
@@ -74,7 +74,7 @@ namespace Yacht.BackEnd
         protected void ChangeCategory(object sender, EventArgs e)
         {
             string query =
-                @"SELECT Com.Id AS Id, Com.CompnayName AS CName, Co.CountryName As CountryName, Ci.City AS City, D.DealerName AS DName,
+                @"SELECT Com.Id AS Id, Com.CompanyName AS CName, Co.CountryName As CountryName, Ci.City AS City, D.DealerName AS DName,
                 D.DealerPhoto AS DPhoto, D.DealerEmail AS DEmail, Com.Address AS Address, Com.Phone AS Phone, Com.Email AS CompanyEmail
                 FROM Companies Com
                 INNER JOIN Cities Ci ON Com.CityId = Ci.Id
@@ -85,7 +85,7 @@ namespace Yacht.BackEnd
             if (countrySwitch.SelectedValue == "0")
             {
                 query =
-                @"SELECT Com.Id AS Id, Com.CompnayName AS CName, Co.CountryName As CountryName, Ci.City AS City, D.DealerName AS DName,
+                @"SELECT Com.Id AS Id, Com.CompanyName AS CName, Co.CountryName As CountryName, Ci.City AS City, D.DealerName AS DName,
                 D.DealerPhoto AS DPhoto, D.DealerEmail AS DEmail, Com.Address AS Address, Com.Phone AS Phone, Com.Email AS CompanyEmail
                 FROM Companies Com
                 INNER JOIN Cities Ci ON Com.CityId = Ci.Id
