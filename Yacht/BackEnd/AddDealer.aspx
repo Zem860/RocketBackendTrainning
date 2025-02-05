@@ -29,7 +29,12 @@
             <asp:ListItem Text="男" Value="1"></asp:ListItem>
             <asp:ListItem Text="女" Value="0"></asp:ListItem>
         </asp:RadioButtonList>
-
+        <p>Phone</p>
+        <asp:TextBox ID="DealerPhone" runat="server"></asp:TextBox>
+         <p>Fax</p>
+        <asp:TextBox ID="DealerFax" runat="server"></asp:TextBox>
+        <p>Cell</p>
+        <asp:TextBox ID="DealerCell" runat="server"></asp:TextBox>
         <p>Dealer Email</p>
         <asp:TextBox ID="DealerEmail" runat="server"></asp:TextBox>
         <p>Company Name</p>
@@ -38,8 +43,6 @@
 
         <p>Address</p>
         <asp:TextBox ID="Address" runat="server"></asp:TextBox>
-        <p>Phone</p>
-        <asp:TextBox ID="CompanyPhone" runat="server"></asp:TextBox>
         <p>CompanyLink</p>
         <asp:TextBox ID="CompanyLink" runat="server"></asp:TextBox>
     </div>

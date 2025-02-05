@@ -110,20 +110,10 @@ namespace Yacht.BackEnd
             {
                 dealerPhoto = ImageData[0];
             }
-
-            //string query1 = @"INSERT INTO Cities (CountryId, City) VALUES (@countryId, @city)";
-            //using (SqlConnection connection = new SqlConnection(connectionString))
-            //{
-            //    connection.Open();
-            //    SqlCommand cmd = new SqlCommand(query1, connection);
-            //    cmd.Parameters.AddWithValue(@"countryId", countrySwitch.SelectedValue);
-            //    cmd.Parameters.AddWithValue(@"city", citySwitch.SelectedItem.Text);
-            //    cmd.ExecuteNonQuery();
-            //}
             int dealerId;
             string query2 = @"
-                    INSERT INTO Dealers (DealerName, DealerPhoto, DealerEmail, DealerGender) 
-                        VALUES (@dealerName, @dealerPhoto, @dealerEmail,@dealerGender);
+                    INSERT INTO Dealers (DealerName, DealerPhoto, DealerEmail,DealerGender, Phone, Fax, Cell ) 
+                        VALUES (@dealerName, @dealerPhoto, @dealerEmail,@dealerGender, @phone, @fax, @cell);
                     SELECT SCOPE_IDENTITY();"; // 取得剛剛插入的 Dealer ID
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -132,15 +122,47 @@ namespace Yacht.BackEnd
                 SqlCommand cmd = new SqlCommand(query2, connection);
                 cmd.Parameters.AddWithValue("@dealerName", DealerName.Text);
                 cmd.Parameters.AddWithValue("@dealerPhoto", dealerPhoto);
-                cmd.Parameters.AddWithValue("@dealerEmail", DealerEmail.Text);
+                if (!String.IsNullOrEmpty(DealerEmail.Text))
+                {
+                    cmd.Parameters.AddWithValue("@dealerEmail", DealerEmail.Text);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue(@"dealerEmail", DBNull.Value);
+
+                }
                 cmd.Parameters.AddWithValue(@"dealerGender", DealerGender.SelectedValue);
+                if (!String.IsNullOrEmpty(DealerPhone.Text))
+                {
+                    cmd.Parameters.AddWithValue(@"phone", DealerPhone.Text);
+                } else
+                {
+                    cmd.Parameters.AddWithValue(@"phone", DBNull.Value);
+
+                }
+                if (!String.IsNullOrEmpty(DealerFax.Text))
+                {
+                    cmd.Parameters.AddWithValue(@"fax", DealerFax.Text);
+                } else
+                {
+                    cmd.Parameters.AddWithValue(@"fax", DBNull.Value);
+
+                }
+                if (!String.IsNullOrEmpty(DealerCell.Text))
+                {
+                    cmd.Parameters.AddWithValue(@"cell", DealerCell.Text);
+                } else
+                {
+                    cmd.Parameters.AddWithValue(@"cell", DBNull.Value);
+
+                }
 
                 dealerId = Convert.ToInt32(cmd.ExecuteScalar()); // 取得插入的 Dealer ID
             }
 
 
-            string query3 = @"INSERT INTO Companies (CityId, CompanyName, DealerId, Address, Phone, Email, SoftDelete )
-                    VALUES(@cityId, @companyName,@dealerId, @address,@phone,@email,@softDelete)";
+            string query3 = @"INSERT INTO Companies (CityId, CompanyName, DealerId, Address, Link, SoftDelete )
+                    VALUES(@cityId, @companyName,@dealerId, @address,@link,@softDelete)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -149,12 +171,12 @@ namespace Yacht.BackEnd
                 cmd.Parameters.AddWithValue(@"companyName", CompanyName.Text);
                 cmd.Parameters.AddWithValue(@"dealerId", dealerId);
                 cmd.Parameters.AddWithValue(@"address", Address.Text);
-                cmd.Parameters.AddWithValue(@"phone", CompanyPhone.Text);
-                cmd.Parameters.AddWithValue(@"email", CompanyPhone.Text);
+                cmd.Parameters.AddWithValue(@"link", CompanyLink.Text);
                 cmd.Parameters.AddWithValue(@"SoftDelete", 0);
                 cmd.ExecuteNonQuery();
-
             }
+            Response.Redirect("Dealers.aspx");
+
         }
     }
 }
