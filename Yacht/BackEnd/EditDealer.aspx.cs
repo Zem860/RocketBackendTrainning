@@ -44,9 +44,13 @@ namespace Yacht.BackEnd
                 Dealers.DealerEmail AS DealerEmail,
                 Companies.CityId AS CityId,  
                 Companies.CompanyName AS CompanyName, 
-                Dealers.DealerName AS DealerName, Dealers.DealerPhoto AS DealerPhoto,
-                Companies.Address AS CompanyAddress, Companies.Phone AS CompanyPhone, 
-                Companies.Email AS CompanyEmail
+                Dealers.DealerName AS DealerName, 
+                Dealers.DealerPhoto AS DealerPhoto,
+                Dealers.Phone AS DealerPhone,
+                Dealers.Fax AS DealerFax,
+                Dealers.Cell AS DealerCell,
+                Companies.Address AS CompanyAddress, 
+                Companies.Link AS CompanyLink
                 FROM Companies 
                 INNER JOIN Cities ON Cities.Id = Companies.CityId 
                 INNER JOIN Countries ON Countries.Id = Cities.CountryId
@@ -63,17 +67,21 @@ namespace Yacht.BackEnd
                     string dealerName = Convert.ToString(reader["DealerName"]);
                     string dealerPhoto = Convert.ToString(reader["DealerPhoto"]);
                     string dealerEmail = Convert.ToString(reader["DealerEmail"]);
+                    string dealerPhone = Convert.ToString(reader["DealerPhone"]);
+                    string dealerFax = Convert.ToString(reader["DealerFax"]);
+                    string dealerCell = Convert.ToString(reader["DealerCell"]);
                     string companyAddress = Convert.ToString(reader["CompanyAddress"]);
-                    string companyPhone = Convert.ToString(reader["CompanyPhone"]);
-                    string companyEmail = Convert.ToString(reader["CompanyEmail"]);
+                    string companyLink = Convert.ToString(reader["CompanyLink"]);
                     getDropDown(countryId);
                     DealerName.Text = dealerName;
                     Image1.ImageUrl = dealerPhoto;
                     CompanyName.Text = companyName;
                     Address.Text = companyAddress;
-                    CompanyPhone.Text = companyPhone;
+                    DealerPhone.Text = dealerPhone;
+                    DealerFax.Text = dealerFax;
+                    DealerCell.Text = dealerCell;
                     DealerEmail.Text = dealerEmail;
-                    CompanyEmail.Text = companyEmail;
+                    CompanyLink.Text = companyLink;
                     if (CountrySwitch.Items.FindByValue(countryId) != null)
                     {
                         CountrySwitch.SelectedValue = countryId;
@@ -194,7 +202,10 @@ namespace Yacht.BackEnd
             }
             //Dealer
             string dealerId = getDealerId();
-            string query = @"UPDATE Dealers SET DealerName = @dealerName, DealerPhoto =@dealerPhoto, DealerEmail =@dealerEmail WHERE Id = @dealerId";
+            string query = @"UPDATE Dealers SET DealerName = @dealerName, DealerPhoto =@dealerPhoto, DealerEmail =@dealerEmail,
+                            Phone = @dealerPhone, Fax = @dealerFax, Cell=@dealerCell
+
+                            WHERE Id = @dealerId";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -203,23 +214,26 @@ namespace Yacht.BackEnd
                 cmd.Parameters.AddWithValue(@"dealerName", DealerName.Text);
                 cmd.Parameters.AddWithValue(@"dealerPhoto", dealerPhoto);
                 cmd.Parameters.AddWithValue(@"dealerEmail", DealerEmail.Text);
+                cmd.Parameters.AddWithValue(@"dealerPhone", DealerPhone.Text);
+                cmd.Parameters.AddWithValue(@"dealerFax", DealerFax.Text);
+                cmd.Parameters.AddWithValue(@"dealerCell", DealerCell.Text);
+
                 cmd.ExecuteNonQuery();
             }
             //Company
-            string countryCityUpdate = @"Update Companies SET CityId = @cityId, CompanyName = @companyName, Address = @address, Phone = @phone, Email = @email WHERE Id = @id";
+            string countryCityUpdate = @"Update Companies SET CityId = @cityId, CompanyName = @companyName, Address = @address, Link = @link WHERE Id = @id";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(countryCityUpdate, connection);
                 cmd.Parameters.AddWithValue(@"cityId", CitySwitch.SelectedValue);
                 cmd.Parameters.AddWithValue(@"companyName", CompanyName.Text);
-                cmd.Parameters.AddWithValue(@"email", CompanyEmail.Text);
+                cmd.Parameters.AddWithValue(@"link", CompanyLink.Text);
                 cmd.Parameters.AddWithValue(@"address", Address.Text);
-                cmd.Parameters.AddWithValue(@"Phone", CompanyPhone.Text);
                 cmd.Parameters.AddWithValue(@"id", Request.QueryString["Id"]);
                 cmd.ExecuteNonQuery();
             }
-            Response.Redirect("/Dealers.aspx");
+            Response.Redirect("Dealers.aspx");
         }
     }
 }

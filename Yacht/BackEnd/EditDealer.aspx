@@ -26,10 +26,14 @@
     <p>Address</p>
     <asp:TextBox ID="Address" runat="server"></asp:TextBox>
     <p>Phone</p>
-    <asp:TextBox ID="CompanyPhone" runat="server"></asp:TextBox>
+    <asp:TextBox ID="DealerPhone" runat="server"></asp:TextBox>
+    <p>Fax</p>
+    <asp:TextBox ID="DealerFax" runat="server"></asp:TextBox>
+    <p>Cell</p>
+    <asp:TextBox ID="DealerCell" runat="server"></asp:TextBox>
     <p>Email</p>
     <asp:TextBox ID="DealerEmail" runat="server"></asp:TextBox>
     <p>CompanyLink</p>
-    <asp:TextBox ID="CompanyEmail" runat="server"></asp:TextBox>
+    <asp:TextBox ID="CompanyLink" runat="server"></asp:TextBox>
     <asp:Button ID="Button2" runat="server" Text="Button" OnClick="ConfirmEdit" />
 </asp:Content>

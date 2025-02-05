@@ -87,13 +87,31 @@ namespace Yacht.BackEnd
         protected global::System.Web.UI.WebControls.TextBox Address;
 
         /// <summary>
-        /// CompanyPhone 控制項。
+        /// DealerPhone 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CompanyPhone;
+        protected global::System.Web.UI.WebControls.TextBox DealerPhone;
+
+        /// <summary>
+        /// DealerFax 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DealerFax;
+
+        /// <summary>
+        /// DealerCell 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DealerCell;
 
         /// <summary>
         /// DealerEmail 控制項。
@@ -105,13 +123,13 @@ namespace Yacht.BackEnd
         protected global::System.Web.UI.WebControls.TextBox DealerEmail;
 
         /// <summary>
-        /// CompanyEmail 控制項。
+        /// CompanyLink 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CompanyEmail;
+        protected global::System.Web.UI.WebControls.TextBox CompanyLink;
 
         /// <summary>
         /// Button2 控制項。
