@@ -27,7 +27,7 @@
     </div>
 
     <!-- 城市選單 -->
-    <asp:GridView ID="CityGridView" runat="server" DataKeyNames="Id" AutoGenerateColumns="false" OnRowEditing="CityGridView_RowEditing" OnRowCancelingEdit="CityGridView_RowCancelingEdit" OnRowUpdating="CityGridView_RowUpdating">
+    <asp:GridView ID="CityGridView" runat="server" DataKeyNames="Id" AutoGenerateColumns="false" OnRowEditing="CityGridView_RowEditing" OnRowCancelingEdit="CityGridView_RowCancelingEdit" OnRowUpdating="CityGridView_RowUpdating" OnRowDeleting="CityGridView_RowDeleting">
         <Columns>
             <asp:TemplateField HeaderText="CityName">
                 <ItemTemplate>

@@ -102,5 +102,20 @@ namespace Yacht.BackEnd
 
             showCities();
         }
+
+        protected void CityGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            string id = CityGridView.DataKeys[rowIndex].Value.ToString();
+            string query = @"DELETE FROM Cities WHERE Id = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"Id", id);
+                cmd.ExecuteNonQuery();
+            }
+            showCities();
+        }
     }
 }
