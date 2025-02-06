@@ -1,12 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BackEnd/Dashboard.Master" AutoEventWireup="true" CodeBehind="Countries.aspx.cs" Inherits="Yacht.BackEnd.Countries" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Countries" runat="server">
+        <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+        </script>
     <div id="addArea">
         <asp:TextBox ID="CountryName" runat="server"></asp:TextBox>
         <asp:Button ID="addButton" runat="server" Text="AddCountry" OnClick="addCountry" />
     </div>
-
-
     <asp:GridView ID="CountryList" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" OnRowEditing="showPanel" OnRowDeleting="deleteCountry" OnRowUpdating="updateCountry">
         <Columns>
             <asp:TemplateField HeaderText="CountryName">
@@ -37,8 +40,8 @@
                     <asp:Button ID="btnCancel" runat="server" Text="Cancel" CommandName="Cancel" />
                 </EditItemTemplate>
             </asp:TemplateField>
-
         </Columns>
     </asp:GridView>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TestConnectionString %>" SelectCommand="SELECT * FROM [Countries]"></asp:SqlDataSource>
+
 </asp:Content>
