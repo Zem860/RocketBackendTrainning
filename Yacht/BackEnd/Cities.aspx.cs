@@ -70,5 +70,37 @@ namespace Yacht.BackEnd
             }
             showCities();
         }
+
+        protected void CityGridView_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            CityGridView.EditIndex = e.NewEditIndex;
+            showCities();
+        }
+
+        protected void CityGridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            CityGridView.EditIndex = -1;
+            showCities();
+        }
+
+        protected void CityGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            string id = CityGridView.DataKeys[rowIndex].Value.ToString();
+            string query = @"UPDATE Cities SET City = @city WHERE Id = @id";
+            TextBox changedText = CityGridView.Rows[rowIndex].FindControl("TxtCity") as TextBox;
+            string editedCity = changedText.Text;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"city", editedCity);
+                cmd.Parameters.AddWithValue(@"id", id);
+                cmd.ExecuteNonQuery();
+            }
+            CityGridView.EditIndex = -1;
+
+            showCities();
+        }
     }
 }

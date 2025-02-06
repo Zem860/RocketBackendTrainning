@@ -12,9 +12,9 @@
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="Cities" runat="server">
     <script>
-    if (window.history.replaceState) {
-        window.history.replaceState(null, null, window.location.href);
-    }
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
     </script>
 
     <!-- 國家選單 -->
@@ -27,12 +27,15 @@
     </div>
 
     <!-- 城市選單 -->
-    <asp:GridView ID="CityGridView" runat="server" AutoGenerateColumns="false">
+    <asp:GridView ID="CityGridView" runat="server" DataKeyNames="Id" AutoGenerateColumns="false" OnRowEditing="CityGridView_RowEditing" OnRowCancelingEdit="CityGridView_RowCancelingEdit" OnRowUpdating="CityGridView_RowUpdating">
         <Columns>
             <asp:TemplateField HeaderText="CityName">
                 <ItemTemplate>
                     <%# Eval("City") %></a>
                 </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:TextBox ID="TxtCity" runat="server" Text='<%# Bind("City") %>' />
+                </EditItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Ops">
                 <ItemTemplate>
@@ -43,7 +46,7 @@
                     <asp:Button ID="btnSave" runat="server" Text="Save" CommandName="Update" />
                     <asp:Button ID="btnCancel" runat="server" Text="Cancel" CommandName="Cancel" />
                 </EditItemTemplate>
-                 </asp:TemplateField>
+            </asp:TemplateField>
         </Columns>
 
     </asp:GridView>
