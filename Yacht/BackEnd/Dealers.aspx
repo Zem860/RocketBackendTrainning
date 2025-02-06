@@ -5,6 +5,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Countries" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Dealers" runat="server">
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
     <style>
         img {
             max-width: 200px;
@@ -19,17 +24,18 @@
             gap: 30px;
         }
     </style>
-    <asp:DropDownList 
-        
-        ID="countrySwitch" 
-        runat="server" 
-        DataSourceID="SqlDataSource1" 
-        DataTextField="CountryName" 
-        DataValueField="Id" 
-        AppendDataBoundItems="True"      
+    <asp:DropDownList
+        ID="countrySwitch"
+        runat="server"
+        DataTextField="CountryName"
+        DataValueField="Id"
         OnSelectedIndexChanged="ChangeCategory" AutoPostBack="True">
-        <asp:ListItem Text="All" Value="0" Selected="True">All</asp:ListItem>
     </asp:DropDownList>
+      <asp:DropDownList ID="citySwitch" runat="server" Visible="false"
+      AutoPostBack="True" DataTextField="City"
+      DataValueField="Id">
+  </asp:DropDownList>
+
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TestConnectionString2 %>" ProviderName="<%$ ConnectionStrings:TestConnectionString2.ProviderName %>" SelectCommand="SELECT * FROM [Countries]"></asp:SqlDataSource>
 
@@ -57,10 +63,10 @@
                     </p>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="CompanyEmail">
+            <asp:TemplateField HeaderText="CompanyLink">
                 <ItemTemplate>
                     <p>
-                        <%#Eval("CompanyEmail") %>
+                        <%#Eval("CompanyLink") %>
                     </p>
                 </ItemTemplate>
             </asp:TemplateField>
@@ -78,11 +84,27 @@
                     </p>
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:TemplateField HeaderText="FAX">
+                <ItemTemplate>
+                    <p>
+                        <%#Eval("Fax") %>
+                    </p>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Cell">
+                <ItemTemplate>
+                    <p>
+                        <%#Eval("Cell") %>
+                    </p>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+
             <asp:TemplateField HeaderText="Ops">
                 <ItemTemplate>
                     <div class="operation">
 
-                        <asp:HyperLink ID="btnEdit" CssClass="btn btn-info" runat="server" NavigateUrl='<%# "EditDealer.aspx?Id=" + Eval("Id") %>' >
+                        <asp:HyperLink ID="btnEdit" CssClass="btn btn-info" runat="server" NavigateUrl='<%# "EditDealer.aspx?Id=" + Eval("Id") %>'>
                             Edit
                         </asp:HyperLink>
 
@@ -92,14 +114,14 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-     <asp:Repeater ID="PageRepeater" runat="server">
-     <ItemTemplate>
-         <asp:HyperLink
-             ID="PageLink"
-             runat="server"
-             NavigateUrl='<%# "~/Dealers.aspx?page=" + Container.DataItem%>'>
+    <asp:Repeater ID="PageRepeater" runat="server">
+        <ItemTemplate>
+            <asp:HyperLink
+                ID="PageLink"
+                runat="server"
+                NavigateUrl='<%# "~/BackEnd/Dealers.aspx?page=" + Container.DataItem%>'>
      <%# Container.DataItem %>
-         </asp:HyperLink>
-     </ItemTemplate>
- </asp:Repeater>
+            </asp:HyperLink>
+        </ItemTemplate>
+    </asp:Repeater>
 </asp:Content>
