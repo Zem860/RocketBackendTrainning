@@ -47,7 +47,7 @@ namespace Yacht.BackEnd
                     bool passwordMatch = VerifyHash(salt, hash, Password.Text);
                     if (passwordMatch) {
                         SetAuthenTicket(userData, userId);
-                        Response.Redirect("~/BackEnd/Dashboard.aspx");               
+                        Response.Redirect("~/BackEnd/Default.aspx");               
                     } 
                 }
             }
