@@ -10,27 +10,24 @@
     <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
     <style>
         /* 使圖片保持一致的大小 */
-.list02 img {
-    width: 100%; /* 讓圖片寬度占滿容器寬度 */
-    height: auto; /* 高度自動調整，保持比例 */
-    max-width: 209px;  /* 限制圖片最大寬度 */
-    max-height: 148px; /* 限制圖片最大高度 */
-    object-fit: cover; /* 確保圖片適應容器，不會被拉伸 */
-}
-/* 保證地址不會超出容器寬度並且換行 */
-.list02li {
-    max-width: 100%;
-    word-wrap: break-word; /* 強制換行 */
-    word-break: break-all; /* 長字串自動換行 */
-}
+        .list02 img {
+            width: 100%; /* 讓圖片寬度占滿容器寬度 */
+            height: auto; /* 高度自動調整，保持比例 */
+            max-width: 209px; /* 限制圖片最大寬度 */
+            max-height: 148px; /* 限制圖片最大高度 */
+            object-fit: cover; /* 確保圖片適應容器，不會被拉伸 */
+        }
+        /* 保證地址不會超出容器寬度並且換行 */
+        .list02li {
+            max-width: 100%;
+            word-wrap: break-word; /* 強制換行 */
+            word-break: break-all; /* 長字串自動換行 */
+        }
 
-.list02 li {
-    max-width: 326px;
-    overflow-wrap: break-word; /* 同樣處理超長文字 */
-}
-
-
-
+        .list02 li {
+            max-width: 326px;
+            overflow-wrap: break-word; /* 同樣處理超長文字 */
+        }
     </style>
 </head>
 <body>
@@ -152,7 +149,7 @@
                                                     <li class="list02li">
                                                         <div>
                                                             <p>
-                                                                <img  src="<%# ResolveUrl("../BackEnd/" + Eval("DealerPhoto")) %>" />
+                                                                <img src="<%# ResolveUrl("../BackEnd/" + Eval("DealerPhoto")) %>" />
                                                             </p>
                                                         </div>
                                                     </li>
@@ -163,7 +160,7 @@
                                                         Address: <%# Eval("CompanyAddress") %><br />
                                                         TEL：<%# Eval("DealerPhone") %><br />
                                                         E-mail：<%# Eval("DealerEmail") %><br />
-                                                        <a href="<%# Eval("DealerPhoto") %>" target="_blank"><%# Eval("CompanyLink") %></a>
+                                                        <a href="<%# Eval("CompanyLink") %>" target="_blank"><%# Eval("CompanyLink") %></a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -173,6 +170,20 @@
 
                             </ul>
 
+                            <div class="pagenumber">
+                                <asp:Repeater ID="PageRepeater" runat="server">
+                                    <ItemTemplate>
+                                        <span>
+                                        <asp:HyperLink
+                                            ID="PageLink"
+                                            runat="server"
+                                            NavigateUrl='<%# "Dealers.aspx?page=" + Container.DataItem + "&country=" + Request.QueryString["country"] %>'>
+                                            <%# Container.DataItem %>
+                                        </asp:HyperLink>
+                                            </span> 
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
                             <div class="pagenumber">| <span>1</span> | <a href="#">2</a> | <a href="#">3</a> | <a href="#">4</a> | <a href="#">5</a> |  <a href="#">Next</a>  <a href="#">LastPage</a></div>
                             <div class="pagenumber1">Items：<span>89</span>  |  Pages：<span>1/9</span></div>
 
