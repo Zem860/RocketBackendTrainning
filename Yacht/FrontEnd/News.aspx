@@ -11,6 +11,18 @@
 <asp:Content ID="Content5" ContentPlaceHolderID="News" runat="server">
     <link href="/Tayanahtml/html/tayana/html/css/homestyle.css" rel="stylesheet" type="text/css" />
     <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        .newsContent{
+         max-width: 100%;
+         word-wrap: break-word; /* 強制換行 */
+
+    width: 100%;
+    max-height: 1em; /* 設定顯示區域的最大高度，根據需要調整 */
+    overflow: hidden; /* 隱藏超出部分 */
+    text-overflow: ellipsis; /* 超出部分顯示省略號 */
+        }
+    </style>
     <div class="contain">
         <div class="sub">
             <p><a href="#">Home</a></p>
@@ -131,13 +143,14 @@
                                                 <li>
                                                     <div>
                                                         <p>
-                                                            <img src=<%# Eval("NewsImg") %>  alt="&quot;&quot;" />
+                                                            <img src='<%# Eval("NewsImg") %>' alt="&quot;&quot;" />
                                                         </p>
                                                     </div>
                                                 </li>
-                                                <li><span><%# Eval("CreatedAt") %></span><br />
-                                                    <%# Eval("Title") %></li>
-                                                <li><%# Eval("NewsContent") %></li>
+                                                <li>
+                                                    <span><%# Eval("CreatedAt") %></span>
+                                                    <br />
+                                                <li class="newsContent"><%# FilterContent(Eval("NewsContent").ToString()) %></li>
                                             </ul>
                                         </div>
                                     </li>
