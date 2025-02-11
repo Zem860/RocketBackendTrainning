@@ -18,7 +18,6 @@
 
  <div class="container mt-5">
          <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-
         <!-- Row: 容納列元素 -->
         <div class="row d-flex justify-content-center border-1 border-dark p-3">
             <!-- Col: 占 12 列中的 6 列，畫面小於768px時會自動換行 -->
