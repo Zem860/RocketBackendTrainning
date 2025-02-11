@@ -65,6 +65,7 @@ namespace Yacht.BackEnd
                 News.Id AS Id, 
                 News.Title AS NewsTitle, 
                 STRING_AGG(NewsImgs.imagePath, ',') AS PinUpImgs,  -- 所有圖片
+                STRING_AGG(NewsImgs.Id, ',') AS ImgId,  -- 所有圖片
                 (SELECT TOP 1 imagePath FROM NewsImgs WHERE newsId = News.Id AND Cover = 1) AS PinUp, -- 取得封面圖
                 News.NewsContent, 
                 CONVERT(NVARCHAR, News.CreatedAt, 111) AS CreatedAt
@@ -87,20 +88,46 @@ namespace Yacht.BackEnd
                     if (reader["PinUpImgs"] != DBNull.Value)
                     {
                         string[] imgs = reader["PinUpImgs"].ToString().Split(',');
-
+                        string[] imgId = reader["ImgId"].ToString().Split(',');
+                        int getIdIndex = 0;
                         foreach (string i in imgs)
                         {
                             ListItem img = new ListItem($"<img src='{i}' style='object-fit:cover; width:100px; height:75px;'>", i);
                             AllImages.Items.Add(img);
+                            ListItem imgforDelete = new ListItem($"<img src='{i}' style='object-fit:cover; width:100px; height:75px;'>", imgId[getIdIndex]);
+                            DeleteImagesList.Items.Add(imgforDelete);
                             if (reader["PinUp"].ToString() == i)
                             {
                                 img.Selected = true;
                                 PreviewImage.ImageUrl = i;
                             }
+                            getIdIndex++;
                         }
                     }
                 }
             }
         }
+
+        protected void DeleteSelectedImages(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                foreach (ListItem item in DeleteImagesList.Items)
+                {
+                    if (item.Selected)
+                    {
+                        SqlCommand cmd = new SqlCommand("DELETE FROM NewsImgs WHERE Id = @ImgId", connection);
+                        cmd.Parameters.AddWithValue("@ImgId", item.Value);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            // 重新加載圖片
+            showEdit();
+        }
+
     }
 }
