@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
@@ -23,8 +24,50 @@ namespace Yacht.BackEnd
                 {
                     Response.Redirect("News.aspx");
                 }
-                showEdit();
+                show();
             }
+        }
+
+        public void UploadNewsImgs()
+        {
+            string localPath = Server.MapPath("~/NewsImgs/");
+            string query = @"INSERT INTO NewsImgs (NewsId, ImagePath, Cover) VALUES (@id, @imgPath, @cover)";
+            if (FileUpload1.HasFiles)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    foreach (var img in FileUpload1.PostedFiles)
+                    {
+                        int imgMemory = img.ContentLength;
+                        string imgFileName = Path.GetFileName(img.FileName);
+                        string imgExtension = Path.GetExtension(img.FileName).ToLower();
+                        string imgLocalPath = Path.Combine(localPath, imgFileName);
+                        string imgMappingPath = "/NewsImgs/"+imgFileName;
+                        if (imgMemory > 1000000)
+                        {
+                            continue;
+                        } else if (imgExtension!=".jpg" && imgExtension != ".png")
+                        {
+                            continue;
+                        } else
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue(@"id", Request.QueryString["Id"]);
+                            cmd.Parameters.AddWithValue(@"imgPath", imgMappingPath);
+                            cmd.Parameters.AddWithValue(@"cover", 0);
+                            cmd.ExecuteNonQuery();
+                            img.SaveAs(imgLocalPath);
+                        }
+                    }
+                    show();
+
+                   
+            }
+            }
+           
+
         }
 
         protected void changePinUp(object sender, EventArgs e)
@@ -52,9 +95,8 @@ namespace Yacht.BackEnd
             PreviewImage.ImageUrl = AllImages.SelectedValue; // 更新顯示的圖片
         }
 
-        public void showEdit()
+        public void show()
         {
-            string contentFromDb = "";  // 先宣告變數，確保作用域涵蓋整個方法
 
             if (String.IsNullOrEmpty(Id))
             {
@@ -110,6 +152,12 @@ namespace Yacht.BackEnd
 
         protected void DeleteSelectedImages(object sender, EventArgs e)
         {
+            if (DeleteImagesList.Items.Count == 1)
+            {
+                Response.Write("<script>alert('You only have 1 image left!')</script>");
+                return;
+            } 
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -118,6 +166,12 @@ namespace Yacht.BackEnd
                 {
                     if (item.Selected)
                     {
+                       if (!checkIfPinedUp(item.Value))
+                        {
+                            Response.Write("<script>alert('Cover Photo cannot be deleted')</script>");
+                            return;
+                        }
+
                         SqlCommand cmd = new SqlCommand("DELETE FROM NewsImgs WHERE Id = @ImgId", connection);
                         cmd.Parameters.AddWithValue("@ImgId", item.Value);
                         cmd.ExecuteNonQuery();
@@ -125,9 +179,33 @@ namespace Yacht.BackEnd
                 }
             }
 
-            // 重新加載圖片
-            showEdit();
+            show();
         }
 
+
+        public bool checkIfPinedUp(string id)
+        {
+            string query = @"SELECT Cover FROM NewsImgs WHERE Id = @Id";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"Id", id);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    if (reader["Cover"].ToString() == "1")
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+        protected void UploadImgs(object sender, EventArgs e)
+        {
+            UploadNewsImgs();
+        }
     }
 }

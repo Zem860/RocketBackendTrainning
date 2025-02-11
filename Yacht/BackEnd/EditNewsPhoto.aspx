@@ -67,6 +67,7 @@
                     <label for="FileUpload1" class="form-label">News Photos</label>
                     <asp:Image ID="Image1" runat="server" class="img-fluid" />
                     <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="True" CssClass="form-control" />
+                    <asp:Button ID="UploadBtn" runat="server" Text="Upload Imgs" OnClick="UploadImgs" />
                 </div>
             </div>
         </div>
