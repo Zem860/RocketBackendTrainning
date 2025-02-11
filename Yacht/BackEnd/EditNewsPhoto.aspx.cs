@@ -166,12 +166,12 @@ namespace Yacht.BackEnd
                 {
                     if (item.Selected)
                     {
-                       if (!checkIfPinedUp(item.Value))
+                       if (checkIfPinedUp(item.Value))
                         {
                             Response.Write("<script>alert('Cover Photo cannot be deleted')</script>");
                             return;
                         }
-
+                        deleteLocalImg(item.Value);
                         SqlCommand cmd = new SqlCommand("DELETE FROM NewsImgs WHERE Id = @ImgId", connection);
                         cmd.Parameters.AddWithValue("@ImgId", item.Value);
                         cmd.ExecuteNonQuery();
@@ -183,6 +183,25 @@ namespace Yacht.BackEnd
         }
 
 
+
+        public void deleteLocalImg(string id)
+        {
+            string query = @"SELECT ImagePath FROM NewsImgs WHERE Id = @id";
+            string localPath = Server.MapPath("~/");
+            string ImgLocalPath = "";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"id", id);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    ImgLocalPath = localPath + reader["ImagePath"].ToString();
+                    File.Delete(ImgLocalPath);
+                }
+            }
+        }
         public bool checkIfPinedUp(string id)
         {
             string query = @"SELECT Cover FROM NewsImgs WHERE Id = @Id";
@@ -195,7 +214,7 @@ namespace Yacht.BackEnd
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    if (reader["Cover"].ToString() == "1")
+                    if (Convert.ToInt32(reader["Cover"])== 1)
                     {
                         return true;
                     }
