@@ -34,6 +34,10 @@
                         <asp:Image ID="Image1" runat="server" class="img-fluid" />
                         <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="True" CssClass="form-control" />
                     </div>
+                    <div class="mb-3">
+                        <label for="FileUpload2" class="form-label">Related Files</label>
+                        <asp:FileUpload ID="FileUpload2" runat="server" AllowMultiple="True" CssClass="form-control" />
+                    </div>
 
                     <!-- News Content -->
                     <div class="mb-3">

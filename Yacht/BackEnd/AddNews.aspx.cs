@@ -17,7 +17,7 @@ namespace Yacht.BackEnd
 
         }
 
-        
+      
 
         protected void sendData(object sender, EventArgs e)
         {
@@ -25,10 +25,47 @@ namespace Yacht.BackEnd
             if (newsId > 0)
             {
                 handleImgs(newsId); // 將 newsId 傳遞給 handleImgs()
+                handlePdf(newsId);
             }
         }
-
-
+        public void handlePdf(int id)
+        {
+            if (FileUpload2.HasFile)
+            {
+                string localPathHeading = Server.MapPath("~/NewsFiles/");
+                string query = @"INSERT INTO NewsFiles (NewsId, FileName, FilePath) VALUES (@id, @name,@path)";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    foreach (var file in FileUpload2.PostedFiles)
+                    {
+                        int fileMemory = file.ContentLength;
+                        string fileName = Path.GetFileName(file.FileName);
+                        string imgExtension = Path.GetExtension(file.FileName).ToLower();
+                        string localPath = Path.Combine(localPathHeading, fileName);
+                        if (fileMemory > 1000000)
+                        {
+                            continue;
+                        }
+                        else if (imgExtension != ".pdf" && imgExtension != ".txt")
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            string fileMappingPath = "/NewsFiles/" + fileName;
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue(@"id", id);
+                            cmd.Parameters.AddWithValue(@"path", fileMappingPath);
+                            cmd.Parameters.AddWithValue(@"name", fileName);
+                            file.SaveAs(localPath);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+        }
 
         public void handleImgs(int id)
         {
@@ -77,12 +114,24 @@ namespace Yacht.BackEnd
 
 
                 }
-            }
+            } 
            
         }
 
         public int HandleWords()
         {
+            if (String.IsNullOrEmpty(NewsTitle.Text))
+            {
+                NewsTitle.Text = "";
+                Response.Write("<script>alert('Need a title for the News')</script>");
+                return 0;
+            }
+            if (!FileUpload1.HasFile)
+            {
+                NewsTitle.Text = "";
+                Response.Write("<script>alert('Need at least one photo as CoverPhoto')</script>");
+                return 0;
+            }
             string editorContent = Request.Unvalidated.Form["editor1"];
 
             // 修正圖片標籤，使其包含 src
@@ -105,6 +154,7 @@ namespace Yacht.BackEnd
 
                 object result = cmd.ExecuteScalar();
                 NewsTitle.Text = "";
+
                 return (result != null) ? Convert.ToInt32(result) : 0;
             }
         }
