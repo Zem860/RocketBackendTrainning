@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -49,22 +50,53 @@ namespace Yacht.BackEnd
             }
         }
 
-        protected string FilterContent(string htmlContent)
+        protected string FilterContent(object htmlContent)
         {
-            // 移除所有 <figure> 標籤及其內容 (去掉圖片)
-            string cleanedHtml = Regex.Replace(htmlContent, @"<figure[^>]*>.*?</figure>", string.Empty, RegexOptions.Singleline);
-            // 移除所有 HTML 標籤
-            string cleanedText = Regex.Replace(cleanedHtml, "<.*?>", string.Empty);
-            // 使用正則表達式按空格分割單字
-            var words = cleanedText.Split(new[] { ' ', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-            // 截取前 15 個單詞
-            string limitedText = string.Join(" ", words.Take(15));
-            // 如果字數超過 15，添加省略號
-            if (words.Length > 15)
+            if (htmlContent == null)
+            {
+                return string.Empty;
+            }
+
+            // 1. 先轉成字串，並確保內容不為 null
+            string content = htmlContent.ToString();
+
+            // 2. 移除所有 <figure> 標籤及其內容 (去掉圖片)
+            content = Regex.Replace(content, @"<figure[^>]*>.*?</figure>", string.Empty, RegexOptions.Singleline);
+
+            // 3. 移除所有 HTML 標籤
+            content = Regex.Replace(content, "<.*?>", string.Empty);
+
+            // 4. 移除 HTML 編碼，例如 `&nbsp;` 轉為空格
+            content = HttpUtility.HtmlDecode(content);
+
+            // 5. 移除多餘的換行與空格
+            content = Regex.Replace(content, @"\s+", " ").Trim();
+
+            // 6. 截取 25 個字，確保長度受限
+            var words = content.Take(100);
+            string limitedText = string.Join("", words);
+
+            // 7. 如果超過 25 字，加上 "..."
+            if (content.Length > 100)
             {
                 limitedText += "...";
             }
+
             return limitedText;
+        }
+
+        protected void Delete(object sender, GridViewDeleteEventArgs e)
+        {
+            int id = Convert.ToInt32(NewsGridView.DataKeys[e.RowIndex].Value);
+            string query = @"DELETE FROM News WHERE Id = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"id", id);
+                cmd.ExecuteNonQuery();
+                showNews();
+            }
         }
     }
 }
