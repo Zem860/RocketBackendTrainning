@@ -13,14 +13,14 @@
     <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
 
     <style>
-        .newsContent{
-         max-width: 100%;
-         word-wrap: break-word; /* 強制換行 */
-
-    width: 100%;
-    max-height: 1em; /* 設定顯示區域的最大高度，根據需要調整 */
-    overflow: hidden; /* 隱藏超出部分 */
-    text-overflow: ellipsis; /* 超出部分顯示省略號 */
+        .newsContent {
+            max-width: 100%;
+            word-wrap: break-word; /* 強制換行 */
+            word-break:break-all;
+            width: 100%;
+            max-height: 1em; /* 設定顯示區域的最大高度，根據需要調整 */
+            overflow: hidden; /* 隱藏超出部分 */
+            text-overflow: ellipsis; /* 超出部分顯示省略號 */
         }
     </style>
     <div class="contain">
@@ -102,16 +102,8 @@
                     <p><span>NEWS</span></p>
                     <ul>
                         <li><a href="#">News & Events</a></li>
-
                     </ul>
-
-
-
                 </div>
-
-
-
-
             </div>
 
 
@@ -133,7 +125,6 @@
                     <div class="box2_list">
                         <ul>
 
-
                             <asp:Repeater ID="Repeater1" runat="server">
                                 <ItemTemplate>
 
@@ -143,26 +134,24 @@
                                                 <li>
                                                     <div>
                                                         <p>
-                                                            <img src='<%# Eval("NewsImg") %>' alt="&quot;&quot;" />
+                                                            <asp:HyperLink ID="btnNewsDetail" 
+                                    runat="server" 
+                                    NavigateUrl='<%# "NewsDetail.aspx?pos=" + Eval("Id") %>'>
+                                    <img src='<%# Eval("NewsImg") %>' alt="&quot;&quot;" />
+                                </asp:HyperLink>
+
                                                         </p>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <span><%# Eval("CreatedAt") %></span>
                                                     <br />
-                                                <li class="newsContent"><%# FilterContent(Eval("NewsContent").ToString()) %></li>
+                                                    <li class="newsContent"><%# FilterContent(Eval("NewsContent").ToString()) %></li>
                                             </ul>
                                         </div>
                                     </li>
                                 </ItemTemplate>
                             </asp:Repeater>
-
-
-
-
-
-
-
                             <li>
                                 <div class="list01">
                                     <ul>

@@ -24,6 +24,7 @@ namespace Yacht.FrontEnd
                 {
                     getNews();
                     getFiles();
+                    getImgs();
                 }
             }
         }
@@ -44,7 +45,20 @@ namespace Yacht.FrontEnd
                 FileRepeater.DataBind();
             }
         }
+        public void getImgs()
+        {
+            string query = @"SELECT ImagePath FROM NewsImgs WHERE NewsId = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"id", Request.QueryString["pos"]);
+                SqlDataReader reader = cmd.ExecuteReader();
+                ImgRepeater.DataSource = reader;
+                ImgRepeater.DataBind();
+            }
 
+        }
         public void getNews()
         {
             string query = @"SELECT Title, NewsContent FROM News WHERE Id = @id";
