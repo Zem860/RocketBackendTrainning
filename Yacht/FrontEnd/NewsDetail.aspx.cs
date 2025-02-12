@@ -23,7 +23,25 @@ namespace Yacht.FrontEnd
                 } else
                 {
                     getNews();
+                    getFiles();
                 }
+            }
+        }
+
+        public void getFiles()
+        {
+            string query = @"SELECT FileName FROM NewsFiles WHERE NewsId = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"id", Request.QueryString["pos"]);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+
+                FileRepeater.DataSource = reader;
+                FileRepeater.DataBind();
             }
         }
 

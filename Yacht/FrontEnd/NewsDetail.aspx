@@ -148,17 +148,27 @@
                             <img src="/Tayanahtml/html/tayana/html/images/downloads.gif" alt="&quot;&quot;" />
                         </p>
                         <ul>
-                            <li><a href="#">Downloads 001</a></li>
-                            <li><a href="#">Downloads 001</a></li>
-                            <li><a href="#">Downloads 001</a></li>
-                            <li><a href="#">Downloads 001</a></li>
-                            <li><a href="#">Downloads 001</a></li>
+
+                            <asp:Repeater ID="FileRepeater" runat="server">
+                                <ItemTemplate>
+
+
+                                    <li>
+                                        <asp:HyperLink ID="lnkDownload"
+                                            runat="server"
+                                            NavigateUrl='<%# ResolveUrl("~/NewsFiles/") + Eval("FileName") %>'
+                                            Text='<%# Eval("FileName") %>'
+                                            Download='<%# Eval("FileName") %>'>
+            </asp:HyperLink>
+                                    </li>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </ul>
                     </div>
                     <!--下載結束-->
 
                     <div class="buttom001">
-                        <a href="#">
+                        <a href="News.aspx">
                             <img src="/Tayanahtml/html/tayana/html/images/back.gif" alt="&quot;&quot;" width="55" height="28" /></a>
                     </div>
 
