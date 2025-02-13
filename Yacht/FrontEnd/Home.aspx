@@ -3,6 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Home" runat="server">
+    <style>
+        p {
+            word-wrap: break-word; /* 確保長單字自動換行 */
+            overflow-wrap: break-word; /* 適用於較新瀏覽器 */
+        }
+    </style>
     <div class="contain">
         <div class="sub">
             <p><a href="#">Home</a></p>
@@ -23,7 +29,8 @@
 
         <!--遮罩-->
         <div class="bannermasks">
-            <img src="/Tayanahtml/html/tayana/html/images/banner00_masks.png" alt="&quot;&quot;" /></div>
+            <img src="/Tayanahtml/html/tayana/html/images/banner00_masks.png" alt="&quot;&quot;" />
+        </div>
         <!--遮罩結束-->
         <!--------------------------------換圖開始---------------------------------------------------->
 
@@ -36,41 +43,48 @@
 
                     <ul>
                         <li class="info on"><a href="#">
-                            <img src="/Tayanahtml/html/tayana/html/images/banner001b.jpg" /></a><!--文字開始--><div class="wordtitle">TAYANA <span>48</span><br />
+                            <img src="/Tayanahtml/html/tayana/html/images/banner001b.jpg" /></a><!--文字開始--><div class="wordtitle">
+                                TAYANA <span>48</span><br />
                                 <p>SPECIFICATION SHEET</p>
                             </div>
                             <!--文字結束-->
                         </li>
                         <li class="info"><a class="slideshow" href="#">
-                            <img src="../Tayanahtml/html/tayana/html/images/banner002b.jpg" /></a><!--文字開始--><div class="wordtitle">TAYANA <span>54</span><br />
+                            <img src="../Tayanahtml/html/tayana/html/images/banner002b.jpg" /></a><!--文字開始--><div class="wordtitle">
+                                TAYANA <span>54</span><br />
                                 <p>SPECIFICATION SHEET</p>
                             </div>
                             <!--文字結束-->
                             <!--新船型開始  54型才出現其於隱藏 -->
                             <div class="new">
-                                <img src="/Tayanahtml/html/tayana/html/images/new01.png" alt="new" /></div>
+                                <img src="/Tayanahtml/html/tayana/html/images/new01.png" alt="new" />
+                            </div>
                             <!--新船型結束-->
                         </li>
                         <li class="info"><a href="#">
-                            <img src="/Tayanahtml/html/tayana/html/images/banner003b.jpg" /></a><!--文字開始--><div class="wordtitle">TAYANA <span>37</span><br />
+                            <img src="/Tayanahtml/html/tayana/html/images/banner003b.jpg" /></a><!--文字開始--><div class="wordtitle">
+                                TAYANA <span>37</span><br />
                                 <p>SPECIFICATION SHEET</p>
                             </div>
                             <!--文字結束-->
                         </li>
                         <li class="info"><a href="#">
-                            <img src="/Tayanahtml/html/tayana/html/images/banner004b.jpg" /></a><!--文字開始--><div class="wordtitle">TAYANA <span>64</span><br />
+                            <img src="/Tayanahtml/html/tayana/html/images/banner004b.jpg" /></a><!--文字開始--><div class="wordtitle">
+                                TAYANA <span>64</span><br />
                                 <p>SPECIFICATION SHEET</p>
                             </div>
                             <!--文字結束-->
                         </li>
                         <li class="info"><a href="#">
-                            <img src="/Tayanahtml/html/tayana/html/images/banner005b.jpg" /></a><!--文字開始--><div class="wordtitle">TAYANA <span>58</span><br />
+                            <img src="/Tayanahtml/html/tayana/html/images/banner005b.jpg" /></a><!--文字開始--><div class="wordtitle">
+                                TAYANA <span>58</span><br />
                                 <p>SPECIFICATION SHEET</p>
                             </div>
                             <!--文字結束-->
                         </li>
                         <li class="info"><a href="#">
-                            <img src="/Tayanahtml/html/tayana/html/images/banner006b.jpg" /></a><!--文字開始--><div class="wordtitle">TAYANA <span>55</span><br />
+                            <img src="/Tayanahtml/html/tayana/html/images/banner006b.jpg" /></a><!--文字開始--><div class="wordtitle">
+                                TAYANA <span>55</span><br />
                                 <p>SPECIFICATION SHEET</p>
                             </div>
                             <!--文字結束-->
@@ -84,37 +98,43 @@
                             <li class="on">
                                 <div>
                                     <p class="bannerimg_p">
-                                        <img src="/Tayanahtml/html/tayana/html/images/i001.jpg" alt="&quot;&quot;" /></p>
+                                        <img src="/Tayanahtml/html/tayana/html/images/i001.jpg" alt="&quot;&quot;" />
+                                    </p>
                                 </div>
                             </li>
                             <li>
                                 <div>
                                     <p class="bannerimg_p">
-                                        <img src="/Tayanahtml/html/tayana/html/images/i002.jpg" alt="&quot;&quot;" /></p>
+                                        <img src="/Tayanahtml/html/tayana/html/images/i002.jpg" alt="&quot;&quot;" />
+                                    </p>
                                 </div>
                             </li>
                             <li>
                                 <div>
                                     <p class="bannerimg_p">
-                                        <img src="/Tayanahtml/html/tayana/html/images/i003.jpg" alt="&quot;&quot;" /></p>
+                                        <img src="/Tayanahtml/html/tayana/html/images/i003.jpg" alt="&quot;&quot;" />
+                                    </p>
                                 </div>
                             </li>
                             <li>
                                 <div>
                                     <p class="bannerimg_p">
-                                        <img src="/Tayanahtml/html/tayana/html/images/i004.jpg" alt="&quot;&quot;" /></p>
+                                        <img src="/Tayanahtml/html/tayana/html/images/i004.jpg" alt="&quot;&quot;" />
+                                    </p>
                                 </div>
                             </li>
                             <li>
                                 <div>
                                     <p class="bannerimg_p">
-                                        <img src="/Tayanahtml/html/tayana/html/images/i005.jpg" alt="&quot;&quot;" /></p>
+                                        <img src="/Tayanahtml/html/tayana/html/images/i005.jpg" alt="&quot;&quot;" />
+                                    </p>
                                 </div>
                             </li>
                             <li>
                                 <div>
                                     <p class="bannerimg_p">
-                                        <img src="/Tayanahtml/html/tayana/html/images/i006.jpg" alt="&quot;&quot;" /></p>
+                                        <img src="/Tayanahtml/html/tayana/html/images/i006.jpg" alt="&quot;&quot;" />
+                                    </p>
                                 </div>
                             </li>
                         </ul>
@@ -132,55 +152,38 @@
         <div class="news">
             <div class="newstitle">
                 <p class="newstitlep1">
-                    <img src="/Tayanahtml/html/tayana/html/images/news.gif" alt="news" /></p>
+                    <img src="/Tayanahtml/html/tayana/html/images/news.gif" alt="news" />
+                </p>
                 <p class="newstitlep2"><a href="#">More>></a></p>
             </div>
 
             <ul>
                 <!--TOP第一則最新消息-->
-                <li>
-                    <div class="newstop">
-                        <img src="/Tayanahtml/html/tayana/html/images/new_top01.png" alt="&quot;&quot;" /></div>
-                    <div class="news01">
-                        <div class="news02p1">
-                            <p class="news02p1img">
-                                <img src="/Tayanahtml/html/tayana/html/images/pit002.jpg" alt="&quot;&quot;" /></p>
-                        </div>
-                        <p class="news02p2">
-                            <span>Tayana 54 CE Certifica..</span>
-                            <a href="#">For Tayana 54 entering the EU, CE Certificates are AVAILABLE to ensure conformity to all applicable European ...</a>
-                        </p>
-                    </div>
-                </li>
-                <!--TOP第一則最新消息結束-->
 
-                <!--第二則-->
-                <li>
-                    <div class="news02">
-                        <div class="news02p1">
-                            <p class="news02p1img">
-                                <img src="/Tayanahtml/html/tayana/html/images/pit001.jpg" alt="&quot;&quot;" width="150" /></p>
-                        </div>
-                        <p class="news02p2">
-                            <span>Tayana 58 CE Certifica..</span>
-                            <a href="#">For Tayana 58 entering the EU, CE Certificates are AVAILABLE to ensure conformity to all applicable European ...</a>
-                        </p>
-                    </div>
-                </li>
-                <!--第二則結束-->
+                <asp:Repeater ID="Repeater1" runat="server">
+                    <ItemTemplate>
+                        <li>
 
-                <li>
-                    <div class="news02">
-                        <div class="news02p1">
-                            <p class="news02p1img">
-                                <img src="/Tayanahtml/html/tayana/html/images/pit001.jpg" alt="&quot;&quot;" /></p>
-                        </div>
-                        <p class="news02p2">
-                            <span>Big Cruiser in a Small ..</span>
-                            <a href="#">Tayana 37 is our classical product and full of skilful craftsmanship. We only plan to build TWO units in a year.</a>
-                        </p>
-                    </div>
-                </li>
+                            <div class="news01">
+                                <div class="newstop" style="display: <%# Convert.ToBoolean(Eval("NewsPinUp")) ? "block" : "none" %>;">
+                                    <img src="/Tayanahtml/html/tayana/html/images/new_top01.png" alt="" />
+                                </div>
+
+
+                                <div class="news02p1">
+                                    <p class="news02p1img">
+                                        <img src='<%# Eval("PinUpImg") %>' alt="&quot;&quot;" />
+                                    </p>
+                                </div>
+                                <p class="news02p2">
+                                    <span><%# Eval("CreatedAt") %></span>
+                                    <a href='<%# "NewsDetail.aspx?pos=" + Eval("Id") %>'><%# FilterContent(Eval("NewsContent")) %></a>
+                                </p>
+                            </div>
+                        </li>
+                    </ItemTemplate>
+                </asp:Repeater>
+
             </ul>
         </div>
         <!--------------------------------最新消息結束---------------------------------------------------->
