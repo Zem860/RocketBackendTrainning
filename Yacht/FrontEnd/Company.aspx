@@ -15,10 +15,10 @@
         <!--------------------------------選單開始---------------------------------------------------->
         <div class="menu">
             <ul>
-                <li class="menuli01"><a href="Yachts">Yachts</a></li>
-                <li class="menuli02"><a href="#">NEWS</a></li>
+                <li class="menuli01"><a href="Yachts.aspx">Yachts</a></li>
+                <li class="menuli02"><a href="News.aspx">NEWS</a></li>
                 <li class="menuli03"><a href="Company.aspx">COMPANY</a></li>
-                <li class="menuli04"><a href="#">DEALERS</a></li>
+                <li class="menuli04"><a href="Dealers.aspx">DEALERS</a></li>
                 <li class="menuli05"><a href="Contact.aspx">CONTACT</a></li>
             </ul>
         </div>
@@ -127,7 +127,7 @@
              <br />
                                         <br />
                                         Tayana Yachts have been considered the leader in building custom interiors for the last two decades, offering it`s clients the luxury of a living arrangement they prefer rather than have to settle for the compromise of a production boat. Using the finest in exotic woods, the best equipment such as Lewmar, Whitlock, Yanmar engines, Selden spars to name a few, Ta yang has achieved the reputation for building one of the finest semi custom blue water cruising yachts in the world, at an affordable price.<br />
-                      <br />
+                                        <br />
                                         <br />
                                         Peter Chen was recently appointed the General Manager of Tayana. Peter has a wide-ranging knowledge of the yacht building industry; as part of the TAYANA team, Peter’s vision is genuinely rooted in honesty and integrity. “Our aim is to create outstanding styling, live aboard comfort, and safety at sea for every proud Tayana owner.”<br />
                                     </div>
@@ -136,7 +136,7 @@
                                 </asp:View>
                                 <asp:View ID="ViewCertificate" runat="server">
                                     <div class="title"><span>Certificate</span></div>
-                                    
+
                                     <div class="box3">
 
                                         <h4>This page contains certification information about Tayana Yachts.</h4>
@@ -154,23 +154,23 @@
                     </asp:UpdatePanel>
                 </div>
             </div>
-            </div>
-
-            <!--------------------------------右邊選單結束---------------------------------------------------->
-
-
-
-            <!--------------------------------落款開始---------------------------------------------------->
-            <div class="footer">
-                <p class="footerp01">© 1973-2011 Tayana Yachts, Inc. All Rights Reserved</p>
-                <div class="footer01">
-                    <span>No. 60, Hai Chien Road, Chung Men Li, Lin Yuan District, Kaohsiung City, Taiwan, R.O.C.</span><br />
-                    <span>TEL：+886(7)641-2721</span> <span>FAX：+886(7)642-3193</span><span><a href="mailto:tayangco@ms15.hinet.net">E-mail：tayangco@ms15.hinet.net</a>.</span>
-                </div>
-            </div>
-            <!--------------------------------落款結束---------------------------------------------------->
-
         </div>
+
+        <!--------------------------------右邊選單結束---------------------------------------------------->
+
+
+
+        <!--------------------------------落款開始---------------------------------------------------->
+        <div class="footer">
+            <p class="footerp01">© 1973-2011 Tayana Yachts, Inc. All Rights Reserved</p>
+            <div class="footer01">
+                <span>No. 60, Hai Chien Road, Chung Men Li, Lin Yuan District, Kaohsiung City, Taiwan, R.O.C.</span><br />
+                <span>TEL：+886(7)641-2721</span> <span>FAX：+886(7)642-3193</span><span><a href="mailto:tayangco@ms15.hinet.net">E-mail：tayangco@ms15.hinet.net</a>.</span>
+            </div>
+        </div>
+        <!--------------------------------落款結束---------------------------------------------------->
+
+    </div>
 
     <script type="text/javascript" src="/Tayanahtml/html/tayana/html/Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="/Tayanahtml/html/tayana/html/Scripts/jquery.cycle.all.2.74.js"></script>

@@ -140,26 +140,39 @@
                         </h4>
 
                         <asp:Literal ID="News" runat="server"></asp:Literal>
+                        <div>
+                            <asp:Repeater ID="ImgRepeater" runat="server">
+                                <ItemTemplate>
+
+                                    <li style="display:inline">
+                                        <asp:HyperLink ID="lnkViewImage"
+                                            runat="server"
+                                            NavigateUrl='<%# Eval("ImagePath") %>'
+                                            Target="_blank">
+                                            <img style="max-width:300px; width:100%; object-fit:cover; height:200px;" src="<%# Eval("ImagePath") %>" alt="Click to View" />
+                                        </asp:HyperLink>
+                                    </li>
+                                </ItemTemplate>
+                            </asp:Repeater>
+
+                        </div>
                     </div>
 
                     <!--下載開始-->
-                    <div class="downloads">
+                    <div class="downloads" id="fileBox" runat="server">
                         <p>
                             <img src="/Tayanahtml/html/tayana/html/images/downloads.gif" alt="&quot;&quot;" />
                         </p>
                         <ul>
-
                             <asp:Repeater ID="FileRepeater" runat="server">
                                 <ItemTemplate>
-
-
                                     <li>
                                         <asp:HyperLink ID="lnkDownload"
                                             runat="server"
                                             NavigateUrl='<%# ResolveUrl("~/NewsFiles/") + Eval("FileName") %>'
                                             Text='<%# Eval("FileName") %>'
                                             Download='<%# Eval("FileName") %>'>
-            </asp:HyperLink>
+                                        </asp:HyperLink>
                                     </li>
                                 </ItemTemplate>
                             </asp:Repeater>

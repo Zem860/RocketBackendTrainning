@@ -36,15 +36,22 @@ namespace Yacht.FrontEnd
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.Parameters.AddWithValue(@"id", Request.QueryString["pos"]);
+                cmd.Parameters.AddWithValue("@id", Request.QueryString["pos"]);
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
-
-                FileRepeater.DataSource = reader;
-                FileRepeater.DataBind();
+                if (!reader.HasRows) // 不消耗 reader，只檢查是否有資料
+                {
+                    fileBox.Visible = false;
+                }
+                else
+                {
+                    FileRepeater.DataSource = reader;
+                    FileRepeater.DataBind();
+                }
             }
         }
+
         public void getImgs()
         {
             string query = @"SELECT ImagePath FROM NewsImgs WHERE NewsId = @id";

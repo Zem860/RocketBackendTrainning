@@ -12,12 +12,19 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-        <asp:ContentPlaceHolder ID="Home" runat="server">
-        </asp:ContentPlaceHolder>
-         <asp:ContentPlaceHolder ID="Company" runat="server">
-        </asp:ContentPlaceHolder>
+    <form id="form1" runat="server">
+        <!-- ScriptManager 應該放在 form 內，但不能包含 ContentPlaceHolder -->
 
-<%--    <form id="form1" runat="server">
-    </form>--%>
+            <asp:ScriptManager ID="ScriptManager1" runat="server" />
+            <asp:ContentPlaceHolder ID="Home" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Company" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="HomeDealers" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="News" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="NewsDetail" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Yacht" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Contact" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Yachts" runat="server"></asp:ContentPlaceHolder>
+
+    </form>
 </body>
 </html>

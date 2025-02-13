@@ -11,14 +11,15 @@
 </head>
 <body>
     <div class="contain"> 
-  <div class="sub"> <p><a href="#">Home</a></p></div>
+  <div class="sub">  <p><a href="Homepage.aspx">Home</a></p>
+</div>
   
 <!--------------------------------選單開始---------------------------------------------------->  
   <div class="menu">
   <ul>
   <li class="menuli01"><a href="Yachts.aspx">Yachts</a></li>
   <li class="menuli02"><a href="#">NEWS</a></li>
-  <li class="menuli03"><a href="#">COMPANY</a></li>
+  <li class="menuli03"><a href="Company.aspx">COMPANY</a></li>
   <li class="menuli04"><a href="#">DEALERS</a></li>
   <li class="menuli05"><a href="Contact.aspx">CONTACT</a></li>
   </ul>  

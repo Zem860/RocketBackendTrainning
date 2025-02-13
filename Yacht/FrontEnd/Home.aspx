@@ -12,9 +12,9 @@
         <div class="menu">
             <ul>
                 <li class="menuli01"><a href="Yachts.aspx">Yachts</a></li>
-                <li class="menuli02"><a href="#">NEWS</a></li>
+                <li class="menuli02"><a href="News.aspx">NEWS</a></li>
                 <li class="menuli03"><a href="Company.aspx">COMPANY</a></li>
-                <li class="menuli04"><a href="#">DEALERS</a></li>
+                <li class="menuli04"><a href="Dealers.aspx">DEALERS</a></li>
                 <li class="menuli05"><a href="Contact.aspx">CONTACT</a></li>
             </ul>
         </div>

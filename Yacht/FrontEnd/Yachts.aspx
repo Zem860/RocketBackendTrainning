@@ -1,18 +1,42 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Yachts.aspx.cs" Inherits="Yacht.Yachts" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="Yachts" runat="server">
-
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FrontEnd/HomeMaster.Master" AutoEventWireup="true" CodeBehind="Yachts.aspx.cs" Inherits="Yacht.FrontEnd.Yachts" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="Home" runat="server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="Company" runat="server">
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="HomeDealers" runat="server">
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="News" runat="server">
+</asp:Content>
+<asp:Content ID="Content6" ContentPlaceHolderID="NewsDetail" runat="server">
+</asp:Content>
+<asp:Content ID="Content7" ContentPlaceHolderID="Yacht" runat="server">
+</asp:Content>
+<asp:Content ID="Content8" ContentPlaceHolderID="Contact" runat="server">
+</asp:Content>
+<asp:Content ID="Content9" ContentPlaceHolderID="Yachts" runat="server">
+        <link href="/Tayanahtml/html/tayana/html/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
+    <%----------------------------------%>
+    <link rel="stylesheet" type="text/css" href="/Tayanahtml/html/tayana/html/css/jquery.ad-gallery.css">
+    <link href="/Tayanahtml/html/tayana/html/css/homestyle.css" rel="stylesheet" type="text/css" />
+    <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/Tayanahtml/html/tayana/html/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/Tayanahtml/html/tayana/html/Scripts/jquery.cycle.all.2.74.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/Tayanahtml/html/tayana/html/Scripts/jquery.ad-gallery.js"></script>
     <div class="contain"> 
   <div class="sub"> <p><a href="Default.aspx">Home</a></p></div>
   
 <!--------------------------------選單開始---------------------------------------------------->  
   <div class="menu">
   <ul>
-  <li class="menuli01"><a href="Yachts.aspx">Yachts</a></li>
-  <li class="menuli02"><a href="#">NEWS</a></li>
-  <li class="menuli03"><a href="#">COMPANY</a></li>
-  <li class="menuli04"><a href="#">DEALERS</a></li>
-  <li class="menuli05"><a href="Contact.aspx">CONTACT</a></li>
+ <li class="menuli01"><a href="Yachts.aspx">Yachts</a></li>
+ <li class="menuli02"><a href="News.aspx">NEWS</a></li>
+ <li class="menuli03"><a href="Company.aspx">COMPANY</a></li>
+ <li class="menuli04"><a href="Dealers.aspx">DEALERS</a></li>
+ <li class="menuli05"><a href="Contact.aspx">CONTACT</a></li>
   </ul>  
   </div>
 <!--------------------------------選單開始結束---------------------------------------------------->  
@@ -205,8 +229,6 @@
               var galleries = $('.ad-gallery').adGallery();
               galleries[0].settings.effect = 'slide-hori';
 
-
           });
       </script>
-
 </asp:Content>

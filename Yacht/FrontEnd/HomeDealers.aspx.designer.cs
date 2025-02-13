@@ -11,7 +11,7 @@ namespace Yacht.FrontEnd
 {
 
 
-    public partial class Yachts
+    public partial class HomeDealers
     {
     }
 }

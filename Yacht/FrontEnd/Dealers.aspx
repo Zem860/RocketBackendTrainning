@@ -28,6 +28,12 @@
             max-width: 326px;
             overflow-wrap: break-word; /* 同樣處理超長文字 */
         }
+
+        .menu li a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
@@ -41,7 +47,7 @@
             <div class="menu">
                 <ul>
                     <li class="menuli01"><a href="Yachts.aspx">Yachts</a></li>
-                    <li class="menuli02"><a href="#">NEWS</a></li>
+                    <li class="menuli02"><a href="News.aspx">NEWS</a></li>
                     <li class="menuli03"><a href="Company.aspx">COMPANY</a></li>
                     <li class="menuli04"><a href="Dealers.aspx">DEALERS</a></li>
                     <li class="menuli05"><a href="Contact.aspx">CONTACT</a></li>
@@ -174,13 +180,13 @@
                                 <asp:Repeater ID="PageRepeater" runat="server">
                                     <ItemTemplate>
                                         <span>
-                                        <asp:HyperLink
-                                            ID="PageLink"
-                                            runat="server"
-                                            NavigateUrl='<%# "Dealers.aspx?page=" + Container.DataItem + "&country=" + Request.QueryString["country"] %>'>
+                                            <asp:HyperLink
+                                                ID="PageLink"
+                                                runat="server"
+                                                NavigateUrl='<%# "Dealers.aspx?page=" + Container.DataItem + "&country=" + Request.QueryString["country"] %>'>
                                             <%# Container.DataItem %>
-                                        </asp:HyperLink>
-                                            </span> 
+                                            </asp:HyperLink>
+                                        </span>
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </div>
@@ -210,15 +216,6 @@
 
         </div>
 
-        <script type="text/javascript" src="Scripts/jquery.min.js"></script>
-        <script type="text/javascript" src="Scripts/jquery.cycle.all.2.74.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('.slideshow').cycle({
-                    fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
-                });
-            });
-        </script>
     </form>
 </body>
 </html>
