@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -23,9 +24,37 @@ namespace Yacht.BackEnd
             }
         }
 
+        protected void chkPinUp_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chk = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chk.NamingContainer;
+            int newsId = Convert.ToInt32(NewsGridView.DataKeys[row.RowIndex].Value);
+
+            // 更新資料庫 NewsPinUp 狀態
+            string query = "UPDATE News SET PinUp = @NewsPinUp WHERE Id = @Id";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@NewsPinUp", chk.Checked);
+                    cmd.Parameters.AddWithValue("@Id", newsId);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            showNews();
+        }
+
+        // 綁定 GridView (在 Page_Load 內部或其他地方調用)
+
+
+
         public void showNews()
         {
-            string query = "SELECT News.Id AS Id, News.Title AS NewsTitle, NewsImgs.imagePath AS PinUpImg, News.NewsContent, News.NewsContent AS NewsContent, CONVERT(NVARCHAR,News.CreatedAt, 111) AS CreatedAt FROM News INNER JOIN NewsImgs ON NewsImgs.newsId = News.Id WHERE NewsImgs.Cover = 1";
+            string query = "SELECT News.Id AS Id, News.Title AS NewsTitle, News.PinUp AS NewsPinUp, NewsImgs.imagePath AS PinUpImg, News.NewsContent, News.NewsContent AS NewsContent, CONVERT(NVARCHAR,News.CreatedAt, 111) AS CreatedAt FROM News INNER JOIN NewsImgs ON NewsImgs.newsId = News.Id WHERE NewsImgs.Cover = 1 Order By PinUp DESC";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -73,11 +102,11 @@ namespace Yacht.BackEnd
             content = Regex.Replace(content, @"\s+", " ").Trim();
 
             // 6. 截取 25 個字，確保長度受限
-            var words = content.Take(100);
+            var words = content.Take(25);
             string limitedText = string.Join("", words);
 
             // 7. 如果超過 25 字，加上 "..."
-            if (content.Length > 100)
+            if (content.Length > 25)
             {
                 limitedText += "...";
             }

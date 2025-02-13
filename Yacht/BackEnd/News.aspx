@@ -40,6 +40,11 @@
     <div class="container-fluid d-flex justify-content-center">
         <asp:GridView ID="NewsGridView" DataKeyNames="Id" AutoGenerateColumns="false" runat="server" OnRowDeleting="Delete">
             <Columns>
+                <asp:TemplateField HeaderText="PinUp">
+                    <ItemTemplate>
+                        <asp:CheckBox ID="chkPinUp" runat="server" Checked='<%# Convert.ToBoolean(Eval("NewsPinUp")) %>' AutoPostBack="true" OnCheckedChanged="chkPinUp_CheckedChanged" CommandArgument='<%# Eval("Id") %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Company">
                     <ItemTemplate>
                         <p class=" text-info"><%# Eval("NewsTitle") %></a></p>
