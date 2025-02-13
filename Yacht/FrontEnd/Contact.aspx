@@ -116,7 +116,7 @@
 <!--------------------------------左邊選單結束----------------------------------------------------> 
 
 <!--------------------------------右邊選單開始----------------------------------------------------> 
-<div id="crumb"><a href="#">Home</a> >> <a href="#"><span class="on1">Contact</span></a></div>
+<div id="crumb"><a href="Home.aspx">Home</a> >> <a href="#"><span class="on1">Contact</span></a></div>
 <div class="right"> 
 <div class="right1">
   <div class="title"> <span>Contact</span></div>
