@@ -6,7 +6,8 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Company" runat="server">
-    <link href="/Tayanahtml/html/tayana/html/css/homestyle.css" rel="stylesheet" type="text/css" />
+        <link href="/Tayanahtml/html/tayana/html/css/homestyle.css" rel="stylesheet" type="text/css" />
+    <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
     <div class="contain">
         <div class="sub">
             <p><a href="Homepage.aspx">Home</a></p>
@@ -132,7 +133,6 @@
                                         Peter Chen was recently appointed the General Manager of Tayana. Peter has a wide-ranging knowledge of the yacht building industry; as part of the TAYANA team, Peter’s vision is genuinely rooted in honesty and integrity. “Our aim is to create outstanding styling, live aboard comfort, and safety at sea for every proud Tayana owner.”<br />
                                     </div>
                                     <!--------------------------------內容結束------------------------------------------------------>
-                                    </div>
                                 </asp:View>
                                 <asp:View ID="ViewCertificate" runat="server">
                                     <div class="title"><span>Certificate</span></div>
