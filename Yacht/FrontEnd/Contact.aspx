@@ -151,11 +151,13 @@
       <td class="from01td01">Country :</td>
       <td><span>*</span>
 
-<asp:DropDownList ID="Country" runat="server">
-    <asp:ListItem Text="Annapolis" Value="Annapolis"></asp:ListItem>
-    <asp:ListItem Text="Baltimore" Value="Baltimore"></asp:ListItem>
-    <asp:ListItem Text="Chicago" Value="Chicago"></asp:ListItem>
+<asp:DropDownList ID="Country" runat="server" DataSourceID="SqlDataSource1" DataTextField="CountryName" DataValueField="CountryName">
 </asp:DropDownList>
+
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+    ConnectionString="<%$ ConnectionStrings:TestConnectionString %>"
+    SelectCommand="SELECT CountryName FROM Countries ORDER BY CountryName">
+</asp:SqlDataSource>
 
     </tr>
     <tr>
