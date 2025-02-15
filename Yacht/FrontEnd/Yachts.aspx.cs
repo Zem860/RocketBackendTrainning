@@ -32,23 +32,74 @@ namespace Yacht.FrontEnd
                 btnLayout.NavigateUrl = $"~/FrontEnd/Yachts.aspx?model={model}&pos=layout";
                 btnSpec.NavigateUrl = $"~/FrontEnd/Yachts.aspx?model={model}&pos=spec";
                 SetActiveView(pos);
+                getReaptPhotos();
+            }
+        }
+
+        public string getId()
+        {
+            string query = @"SELECT Id FROM YachtsModel WHERE Model = @model";
+            string curId;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"model", Request.QueryString["model"]);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read()) {
+
+                    curId = reader["Id"].ToString();
                 
+                } else
+                {
+                    curId = "0";
+                }
+
+            }
+            return curId;
+        }
+
+        public void getReaptPhotos()
+        {
+            string query = @"SELECT ImgPath As Imgs FROM YachtImgs WHERE YachtId = @id";
+            string curId = getId();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"id", curId);
+                SqlDataReader reader = cmd.ExecuteReader();
+                ShipImagesRepeater.DataSource = reader;
+                ShipImagesRepeater.DataBind();
             }
         }
 
         public void getModels()
         {
-            string query = @"SELECT Model FROM YachtsModel";
+            string query = @"
+        SELECT YachtsModel.Model AS Model, 
+               YachtsModel.isNew AS DesignTag           
+        FROM YachtsModel";
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand(query, connection);
-                SqlDataReader reader = cmd.ExecuteReader();
-                ModelRepeater.DataSource = reader;
-                ModelRepeater.DataBind();
-
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    ModelRepeater.DataSource = reader;
+                    ModelRepeater.DataBind();
+                }
             }
         }
+
+        protected string filterType(object isNew)
+        {
+            string newTag = Convert.ToInt32(isNew) == 1 ? " (New Building)" : "";
+
+            return newTag; // 如果 `isNew = 1`，則顯示 `(New)`
+        }
+
 
         public void getDefaultList()
         {

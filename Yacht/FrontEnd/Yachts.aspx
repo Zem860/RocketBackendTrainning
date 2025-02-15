@@ -17,6 +17,56 @@
 <asp:Content ID="Content8" ContentPlaceHolderID="Contact" runat="server">
 </asp:Content>
 <asp:Content ID="Content9" ContentPlaceHolderID="Yachts" runat="server">
+    <style>
+        .left li {
+            position: relative;
+        }
+
+            .left li a {
+                display: block;
+                width: 100%;
+                height: 100%;
+                z-index: 1000;
+            }
+
+        /* ✅ 統一大圖區域 (確保 1001x406px) */
+        .aspect-ratio-large {
+            width: 100%;
+            max-width: 1001px;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* 防止圖片溢出 */
+        }
+
+        /* ✅ 統一縮略圖區域 */
+        .ad-thumb-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px; /* ✅ 設定縮略圖之間的間距 */
+            flex-wrap: nowrap; /* ✅ 防止縮略圖換行 */
+            overflow-x: auto; /* ✅ 允許橫向滾動 */
+            padding: 10px 0;
+        }
+
+        /* ✅ 確保縮略圖大小一致 */
+        .aspect-ratio-thumb {
+            width: 100px;
+            height: 60px;
+            object-fit: cover;
+            display: block;
+            flex-shrink: 0; /* ✅ 防止 flexbox 壓縮圖片 */
+            border: 2px solid transparent; /* ✅ 預設邊框 */
+            transition: border-color 0.3s ease-in-out;
+        }
+
+            /* ✅ 滑鼠懸停時加上邊框效果 */
+            .aspect-ratio-thumb:hover {
+                border-color: #007bff;
+            }
+    </style>
     <link href="/Tayanahtml/html/tayana/html/css/style.css" rel="stylesheet" type="text/css" />
     <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
     <%----------------------------------%>
@@ -29,7 +79,7 @@
     <script type="text/javascript" src="/Tayanahtml/html/tayana/html/Scripts/jquery.ad-gallery.js"></script>
     <div class="contain">
         <div class="sub">
-            <p><a href="Default.aspx">Home</a></p>
+            <p><a href="Home.aspx">Home</a></p>
         </div>
 
         <!--------------------------------選單開始---------------------------------------------------->
@@ -60,82 +110,37 @@
                 <div class="ad-nav">
                     <div class="ad-thumbs">
                         <ul class="ad-thumb-list">
-                            <li>
-                                <a href="/Tayanahtml/html/tayana/html/images/test1.jpg">
-                                    <img src="/Tayanahtml/html/tayana/html/images/pit003.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/Tayanahtml/html/tayana/html/images/test002.jpg">
-                                    <img src="/Tayanahtml/html/tayana/html/images/pit003.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/Tayanahtml/html/tayana/html/images/test002.jpg">
-                                    <img src="/Tayanahtml/html/tayana/html/images/pit003.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/Tayanahtml/html/tayana/html/images/test002.jpg">
-                                    <img src="/Tayanahtml/html/tayana/html/images/pit003.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/Tayanahtml/html/tayana/html/images/test002.jpg">
-                                    <img src="/Tayanahtml/html/tayana/html/images/pit003.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/Tayanahtml/html/tayana/html/images/test002.jpg">
-                                    <img src="/Tayanahtml/html/tayana/html/images/pit003.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/Tayanahtml/html/tayana/html/images/test002.jpg">
-                                    <img src="/Tayanahtml/html/tayana/html/images/pit003.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/Tayanahtml/html/tayana/html/images/test002.jpg">
-                                    <img src="/Tayanahtml/html/tayana/html/images/pit003.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/Tayanahtml/html/tayana/html/images/test002.jpg">
-                                    <img src="/Tayanahtml/html/tayana/html/images/pit003.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/Tayanahtml/html/tayana/html/images/test002.jpg">
-                                    <img src="/Tayanahtml/html/tayana/html/images/pit003.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/Tayanahtml/html/tayana/html/images/test002.jpg">
-                                    <img src="/Tayanahtml/html/tayana/html/images/pit003.jpg">
-                                </a>
-                            </li>
+                            <asp:Repeater ID="ShipImagesRepeater" runat="server">
+                                <ItemTemplate>
+                                    <li>
+                                        <a href='<%# Eval("Imgs") %>' class="aspect-ratio-large">
+                                            <img src='<%# Eval("Imgs") %>' class="aspect-ratio-thumb" />
+                                        </a>
+                                    </li>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
         <div class="conbg">
             <!--------------------------------左邊選單開始---------------------------------------------------->
             <div class="left">
-
                 <div class="left1">
                     <p><span>YACHTS</span></p>
                     <ul>
                         <asp:Repeater ID="ModelRepeater" runat="server">
                             <ItemTemplate>
                                 <li>
-                                    <a href='<%# "Yachts.aspx?model=" + Eval("Model") + "&pos=overview" %>'> <%#Eval("Model")%></a></li>
+                                    <a href='<%# "Yachts.aspx?model=" + Eval("Model") + "&pos=overview" %>'>
+                                        <%# Eval("Model") %> <%# filterType( Eval("DesignTag")) %>
+                                    </a>
+                                </li>
                             </ItemTemplate>
                         </asp:Repeater>
+
                     </ul>
                 </div>
             </div>
@@ -156,7 +161,7 @@
                             <li>
                                 <asp:HyperLink ID="btnOverview" runat="server" CssClass="menu_yli01">Overview</asp:HyperLink></li>
                             <li>
-                                <asp:HyperLink ID="btnLayout" runat="server" CssClass="menu_yli02" >Layout & deck plan</asp:HyperLink></li>
+                                <asp:HyperLink ID="btnLayout" runat="server" CssClass="menu_yli02">Layout & deck plan</asp:HyperLink></li>
                             <li>
                                 <asp:HyperLink ID="btnSpec" runat="server" CssClass="menu_yli03">Specification</asp:HyperLink>
                             </li>
