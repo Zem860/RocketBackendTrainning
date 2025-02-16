@@ -147,7 +147,14 @@
             <!--------------------------------左邊選單結束---------------------------------------------------->
 
             <!--------------------------------右邊選單開始---------------------------------------------------->
-            <div id="crumb"><a href="#">Home</a> >> <a href="#">Yachts</a> >> <a href="#"><span class="on1">Dynasty 72</span></a></div>
+            <div id="crumb">
+                <a href="Home.aspx">Home</a> >> <a href="Yachts.aspx">Yachts</a> >><asp:HyperLink ID="breadCrumb" runat="server">
+                    <span class="on1">
+                        <asp:Label ID="breadCrumbText" runat="server" Text="Label"></asp:Label>
+                    </span>
+                </asp:HyperLink>
+            </div>
+
             <div class="right">
                 <div class="right1">
                     <div class="title"><span>Dynasty 72</span></div>
@@ -311,15 +318,15 @@
         </div>
 
 
-        <!--------------------------------落款開始---------------------------------------------------->
-        <div class="footer">
-            <p class="footerp01">© 1973-2011 Tayana Yachts, Inc. All Rights Reserved</p>
-            <div class="footer01">
-                <span>No. 60, Hai Chien Road, Chung Men Li, Lin Yuan District, Kaohsiung City, Taiwan, R.O.C.</span><br />
-                <span>TEL：+886(7)641-2721</span> <span>FAX：+886(7)642-3193</span><span><a href="mailto:tayangco@ms15.hinet.net">E-mail：tayangco@ms15.hinet.net</a>.</span>
-            </div>
+    <!--------------------------------落款開始---------------------------------------------------->
+    <div class="footer">
+        <p class="footerp01">© 1973-2011 Tayana Yachts, Inc. All Rights Reserved</p>
+        <div class="footer01">
+            <span>No. 60, Hai Chien Road, Chung Men Li, Lin Yuan District, Kaohsiung City, Taiwan, R.O.C.</span><br />
+            <span>TEL：+886(7)641-2721</span> <span>FAX：+886(7)642-3193</span><span><a href="mailto:tayangco@ms15.hinet.net">E-mail：tayangco@ms15.hinet.net</a>.</span>
         </div>
-        <!--------------------------------落款結束---------------------------------------------------->
+    </div>
+    <!--------------------------------落款結束---------------------------------------------------->
 
     </div>
 

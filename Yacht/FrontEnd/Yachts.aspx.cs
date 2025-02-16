@@ -32,8 +32,15 @@ namespace Yacht.FrontEnd
                 btnLayout.NavigateUrl = $"~/FrontEnd/Yachts.aspx?model={model}&pos=layout";
                 btnSpec.NavigateUrl = $"~/FrontEnd/Yachts.aspx?model={model}&pos=spec";
                 SetActiveView(pos);
+                getBreadCrumb(model, pos);
                 getReaptPhotos();
             }
+        }
+
+        public void getBreadCrumb(string model, string pos)
+        {
+            breadCrumbText.Text = model;
+            breadCrumb.NavigateUrl = $"~/FrontEnd/Yachts.aspx?model={model}&pos={pos}";
         }
 
         public string getId()
