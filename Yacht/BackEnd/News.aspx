@@ -36,16 +36,17 @@
             text-overflow: ellipsis; /* 超出部分顯示省略號 */
         }
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
     <div class="container-fluid d-flex justify-content-center">
-        <asp:GridView ID="NewsGridView" DataKeyNames="Id" AutoGenerateColumns="false" runat="server" OnRowDeleting="Delete">
+        <asp:GridView ID="NewsGridView" CssClass="table table-bordered" DataKeyNames="Id" AutoGenerateColumns="false" runat="server" OnRowDeleting="Delete">
             <Columns>
-                <asp:TemplateField HeaderText="PinUp">
+                <asp:TemplateField HeaderText="TopNews">
                     <ItemTemplate>
                         <asp:CheckBox ID="chkPinUp" runat="server" Checked='<%# Convert.ToBoolean(Eval("NewsPinUp")) %>' AutoPostBack="true" OnCheckedChanged="chkPinUp_CheckedChanged" CommandArgument='<%# Eval("Id") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Company">
+                <asp:TemplateField HeaderText="Title">
                     <ItemTemplate>
                         <p class=" text-info"><%# Eval("NewsTitle") %></a></p>
                     </ItemTemplate>
@@ -55,12 +56,12 @@
                         <img src="<%# Eval("PinUpImg") %>">
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Dealer">
+                <asp:TemplateField HeaderText="Content">
                     <ItemTemplate>
                         <%# FilterContent(Eval("NewsContent").ToString()) %>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Dealer">
+                <asp:TemplateField HeaderText="Created At">
                     <ItemTemplate>
                         <%# Eval("CreatedAt") %></a>
                     </ItemTemplate>
@@ -88,5 +89,21 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
+
+
+
+    </div>
+
+    <div class="container-fluid d-flex justify-content-center">
+
+        <asp:Repeater ID="PageRepeater" runat="server">
+            <ItemTemplate>
+                <asp:HyperLink ID="PageLink" runat="server"
+                    NavigateUrl='<%# "News.aspx?page=" + Eval("PageNumber") %>'
+                    Text='<%# Eval("PageNumber") %>'
+                    CssClass="btn btn-outline-primary">
+                </asp:HyperLink>
+            </ItemTemplate>
+        </asp:Repeater>
     </div>
 </asp:Content>

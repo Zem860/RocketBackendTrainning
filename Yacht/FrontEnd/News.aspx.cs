@@ -13,9 +13,23 @@ namespace Yacht.FrontEnd
     public partial class News : System.Web.UI.Page
     {
         protected string connectionString = WebConfigurationManager.ConnectionStrings["TestConnectionString"].ConnectionString;
+        protected int TotalNewsCount = 0;
+        protected int pageSize = 5;
         protected void Page_Load(object sender, EventArgs e)
         {
+            TotalNewsCount = getTotalNewsCount();
             getNews();
+        }
+
+        public int getTotalNewsCount()
+        {
+            string query = "SELECT COUNT(*) FROM News";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                return (int)cmd.ExecuteScalar();
+            }
         }
 
         protected string FilterContent(object htmlContent)
@@ -52,16 +66,32 @@ namespace Yacht.FrontEnd
 
             return limitedText;
         }
+        public void BindPagination(int currentPage = 1)
+        {
+            int totalPages = (int)Math.Ceiling((double)TotalNewsCount / pageSize);
 
+            var pages = Enumerable.Range(1, totalPages)
+                .Select(p => new { PageNumber = p, IsActive = (p == currentPage) });
+
+            PageRepeater.DataSource = pages;
+            PageRepeater.DataBind();
+        }
 
 
         public void getNews()
         {
-            string query = @"SELECT News.Id AS Id, News.Title AS Title, NewsImgs.imagePath AS NewsImg, News.NewsContent, CONVERT(NVARCHAR,News.CreatedAt, 111) AS CreatedAt FROM News INNER JOIN NewsImgs ON NewsImgs.newsId = News.Id WHERE NewsImgs.Cover = 1";
+            int currentPage = Convert.ToInt32(Request.QueryString["page"]);
+            BindPagination(currentPage);
+            string query = @"SELECT News.Id AS Id, News.Title AS Title, NewsImgs.imagePath AS NewsImg, News.NewsContent, CONVERT(NVARCHAR,News.CreatedAt, 111) AS CreatedAt FROM News INNER JOIN NewsImgs ON NewsImgs.newsId = News.Id WHERE NewsImgs.Cover = 1 ORDER BY CreatedAt DESC 
+                OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
+            int offset = (currentPage - 1) * pageSize > 0 ? (currentPage - 1) * pageSize : 0;
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"Offset", offset);
+                cmd.Parameters.AddWithValue(@"PageSize", pageSize);
                 SqlDataReader reader = cmd.ExecuteReader();
                 Repeater1.DataSource = reader;
                 Repeater1.DataBind();
