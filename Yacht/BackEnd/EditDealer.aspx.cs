@@ -23,7 +23,7 @@ namespace Yacht.BackEnd
                 {
                     Response.Redirect("Dealers.aspx");
                 }
-
+                getDropDown();
                 getData();
             }
         }
@@ -47,6 +47,7 @@ namespace Yacht.BackEnd
                 Dealers.DealerName AS DealerName, 
                 Dealers.DealerPhoto AS DealerPhoto,
                 Dealers.Phone AS DealerPhone,
+                Dealers.DealerGender As DealerGender,
                 Dealers.Fax AS DealerFax,
                 Dealers.Cell AS DealerCell,
                 Companies.Address AS CompanyAddress, 
@@ -72,7 +73,7 @@ namespace Yacht.BackEnd
                     string dealerCell = Convert.ToString(reader["DealerCell"]);
                     string companyAddress = Convert.ToString(reader["CompanyAddress"]);
                     string companyLink = Convert.ToString(reader["CompanyLink"]);
-                    getDropDown(countryId);
+                    string dealerGender = reader["DealerGender"].ToString().ToLower(); // 轉小寫以確保一致性                    getDropDown(countryId);
                     DealerName.Text = dealerName;
                     Image1.ImageUrl = dealerPhoto;
                     CompanyName.Text = companyName;
@@ -82,6 +83,7 @@ namespace Yacht.BackEnd
                     DealerCell.Text = dealerCell;
                     DealerEmail.Text = dealerEmail;
                     CompanyLink.Text = companyLink;
+                    Gender.SelectedValue = (dealerGender == "true") ? "1" : "0";
                     if (CountrySwitch.Items.FindByValue(countryId) != null)
                     {
                         CountrySwitch.SelectedValue = countryId;
@@ -202,7 +204,7 @@ namespace Yacht.BackEnd
             }
             //Dealer
             string dealerId = getDealerId();
-            string query = @"UPDATE Dealers SET DealerName = @dealerName, DealerPhoto =@dealerPhoto, DealerEmail =@dealerEmail,
+            string query = @"UPDATE Dealers SET DealerName = @dealerName, DealerGender = @dealerGender, DealerPhoto =@dealerPhoto, DealerEmail =@dealerEmail,
                             Phone = @dealerPhone, Fax = @dealerFax, Cell=@dealerCell
 
                             WHERE Id = @dealerId";
@@ -217,6 +219,7 @@ namespace Yacht.BackEnd
                 cmd.Parameters.AddWithValue(@"dealerPhone", DealerPhone.Text);
                 cmd.Parameters.AddWithValue(@"dealerFax", DealerFax.Text);
                 cmd.Parameters.AddWithValue(@"dealerCell", DealerCell.Text);
+                cmd.Parameters.AddWithValue(@"dealerGender", Gender.SelectedValue);
 
                 cmd.ExecuteNonQuery();
             }
