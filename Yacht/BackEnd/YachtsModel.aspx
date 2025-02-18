@@ -35,7 +35,15 @@
 
     CssClass="table table-striped table-bordered text-center" OnRowEditing="YachtsGridView_RowEditing" OnRowCancelingEdit="YachtsGridView_RowCancelingEdit" OnRowUpdating="YachtsGridView_RowUpdating" OnRowDeleting="YachtsGridView_RowDeleting">
     <Columns>
-<asp:TemplateField HeaderText="SpecDetail">
+<asp:TemplateField HeaderText="YachtsName">
+    <ItemTemplate>
+        <asp:Label ID="NameLabel" runat="server" Text='<%# Eval("YachtName") %>' CssClass="fw-bold text-info"></asp:Label>
+    </ItemTemplate>
+    <EditItemTemplate>
+        <asp:TextBox ID="NameText" runat="server" Text='<%# Bind("YachtName") %>' CssClass="form-control"></asp:TextBox>
+    </EditItemTemplate>
+</asp:TemplateField>
+        <asp:TemplateField HeaderText="Yachts">
     <ItemTemplate>
         <asp:Label ID="ModelLabel" runat="server" Text='<%# Eval("Model") %>' CssClass="fw-bold text-info"></asp:Label>
     </ItemTemplate>
@@ -58,7 +66,7 @@
                     <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-primary btn-sm"
                         CommandName="Edit" CommandArgument='<%# Eval("Id") %>' />
                     
-                            <asp:HyperLink ID="HyperLink1" CssClass="btn btn-secondary" runat="server" NavigateUrl='<%# "EditShipPhoto.aspx?Id=" + Eval("Id") %>'>
+                            <asp:HyperLink ID="HyperLink1" CssClass="btn btn-secondary" runat="server" NavigateUrl='<%# "EditShipPhotos.aspx?Id=" + Eval("Id") %>'>
                                     Edit(Imgs)
                             </asp:HyperLink>
                 </ItemTemplate>
