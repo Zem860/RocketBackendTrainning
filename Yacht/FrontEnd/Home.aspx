@@ -8,6 +8,17 @@
             word-wrap: break-word; /* 確保長單字自動換行 */
             overflow-wrap: break-word; /* 適用於較新瀏覽器 */
         }
+/* 確保 .bannerimg img 小圖顯示完整 */
+        .bannerimg img {
+            object-fit: contain; /* 避免裁切 */
+            width: 100px;
+        }/*
+
+        .banner img {
+            object-fit:cover;
+            width:100%;
+            height:100%;
+        }
     </style>
     <div class="contain">
         <div class="sub">
@@ -38,108 +49,44 @@
 
             <div class="bd">
 
-
                 <div class="banner">
 
                     <ul>
-                        <li class="info on"><a href="#">
-                            <img src="/Tayanahtml/html/tayana/html/images/banner001b.jpg" /></a><!--文字開始--><div class="wordtitle">
-                                TAYANA <span>48</span><br />
-                                <p>SPECIFICATION SHEET</p>
-                            </div>
-                            <!--文字結束-->
-                        </li>
-                        <li class="info"><a class="slideshow" href="#">
-                            <img src="../Tayanahtml/html/tayana/html/images/banner002b.jpg" /></a><!--文字開始--><div class="wordtitle">
-                                TAYANA <span>54</span><br />
-                                <p>SPECIFICATION SHEET</p>
-                            </div>
-                            <!--文字結束-->
-                            <!--新船型開始  54型才出現其於隱藏 -->
-                            <div class="new">
-                                <img src="/Tayanahtml/html/tayana/html/images/new01.png" alt="new" />
-                            </div>
-                            <!--新船型結束-->
-                        </li>
-                        <li class="info"><a href="#">
-                            <img src="/Tayanahtml/html/tayana/html/images/banner003b.jpg" /></a><!--文字開始--><div class="wordtitle">
-                                TAYANA <span>37</span><br />
-                                <p>SPECIFICATION SHEET</p>
-                            </div>
-                            <!--文字結束-->
-                        </li>
-                        <li class="info"><a href="#">
-                            <img src="/Tayanahtml/html/tayana/html/images/banner004b.jpg" /></a><!--文字開始--><div class="wordtitle">
-                                TAYANA <span>64</span><br />
-                                <p>SPECIFICATION SHEET</p>
-                            </div>
-                            <!--文字結束-->
-                        </li>
-                        <li class="info"><a href="#">
-                            <img src="/Tayanahtml/html/tayana/html/images/banner005b.jpg" /></a><!--文字開始--><div class="wordtitle">
-                                TAYANA <span>58</span><br />
-                                <p>SPECIFICATION SHEET</p>
-                            </div>
-                            <!--文字結束-->
-                        </li>
-                        <li class="info"><a href="#">
-                            <img src="/Tayanahtml/html/tayana/html/images/banner006b.jpg" /></a><!--文字開始--><div class="wordtitle">
-                                TAYANA <span>55</span><br />
-                                <p>SPECIFICATION SHEET</p>
-                            </div>
-                            <!--文字結束-->
-                        </li>
+                        <asp:Repeater ID="rptBoats" runat="server">
+                            <ItemTemplate>
+                                <li class="info <%# Container.ItemIndex == 0 ? "on" : "" %>">
+                                    <a href="#">
+                                        <img src='<%# Eval("ImageUrl") %>' />
+                                    </a>
+                                    <div class="wordtitle">
+                                        <%# Eval("YachtName") %> <span><%# Eval("Model") %></span><br />
+                                        <p>SPECIFICATION SHEET</p>
+                                    </div>
+                                    <%# Convert.ToBoolean(Eval("IsNew")) ? "<div class='new'><img src='/Tayanahtml/html/tayana/html/images/new01.png' alt='new' /></div>" : "" %>
+                                </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+
                     </ul>
 
 
-                    <!--小圖開始-->
-                    <div class="bannerimg title">
-                        <ul>
-                            <li class="on">
+                  <!--小圖開始-->
+            <div class="bannerimg title">
+                <ul>
+                    <asp:Repeater ID="rptThumbnails" runat="server">
+                        <ItemTemplate>
+                            <li class='<%# Container.ItemIndex == 0 ? "on" : "" %>'>
                                 <div>
                                     <p class="bannerimg_p">
-                                        <img src="/Tayanahtml/html/tayana/html/images/i001.jpg" alt="&quot;&quot;" />
+                                        <img src='<%# Eval("ImageUrl") %>' alt="&quot;&quot;" />
                                     </p>
                                 </div>
                             </li>
-                            <li>
-                                <div>
-                                    <p class="bannerimg_p">
-                                        <img src="/Tayanahtml/html/tayana/html/images/i002.jpg" alt="&quot;&quot;" />
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <p class="bannerimg_p">
-                                        <img src="/Tayanahtml/html/tayana/html/images/i003.jpg" alt="&quot;&quot;" />
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <p class="bannerimg_p">
-                                        <img src="/Tayanahtml/html/tayana/html/images/i004.jpg" alt="&quot;&quot;" />
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <p class="bannerimg_p">
-                                        <img src="/Tayanahtml/html/tayana/html/images/i005.jpg" alt="&quot;&quot;" />
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <p class="bannerimg_p">
-                                        <img src="/Tayanahtml/html/tayana/html/images/i006.jpg" alt="&quot;&quot;" />
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--小圖結束-->
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ul>
+            </div>
+            <!--小圖結束-->
 
                 </div>
             </div>
@@ -154,7 +101,7 @@
                 <p class="newstitlep1">
                     <img src="/Tayanahtml/html/tayana/html/images/news.gif" alt="news" />
                 </p>
-                <p class="newstitlep2"><a href="#">More>></a></p>
+                <p class="newstitlep2"><a href="News.aspx">More>></a></p>
             </div>
 
             <ul>
