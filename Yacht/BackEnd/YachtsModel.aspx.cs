@@ -62,5 +62,19 @@ namespace Yacht.BackEnd
                 getModel();
             }
         }
+
+        protected void YachtsGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int id = Convert.ToInt32(YachtsGridView.DataKeys[e.RowIndex].Value);
+            string query = @"DELETE FROM YachtsModel WHERE Id = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"id", id);
+                cmd.ExecuteNonQuery();
+            }
+            getModel();
+        }
     }
 }

@@ -33,7 +33,7 @@
     <p>Yachts Model</p>
     <asp:GridView ID="YachtsGridView" runat="server" AutoGenerateColumns="false" DataKeyNames="Id"
 
-    CssClass="table table-striped table-bordered text-center" OnRowEditing="YachtsGridView_RowEditing" OnRowCancelingEdit="YachtsGridView_RowCancelingEdit" OnRowUpdating="YachtsGridView_RowUpdating">
+    CssClass="table table-striped table-bordered text-center" OnRowEditing="YachtsGridView_RowEditing" OnRowCancelingEdit="YachtsGridView_RowCancelingEdit" OnRowUpdating="YachtsGridView_RowUpdating" OnRowDeleting="YachtsGridView_RowDeleting">
     <Columns>
 <asp:TemplateField HeaderText="SpecDetail">
     <ItemTemplate>
@@ -57,6 +57,10 @@
                 <ItemTemplate>
                     <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-primary btn-sm"
                         CommandName="Edit" CommandArgument='<%# Eval("Id") %>' />
+                    
+                            <asp:HyperLink ID="HyperLink1" CssClass="btn btn-secondary" runat="server" NavigateUrl='<%# "EditShipPhoto.aspx?Id=" + Eval("Id") %>'>
+                                    Edit(Imgs)
+                            </asp:HyperLink>
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:Button ID="btnUpdate" runat="server" Text="Save" CssClass="btn btn-success btn-sm"
