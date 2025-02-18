@@ -27,28 +27,29 @@
     </div>
 
     <!-- 城市選單 -->
-    <asp:GridView ID="CityGridView" runat="server" DataKeyNames="Id" AutoGenerateColumns="false" OnRowEditing="CityGridView_RowEditing" OnRowCancelingEdit="CityGridView_RowCancelingEdit" OnRowUpdating="CityGridView_RowUpdating" OnRowDeleting="CityGridView_RowDeleting">
-        <Columns>
-            <asp:TemplateField HeaderText="CityName">
-                <ItemTemplate>
-                    <%# Eval("City") %></a>
-                </ItemTemplate>
-                <EditItemTemplate>
-                    <asp:TextBox ID="TxtCity" runat="server" Text='<%# Bind("City") %>' />
-                </EditItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Ops">
-                <ItemTemplate>
-                    <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="Edit" />
-                    <asp:Button ID="btnDelete" OnClientClick="return confirm('Are you sure you want to delete？')" runat="server" Text="Delete" CommandName="Delete" />
-                </ItemTemplate>
-                <EditItemTemplate>
-                    <asp:Button ID="btnSave" runat="server" Text="Save" CommandName="Update" />
-                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CommandName="Cancel" />
-                </EditItemTemplate>
-            </asp:TemplateField>
-        </Columns>
+    <asp:GridView ID="CityGridView" runat="server" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-bordered table-striped" OnRowEditing="CityGridView_RowEditing" OnRowCancelingEdit="CityGridView_RowCancelingEdit" OnRowUpdating="CityGridView_RowUpdating" OnRowDeleting="CityGridView_RowDeleting">
+    <Columns>
+        <asp:TemplateField HeaderText="CityName">
+            <ItemTemplate>
+                <%# Eval("City") %>
+            </ItemTemplate>
+            <EditItemTemplate>
+                <asp:TextBox ID="TxtCity" runat="server" CssClass="form-control" Text='<%# Bind("City") %>' />
+            </EditItemTemplate>
+        </asp:TemplateField>
+        
+        <asp:TemplateField HeaderText="Ops">
+            <ItemTemplate>
+                <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-primary btn-sm" Text="Edit" CommandName="Edit" />
+                <asp:Button ID="btnDelete" OnClientClick="return confirm('Are you sure you want to delete？')" CssClass="btn btn-danger btn-sm" runat="server" Text="Delete" CommandName="Delete" />
+            </ItemTemplate>
+            <EditItemTemplate>
+                <asp:Button ID="btnSave" runat="server" CssClass="btn btn-success btn-sm" Text="Save" CommandName="Update" />
+                <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-secondary btn-sm" Text="Cancel" CommandName="Cancel" />
+            </EditItemTemplate>
+        </asp:TemplateField>
+    </Columns>
+</asp:GridView>
 
-    </asp:GridView>
 
 </asp:Content>

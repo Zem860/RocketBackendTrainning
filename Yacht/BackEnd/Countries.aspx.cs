@@ -109,5 +109,11 @@ namespace Yacht.BackEnd
             }
             show();
         }
+
+        protected void cancelEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            CountryList.EditIndex = -1;
+            show();
+        }
     }
 }

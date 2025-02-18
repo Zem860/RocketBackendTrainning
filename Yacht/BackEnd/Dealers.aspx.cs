@@ -21,12 +21,15 @@ namespace Yacht.BackEnd
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) // ✅ 只在首次載入時綁定
+            if (!IsPostBack) // ✅ 只在首次載入時執行
             {
-                getDropDown("0");
+                string selectedCountry = Request.QueryString["country"] ?? "0";
+                countrySwitch.SelectedValue = selectedCountry; // 確保 DropDownList 反映 URL 參數
+                getDropDown(selectedCountry);
                 show();
             }
         }
+
 
         public void getDropDown(string countryId)
         {
@@ -76,7 +79,7 @@ namespace Yacht.BackEnd
                             INNER JOIN Countries ON Cities.CountryId = Countries.Id
                             WHERE Cities.CountryId = @countryId";
             }
-           
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -97,13 +100,16 @@ namespace Yacht.BackEnd
             PageRepeater.DataBind();
 
         }
+
         public void show()
         {
             showPage();
-            DbHelper helper = new DbHelper();
             currentPage = Convert.ToInt32(Request.QueryString["page"]);
             int offset =  currentPage > 0 ? (currentPage - 1) * pageSize : 0;
-            string query =
+            string query = "";
+            if (Convert.ToInt32(countrySwitch.SelectedValue) > 0)
+            {
+                query =
                 @"SELECT Com.Id AS Id, Com.CompanyName AS CName, Co.CountryName As CountryName, Ci.City AS City, D.DealerName AS DName,
                 D.DealerPhoto AS DPhoto, D.DealerEmail AS DEmail,
                 Com.Address AS Address, D.Phone AS Phone, D.Fax As Fax, D.Cell AS Cell, Com.Link AS CompanyLink
@@ -111,17 +117,54 @@ namespace Yacht.BackEnd
                 INNER JOIN Cities Ci ON Com.CityId = Ci.Id
                 INNER JOIN Countries Co ON Co.Id = Ci.CountryId
                 INNER JOIN Dealers D ON Com.DealerId = D.Id
-                WHERE SoftDelete = 0 AND (@countryId = 0 OR Ci.CountryId = @countryId)
+                WHERE SoftDelete = 0 AND  Ci.CountryId = @countryId
                 ORDER BY Ci.CountryId
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY;
                 ";
-            DataTable dt = helper.readCompanyData(query, countrySwitch.SelectedValue,offset, pageSize);
+            } else
+            {
+                query=
+                @"SELECT Com.Id AS Id, Com.CompanyName AS CName, Co.CountryName As CountryName, Ci.City AS City, D.DealerName AS DName,
+                D.DealerPhoto AS DPhoto, D.DealerEmail AS DEmail,
+                Com.Address AS Address, D.Phone AS Phone, D.Fax As Fax, D.Cell AS Cell, Com.Link AS CompanyLink
+                FROM Companies Com
+                INNER JOIN Cities Ci ON Com.CityId = Ci.Id
+                INNER JOIN Countries Co ON Co.Id = Ci.CountryId
+                INNER JOIN Dealers D ON Com.DealerId = D.Id
+                WHERE SoftDelete = 0 
+                ORDER BY Ci.CountryId
+                OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY;
+                ";
+            }
+
+
+            DataTable dataTable = new DataTable();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+
+                    cmd.Parameters.AddWithValue("@offset", offset);
+                    cmd.Parameters.AddWithValue("@pageSize", pageSize);
+                    cmd.Parameters.AddWithValue("@countryId", countrySwitch.SelectedValue);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        dataTable.Load(reader);
+                    }
+                }
+            }
+
+            DataTable dt = dataTable;
             DealersGrid.DataSource = dt;
             DealersGrid.DataBind();
         }
 
         protected void ChangeCategory(object sender, EventArgs e)
         {
+            string selectedCountryId = countrySwitch.SelectedValue;
+            Response.Redirect($"Dealers.aspx?page=1&country={selectedCountryId}");
             string selectedCountry = countrySwitch.SelectedValue; // 先保存選中的國家
             string query =
                 @"SELECT Com.Id AS Id, Com.CompanyName AS CName, Co.CountryName As CountryName, Ci.City AS City, D.DealerName AS DName,
@@ -130,7 +173,7 @@ namespace Yacht.BackEnd
                 INNER JOIN Cities Ci ON Com.CityId = Ci.Id
                 INNER JOIN Countries Co ON Co.Id = Ci.CountryId
                 INNER JOIN Dealers D ON Com.DealerId = D.Id
-                WHERE SoftDelete = 0 AND (@countryId=0 OR Co.Id = @countryId)
+                WHERE SoftDelete = 0 OR Co.Id = @countryId
                 ";
 
             DbHelper helper = new DbHelper();
