@@ -156,12 +156,37 @@ namespace Yacht.FrontEnd
             }
         }
 
+        public void getOverviewText()
+        {
+
+            string query = @"SELECT Text FROM OverviewText WHERE YachtId = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"id", getId());
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    string contentFromDb = HttpUtility.HtmlDecode(reader["Text"]?.ToString() ?? "");
+                    Literal1.Text = HttpUtility.HtmlDecode(contentFromDb); // 用 Literal 設定 HTML
+                }
+                else
+                {
+                    Literal1.Text = "";
+                }
+
+
+            }
+        }
+
         protected void SetActiveView(string pos)
         {
             switch (pos)
             {
                 case "overview":
                     MultiView1.SetActiveView(Overview);
+                    getOverviewText();
                     break;
                 case "layout":
                     MultiView1.SetActiveView(Layout);
