@@ -34,6 +34,7 @@ namespace Yacht.FrontEnd
                 SetActiveView(pos);
                 getBreadCrumb(model, pos);
                 getReaptPhotos();
+                ShipName.Text = Request.QueryString["model"];
             }
         }
 
@@ -68,7 +69,7 @@ namespace Yacht.FrontEnd
 
         public void getReaptPhotos()
         {
-            string query = @"SELECT ImgPath As Imgs FROM YachtImgs WHERE YachtId = @id";
+            string query = @"SELECT ImgPath As Imgs FROM YachtImgs WHERE YachtId = @id ORDER BY Cover Desc";
             string curId = getId();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -85,8 +86,11 @@ namespace Yacht.FrontEnd
         {
             string query = @"
         SELECT YachtsModel.Model AS Model, 
-               YachtsModel.isNew AS DesignTag           
-        FROM YachtsModel";
+               YachtsDesign.DesignType AS DesignTag           
+        FROM YachtsModel
+        INNER JOIN YachtsDesign ON YachtsDesign.Id = YachtsModel.DesignId
+
+";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -102,7 +106,19 @@ namespace Yacht.FrontEnd
 
         protected string filterType(object isNew)
         {
-            string newTag = Convert.ToInt32(isNew) == 1 ? " (New Building)" : "";
+            string newTag="";
+            switch (isNew)
+            {
+                case "New Building":
+                    newTag = " (New Building)";
+                    break;
+                case "New Design":
+                    newTag = " (New Design)";
+                    break;
+                default:
+                    newTag = "";
+                    break;
+            }
 
             return newTag; // 如果 `isNew = 1`，則顯示 `(New)`
         }
@@ -123,6 +139,23 @@ namespace Yacht.FrontEnd
             }
         }
 
+        public void getDeckPlanImg()
+        {
+            string id = getId();
+            string query = @"SELECT Id, ImgPath FROM LayoutImg WHERE YachtId = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"id", id);
+                SqlDataReader reader = cmd.ExecuteReader();
+                DeckPlan.DataSource = reader;
+                DeckPlan.DataBind();    
+
+
+            }
+        }
+
         protected void SetActiveView(string pos)
         {
             switch (pos)
@@ -132,6 +165,7 @@ namespace Yacht.FrontEnd
                     break;
                 case "layout":
                     MultiView1.SetActiveView(Layout);
+                    getDeckPlanImg();
                     break;
                 case "spec":
                     MultiView1.SetActiveView(Spec);

@@ -18,6 +18,11 @@
 </asp:Content>
 <asp:Content ID="Content9" ContentPlaceHolderID="Yachts" runat="server">
     <style>
+        .deckImg {
+            max-width: 690px;
+            width: 100%;
+        }
+
         .left li {
             position: relative;
         }
@@ -157,7 +162,10 @@
 
             <div class="right">
                 <div class="right1">
-                    <div class="title"><span>Dynasty 72</span></div>
+                    <div class="title">
+                        <span>
+                            <asp:Label ID="ShipName" runat="server" Text="Label"></asp:Label></span>
+                    </div>
 
                     <!--------------------------------內容開始---------------------------------------------------->
 
@@ -266,10 +274,14 @@
                                     <div class="box6">
                                         <p>Layout & deck plan</p>
                                         <ul>
-                                            <li>
-                                                <img src="/Tayanahtml/html/tayana/html/images/deckplan01.jpg" alt="&quot;&quot;" /></li>
-                                            <li>
-                                                <img src="/Tayanahtml/html/tayana/html/images/deckplan01.jpg" alt="&quot;&quot;" /></li>
+                                            <asp:Repeater ID="DeckPlan" runat="server">
+                                                <ItemTemplate>
+                                                    <li>
+                                                        <img class="deckImg" src='<%# Eval("ImgPath") %>' alt="Alternate Text" />
+                                                    </li>
+                                                </ItemTemplate>
+
+                                            </asp:Repeater>
                                         </ul>
                                     </div>
 
@@ -318,15 +330,15 @@
         </div>
 
 
-    <!--------------------------------落款開始---------------------------------------------------->
-    <div class="footer">
-        <p class="footerp01">© 1973-2011 Tayana Yachts, Inc. All Rights Reserved</p>
-        <div class="footer01">
-            <span>No. 60, Hai Chien Road, Chung Men Li, Lin Yuan District, Kaohsiung City, Taiwan, R.O.C.</span><br />
-            <span>TEL：+886(7)641-2721</span> <span>FAX：+886(7)642-3193</span><span><a href="mailto:tayangco@ms15.hinet.net">E-mail：tayangco@ms15.hinet.net</a>.</span>
+        <!--------------------------------落款開始---------------------------------------------------->
+        <div class="footer">
+            <p class="footerp01">© 1973-2011 Tayana Yachts, Inc. All Rights Reserved</p>
+            <div class="footer01">
+                <span>No. 60, Hai Chien Road, Chung Men Li, Lin Yuan District, Kaohsiung City, Taiwan, R.O.C.</span><br />
+                <span>TEL：+886(7)641-2721</span> <span>FAX：+886(7)642-3193</span><span><a href="mailto:tayangco@ms15.hinet.net">E-mail：tayangco@ms15.hinet.net</a>.</span>
+            </div>
         </div>
-    </div>
-    <!--------------------------------落款結束---------------------------------------------------->
+        <!--------------------------------落款結束---------------------------------------------------->
 
     </div>
 

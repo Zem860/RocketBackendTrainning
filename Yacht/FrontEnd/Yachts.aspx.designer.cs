@@ -51,6 +51,15 @@ namespace Yacht.FrontEnd
         protected global::System.Web.UI.WebControls.Label breadCrumbText;
 
         /// <summary>
+        /// ShipName 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ShipName;
+
+        /// <summary>
         /// btnOverview 控制項。
         /// </summary>
         /// <remarks>
@@ -112,6 +121,15 @@ namespace Yacht.FrontEnd
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.View Layout;
+
+        /// <summary>
+        /// DeckPlan 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater DeckPlan;
 
         /// <summary>
         /// Spec 控制項。
