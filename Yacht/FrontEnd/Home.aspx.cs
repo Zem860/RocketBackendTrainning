@@ -19,7 +19,7 @@ namespace Yacht.FrontEnd
             public string Model { get; set; } // 只保留數字型號
             public string ImageUrl { get; set; } // 圖片路徑
 
-            public string isNew { get; set; }
+            public int DesignId { get; set; }
 
         }
         protected string connectionString = WebConfigurationManager.ConnectionStrings["TestConnectionString"].ConnectionString;
@@ -63,7 +63,7 @@ namespace Yacht.FrontEnd
             Y.Id AS Id, 
             Y.Model AS Model, 
             I.ImgPath AS ImageUrl,
-            Y.IsNew AS IsNew
+            Y.DesignId AS DesignId
         FROM YachtsModel Y 
         INNER JOIN YachtImgs I ON Y.Id = I.YachtId 
         WHERE I.Cover = 1";
@@ -82,7 +82,7 @@ namespace Yacht.FrontEnd
                     string yachtName = GetModelName(fullModel); // 取得名稱部分
                     string modelNumber = GetModelNumber(fullModel); // 取得型號部分
                     string imageUrl = reader["ImageUrl"].ToString(); // 圖片 URL
-                    string isNew = reader["IsNew"].ToString(); ; // 正確讀取 bit 值
+                    //string designId = reader["DesignId"].ToString(); ; // 正確讀取 bit 值
 
                     yachts.Add(new YachtModel
                     {
@@ -90,7 +90,7 @@ namespace Yacht.FrontEnd
                         YachtName = yachtName,   // 只保留船名
                         Model = modelNumber,     // 只保留數字型號
                         ImageUrl = imageUrl,      // 圖片路徑
-                        isNew = isNew ,  // 轉換 bit 為 "1" 或 "0"
+                        DesignId = Convert.ToInt32(reader["DesignId"]), 
                     });
                 }
 

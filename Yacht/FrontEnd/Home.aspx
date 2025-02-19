@@ -8,11 +8,12 @@
             word-wrap: break-word; /* 確保長單字自動換行 */
             overflow-wrap: break-word; /* 適用於較新瀏覽器 */
         }
-/* 確保 .bannerimg img 小圖顯示完整 */
+        /* 確保 .bannerimg img 小圖顯示完整 */
         .bannerimg img {
             object-fit: contain; /* 避免裁切 */
             width: 100px;
-        }/*
+        }
+        /*
 
         .banner img {
             object-fit:cover;
@@ -62,7 +63,13 @@
                                         <%# Eval("YachtName") %> <span><%# Eval("Model") %></span><br />
                                         <p>SPECIFICATION SHEET</p>
                                     </div>
-                                    <%# Convert.ToBoolean(Eval("IsNew")) ? "<div class='new'><img src='/Tayanahtml/html/tayana/html/images/new01.png' alt='new' /></div>" : "" %>
+                                    <%# 
+    Convert.ToInt32(Eval("DesignId")) == 2 
+        ? "<div class='new'><img src='/Tayanahtml/html/tayana/html/images/new02.png' alt='new' /></div>" 
+        : Convert.ToInt32(Eval("DesignId")) == 3 
+            ? "<div class='new'><img src='/Tayanahtml/html/tayana/html/images/new01.png' alt='new' /></div>" 
+            : ""
+                                    %>
                                 </li>
                             </ItemTemplate>
                         </asp:Repeater>
@@ -70,23 +77,23 @@
                     </ul>
 
 
-                  <!--小圖開始-->
-            <div class="bannerimg title">
-                <ul>
-                    <asp:Repeater ID="rptThumbnails" runat="server">
-                        <ItemTemplate>
-                            <li class='<%# Container.ItemIndex == 0 ? "on" : "" %>'>
-                                <div>
-                                    <p class="bannerimg_p">
-                                        <img src='<%# Eval("ImageUrl") %>' alt="&quot;&quot;" />
-                                    </p>
-                                </div>
-                            </li>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </ul>
-            </div>
-            <!--小圖結束-->
+                    <!--小圖開始-->
+                    <div class="bannerimg title">
+                        <ul>
+                            <asp:Repeater ID="rptThumbnails" runat="server">
+                                <ItemTemplate>
+                                    <li class='<%# Container.ItemIndex == 0 ? "on" : "" %>'>
+                                        <div>
+                                            <p class="bannerimg_p">
+                                                <img src='<%# Eval("ImageUrl") %>' alt="&quot;&quot;" />
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </ul>
+                    </div>
+                    <!--小圖結束-->
 
                 </div>
             </div>

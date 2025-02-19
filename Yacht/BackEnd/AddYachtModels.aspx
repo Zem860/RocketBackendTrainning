@@ -26,24 +26,57 @@
 </asp:Content>
 
 <asp:Content ID="Content13" ContentPlaceHolderID="AddYachtsModel" runat="server">
-    <div class="container w-75 d-flex justify-content-center flex-column p-2">
-        <div class="d-flex gap-5 justify-content-center align-items-center">
-            <p>Yacht Model</p>
-            <asp:TextBox CssClass="w-25" ID="YachtModel" runat="server"></asp:TextBox>
+    <div class="container w-50 mt-4 p-4 border rounded shadow-sm bg-light">
+        <h3 class="text-center mb-4">Add Yacht Model</h3>
+        <div class="mb-3 row align-items-center">
+            <label for="YachtName" class="col-sm-4 col-form-label fw-bold">Yacht Name</label>
+            <div class="col-sm-8">
+                <asp:TextBox CssClass="form-control" ID="YachtName" runat="server" placeholder="Enter yacht name"></asp:TextBox>
+            </div>
         </div>
 
-        <div class="d-flex gap-5 justify-content-center align-items-center">
-            <p>Latest Yacht Model</p>
-            <asp:CheckBox ID="IsNewModel" runat="server" />
+        <div class="mb-3 row align-items-center">
+            <label for="YachtModel" class="col-sm-4 col-form-label fw-bold">Yacht Model</label>
+            <div class="col-sm-8">
+                <asp:TextBox CssClass="form-control" ID="YachtModel" runat="server" placeholder="Enter yacht model"></asp:TextBox>
+            </div>
         </div>
+        <div class="mb-3 row align-items-center d-flex">
+            <label for="YachtModel" class="col-sm-4 col-form-label fw-bold">Yacht Design</label>
 
-        <div class="d-flex gap-5 justify-content-center align-items-center">
-            <p>Ship Photos</p>
-            <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="true" />
+            <div class="mb-3 row align-items-center d-flex">
+                <label for="YachtModel" class="col-sm-4 col-form-label fw-bold">Yacht Design</label>
+
+                <div class="col-sm-8 d-flex flex-row">
+                    <asp:RadioButtonList ID="ModelDesign" runat="server"
+                        CssClass="d-flex flex-row gap-3"
+                        DataSourceID="SqlDataSource1"
+                        DataTextField="DesignType"
+                        DataValueField="Id"
+                        OnSelectedIndexChanged="rblLatestModel_SelectedIndexChanged"
+                        RepeatLayout="Flow"
+                        RepeatDirection="Horizontal">
+                    </asp:RadioButtonList>
+                </div>
+            </div>
+
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server"
+                ConnectionString="<%$ ConnectionStrings:TestConnectionString %>"
+                SelectCommand="SELECT Id, DesignType FROM YachtsDesign ORDER BY Id"></asp:SqlDataSource>
+
+
+
+
+            <div class="mb-3 row align-items-center">
+                <label for="FileUpload1" class="col-sm-4 col-form-label fw-bold">Ship Photos</label>
+                <div class="col-sm-8">
+                    <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="true" CssClass="form-control" />
+                </div>
+            </div>
+
+            <div class="text-center">
+                <asp:Button ID="Submit" runat="server" CssClass="btn btn-primary px-4 py-2" Text="Submit" OnClick="addModel" />
+            </div>
         </div>
-
-        <asp:Button ID="Submit" runat="server" Width="100" CssClass="btn btn-primary rounded-2 align-content-lg-center"
-            Text="Submit" OnClick="addModel" />
-    </div>
 </asp:Content>
 

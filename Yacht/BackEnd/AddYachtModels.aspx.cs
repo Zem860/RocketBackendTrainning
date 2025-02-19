@@ -16,6 +16,7 @@ namespace Yacht.BackEnd
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
         }
 
         public void addShipModel()
@@ -32,10 +33,10 @@ namespace Yacht.BackEnd
             }
 
             // 確認是否為最新船型（CheckBox）
-            int isNewValue = IsNewModel.Checked ? 1 : 0;
+            //int isNewValue = IsNewModel.Checked ? 1 : 0;
 
-            string query = @"INSERT INTO YachtsModel (Model, IsNew, CreatedAt, UpdatedAt) 
-                             VALUES (@model, @isNew, GETDATE(), GETDATE()); 
+            string query = @"INSERT INTO YachtsModel (Model, DesignId) 
+                             VALUES (@model, @designId); 
                              SELECT SCOPE_IDENTITY();";
 
             int dataId;
@@ -44,8 +45,8 @@ namespace Yacht.BackEnd
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.Parameters.AddWithValue(@"model", YachtModel.Text);
-                cmd.Parameters.AddWithValue(@"isNew", isNewValue);
+                cmd.Parameters.AddWithValue(@"model", YachtName.Text + " " + YachtModel.Text);
+                cmd.Parameters.AddWithValue(@"designId", ModelDesign.SelectedValue);
 
                 object shipId = cmd.ExecuteScalar();
                 dataId = (shipId != null) ? Convert.ToInt32(shipId) : 0;
@@ -62,6 +63,7 @@ namespace Yacht.BackEnd
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
+                int count = 0;
                 foreach (var img in FileUpload1.PostedFiles)
                 {
                     int imgMemory = img.ContentLength;
@@ -80,23 +82,40 @@ namespace Yacht.BackEnd
                     else
                     {
                         string mappingPath = "/ShipImages/" + imgName;
-                        string query = @"INSERT INTO YachtImgs (YachtId, ImgPath, CreatedAt) 
-                                         VALUES (@shipId, @imgPath, GETDATE())";
+                        string query = @"INSERT INTO YachtImgs (YachtId, Cover, ImgPath, CreatedAt) 
+                                         VALUES (@shipId, @cover, @imgPath, GETDATE())";
 
                         SqlCommand cmd = new SqlCommand(query, connection);
                         cmd.Parameters.AddWithValue(@"shipId", shipId);
+                        if (count == 0)
+                        {
+                            cmd.Parameters.AddWithValue(@"cover", 1);
+
+                        } else
+                        {
+                            cmd.Parameters.AddWithValue(@"cover", 0);
+
+                        }
                         cmd.Parameters.AddWithValue(@"imgPath", mappingPath);
                         cmd.ExecuteNonQuery();
 
                         img.SaveAs(localSavingPath);
+                        count++;
                     }
                 }
+
+                Response.Redirect("YachtsModel.aspx");
             }
         }
 
         protected void addModel(object sender, EventArgs e)
         {
             addShipModel();
+        }
+
+        protected void rblLatestModel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
