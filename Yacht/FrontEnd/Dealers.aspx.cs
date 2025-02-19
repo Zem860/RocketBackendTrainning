@@ -25,13 +25,28 @@ namespace Yacht.FrontEnd
                 {
                     getData();
                 }
-
             }
-
         }
+        public string getFirstCountry()
+        {
+            string query = @"SELECT CountryName FROM Countries";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                SqlDataReader reader = cmd.ExecuteReader();
 
-
-
+                if (reader.HasRows) // 檢查是否有資料
+                {
+                    reader.Read(); // 移動到第一行
+                    return reader["CountryName"].ToString();
+                }
+                else
+                {
+                    return "No data found"; // 沒有資料時返回提示
+                }
+            }
+        }
 
         public void getData()
         {
@@ -42,7 +57,7 @@ namespace Yacht.FrontEnd
 
             if (String.IsNullOrEmpty(Request.QueryString["country"]))
             {
-                countryName = "United States";
+                countryName = getFirstCountry();
             }
             string getThatCountryDealers = @"
 SELECT Cities.City AS CityName, Companies.CompanyName AS CompanyName,
