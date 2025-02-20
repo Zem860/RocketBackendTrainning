@@ -46,10 +46,49 @@
     </div>
     <div class="mb-3">
 
-                <label for="YachtModel" class="form-label fw-bold">Fill In Dimensions</label>
+        <label for="YachtModel" class="form-label fw-bold">Fill In Dimensions</label>
 
         <p>Dimension Details</p>
-        <asp:GridView ID="Dimension" runat="server"></asp:GridView>
+        <p>Dimension Title</p>
+        <asp:TextBox ID="dimensionTitle" runat="server"></asp:TextBox>
+        <p>Dimension Content</p>
+        <asp:TextBox ID="dimensionContent" runat="server"></asp:TextBox>
+        <asp:Button ID="Submit" runat="server" Text="Submit" OnClick="submitDimension" />
+<asp:GridView ID="DimensionGridView" runat="server"
+    AutoGenerateColumns="False"
+    OnRowEditing="DimensionGridView_RowEditing"
+    OnRowUpdating="DimensionGridView_RowUpdating"
+    OnRowCancelingEdit="DimensionGridView_RowCancelingEdit"
+    OnRowDeleting="DimensionGridView_RowDeleting"
+    DataKeyNames="Key"
+    ShowFooter="true"
+    CssClass="table table-bordered">
+
+    <Columns>
+        <asp:TemplateField HeaderText="Key">
+            <ItemTemplate>
+                <%# Eval("Key") %>
+            </ItemTemplate>
+            <EditItemTemplate>
+                <asp:TextBox ID="txtKey" runat="server" Text='<%# Bind("Key") %>' CssClass="form-control"></asp:TextBox>
+            </EditItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Value">
+            <ItemTemplate>
+                <%# Eval("Value") %>
+            </ItemTemplate>
+            <EditItemTemplate>
+                <asp:TextBox ID="txtValue" runat="server" Text='<%# Bind("Value") %>' CssClass="form-control"></asp:TextBox>
+            </EditItemTemplate>
+        </asp:TemplateField>
+
+        <asp:CommandField ShowEditButton="True" ShowCancelButton="True" ShowHeader="True" />
+
+        <asp:CommandField ShowDeleteButton="True" ShowHeader="True" />
+    </Columns>
+
+</asp:GridView>
 
 
     </div>

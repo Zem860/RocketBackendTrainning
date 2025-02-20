@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Newtonsoft.Json;
 
 namespace Yacht.FrontEnd
 {
@@ -179,7 +181,51 @@ namespace Yacht.FrontEnd
 
             }
         }
+        public void getDimensions()
+        {
+            string query = "SELECT DimensionDetails FROM OverviewDimensions WHERE YachtId = @Id";
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@Id", getId());
+
+                var result = cmd.ExecuteScalar()?.ToString(); // 取出 JSON
+
+                Dictionary<string, string> dimensions;
+                if (string.IsNullOrEmpty(result))
+                {
+                    dimensions = new Dictionary<string, string>(); // 若 JSON 為 null，則回傳空字典
+                }
+                else
+                {
+                    try
+                    {
+                        dimensions = JsonConvert.DeserializeObject<Dictionary<string, string>>(result) ?? new Dictionary<string, string>();
+                    }
+                    catch (JsonException ex)
+                    {
+                        Console.WriteLine("JSON 解析錯誤: " + ex.Message);
+                        dimensions = new Dictionary<string, string>(); // 若 JSON 格式錯誤，避免錯誤
+                    }
+                }
+
+                // 轉換 Dictionary 為 DataTable
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Key");
+                dt.Columns.Add("Value");
+
+                foreach (var kvp in dimensions)
+                {
+                    dt.Rows.Add(kvp.Key, kvp.Value);
+                }
+
+                // 綁定到 GridView
+                DimensionRepeater.DataSource = dt;
+                DimensionRepeater.DataBind();
+            }
+        }
         protected void SetActiveView(string pos)
         {
             switch (pos)
@@ -187,6 +233,7 @@ namespace Yacht.FrontEnd
                 case "overview":
                     MultiView1.SetActiveView(Overview);
                     getOverviewText();
+                    getDimensions();
                     break;
                 case "layout":
                     MultiView1.SetActiveView(Layout);

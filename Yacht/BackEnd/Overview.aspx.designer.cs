@@ -24,13 +24,40 @@ namespace Yacht.BackEnd
         protected global::System.Web.UI.WebControls.DropDownList YachtModel;
 
         /// <summary>
-        /// Dimension 控制項。
+        /// dimensionTitle 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Dimension;
+        protected global::System.Web.UI.WebControls.TextBox dimensionTitle;
+
+        /// <summary>
+        /// dimensionContent 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox dimensionContent;
+
+        /// <summary>
+        /// Submit 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Submit;
+
+        /// <summary>
+        /// DimensionGridView 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView DimensionGridView;
 
         /// <summary>
         /// Literal1 控制項。
