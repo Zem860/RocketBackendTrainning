@@ -200,16 +200,17 @@
                                                     <table>
                                                         <asp:Repeater ID="DimensionRepeater" runat="server">
                                                             <ItemTemplate>
-                                                        <tr class='<%# (Container.ItemIndex % 2 == 0) ? "tr003" : "" %>'>
-                                                            <th><%# Eval("Key") %></th>
-                                                            <td><%# Eval("Value") %></td>
-                                                        </tr>
-                                                        </itemtemplate>
-                                                    </asp:Repeater>
+                                                                <tr class='<%# (Container.ItemIndex % 2 == 0) ? "tr003" : "" %>'>
+                                                                    <th><%# Eval("Key") %></th>
+                                                                    <td><%# Eval("Value") %></td>
+                                                                </tr>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
                                                     </table>
                                                 </td>
-                                                <td>
-                                                    <img src="images/ya01.jpg" alt="&quot;&quot;" width="278" height="345" /></td>
+                                                <td id="imgsection" visible="false" runat="server">
+                                                    <asp:Image ID="SailPlanImg" runat="server" CssClass="img-fluid" Width="278px" Height="345px" />
+                                                </td>
                                             </tr>
                                         </table>
 

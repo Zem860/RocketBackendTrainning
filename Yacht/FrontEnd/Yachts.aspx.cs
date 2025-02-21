@@ -181,6 +181,29 @@ namespace Yacht.FrontEnd
 
             }
         }
+
+        public void getSailPlanImg()
+        {
+            string query = "SELECT DimensionSailImg FROM OverviewDimensions WHERE YachtId = @Id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"Id", getId());
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read()) {
+                    if (String.IsNullOrEmpty(reader["DimensionSailImg"].ToString()))
+                    {
+                        imgsection.Visible = false;
+                    } else
+                    {
+                        imgsection.Visible = true;
+                        SailPlanImg.ImageUrl = reader["DimensionSailImg"].ToString();
+
+                    }
+                }
+            }
+        }
         public void getDimensions()
         {
             string query = "SELECT DimensionDetails FROM OverviewDimensions WHERE YachtId = @Id";
@@ -234,6 +257,7 @@ namespace Yacht.FrontEnd
                     MultiView1.SetActiveView(Overview);
                     getOverviewText();
                     getDimensions();
+                    getSailPlanImg();
                     break;
                 case "layout":
                     MultiView1.SetActiveView(Layout);

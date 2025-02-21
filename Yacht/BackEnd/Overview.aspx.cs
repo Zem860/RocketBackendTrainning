@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
@@ -16,7 +17,7 @@ namespace Yacht.BackEnd
     public partial class Overview : System.Web.UI.Page
     {
         protected string connectionString = WebConfigurationManager.ConnectionStrings["TestConnectionString"].ConnectionString;
-
+        protected bool canSave = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,6 +25,7 @@ namespace Yacht.BackEnd
                 getDropDown();
                 getOverviewText();
                 getDimensions();
+                getSailPlanImg();
             }
         }
 
@@ -54,6 +56,7 @@ namespace Yacht.BackEnd
                 cmd.Parameters.AddWithValue(@"id", editorContent);
                 cmd.ExecuteNonQuery();
             }
+            Response.Redirect("~/BackEnd/Overview.aspx");
         }
         public void getOverviewText()
         {
@@ -83,6 +86,8 @@ namespace Yacht.BackEnd
         {
             getOverviewText();
             getDimensions();
+            getSailPlanImg();
+
         }
 
         protected void addOverviewText(object sender, EventArgs e)
@@ -122,11 +127,61 @@ namespace Yacht.BackEnd
                         return new Dictionary<string, string>();
                     }
 
-                        return JsonConvert.DeserializeObject<Dictionary<string, string>>(result) ?? new Dictionary<string, string>();
-                   
+                    return JsonConvert.DeserializeObject<Dictionary<string, string>>(result) ?? new Dictionary<string, string>();
+
                 }
             }
         }
+
+
+        public void UploadPhoto()
+        {
+            if (!String.IsNullOrEmpty(TempImg.ImageUrl))
+            {
+                //string localStorePath = "~" + TempImg.ImageUrl;
+                string query = "UPDATE OverviewDimensions Set DimensionSailImg = @img WHERE YachtId = @id";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue(@"img", TempImg.ImageUrl);
+                    cmd.Parameters.AddWithValue(@"id", YachtModel.SelectedValue);
+                    cmd.ExecuteNonQuery();
+                }
+                Response.Redirect("~/BackEnd/Overview.aspx");
+            }  
+            
+
+        }
+        public void saveLocalPhoto()
+        {
+            string localPath = Server.MapPath("~/SailPlanImg/");
+            if (FileUpload1.HasFile)
+            {
+                HttpPostedFile img = FileUpload1.PostedFile;
+                int imgMemory = img.ContentLength;
+                string imgName = Path.GetFileName(img.FileName);
+                string imgExtension = Path.GetExtension(img.FileName);
+                string localStorePath = Path.Combine(localPath, imgName);
+                if (imgMemory > 1000000)
+                {
+                    return;
+                }
+                else if (imgExtension != ".jpg" && imgExtension != ".png")
+                {
+
+                    return;
+                }
+                else
+                {
+                    img.SaveAs(localStorePath);
+                    TempImg.ImageUrl = "/SailPlanImg/" + imgName;
+                    TempImg.Visible = true;
+                }
+            }
+
+        }
+
 
         protected void submitDimension(object sender, EventArgs e)
         {
@@ -196,16 +251,17 @@ namespace Yacht.BackEnd
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue(@"YachtId", yachtid);
                 count = Convert.ToInt32(cmd.ExecuteScalar());
-                
+
             }
             if (count == 0)
             {
                 return true;
-            } else
+            }
+            else
             {
                 return false;
             }
-            
+
         }
 
         private void updateDimensionDetails(string yachtId, string json)
@@ -330,6 +386,47 @@ namespace Yacht.BackEnd
         }
 
 
+        public void getSailPlanImg()
+        {
+            string query = "SELECT DimensionSailImg FROM OverviewDimensions WHERE YachtId = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"id", YachtModel.SelectedValue);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    Image1.ImageUrl = reader["DimensionSailImg"].ToString();
+
+                    ReplacePhoto.Visible = true;
+                    if (String.IsNullOrEmpty(reader["DimensionSailImg"].ToString()))
+                    {
+                        ReplacePhoto.Visible = false;
+
+                    }
+                }
+            }
+
+        }
+        protected void UploadImgs(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(TempImg.ImageUrl))
+            {
+                Response.Write("<script>alert('Sth went wrong')</script>");
+            }
+            UploadPhoto();
+        }
+
+        protected void Replace(object sender, EventArgs e)
+        {
+            if (!FileUpload1.HasFile)
+            {
+                Response.Write("<script>alert('Pick one photo')</script>");
+            }
+            saveLocalPhoto();
+
+        }
     }
 
 }
