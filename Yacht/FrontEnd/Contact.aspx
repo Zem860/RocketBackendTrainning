@@ -165,11 +165,13 @@
       </tr>
     <tr>
       <td class="from01td01">&nbsp;</td>
-      <td><asp:DropDownList ID="Yachts" runat="server">
-    <asp:ListItem Text="Dynasty 72" Value="Dynasty 72"></asp:ListItem>
-    <asp:ListItem Text="Canary" Value="Canary"></asp:ListItem>
-    <asp:ListItem Text="Titanic" Value="Titanic"></asp:ListItem>
-</asp:DropDownList>       </td>
+      <td> <span>*</span>     <asp:DropDownList ID="Yachts" runat="server" DataSourceID="SqlDataSource2" DataTextField="Model" DataValueField="Model">
+</asp:DropDownList>
+
+<asp:SqlDataSource ID="SqlDataSource2" runat="server" 
+    ConnectionString="<%$ ConnectionStrings:TestConnectionString %>"
+    SelectCommand="SELECT Model FROM YachtsModel ORDER BY CreatedAt">
+</asp:SqlDataSource>        </td>
     </tr>
     <tr>
       <td class="from01td01">Comments:</td>
