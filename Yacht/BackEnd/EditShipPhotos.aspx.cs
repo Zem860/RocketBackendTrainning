@@ -21,64 +21,61 @@ namespace Yacht.BackEnd
             if (!IsPostBack)
             {
                 Id = Request.QueryString["id"];
+
                 show();
             }
         }
 
         public void show()
         {
-
-            if (String.IsNullOrEmpty(Id))
+            if (String.IsNullOrEmpty(Request.QueryString["id"]))
             {
                 Response.Redirect("YachtsModel.aspx");
             }
+
+            // 🔥 確保清空 ListBox，避免顯示舊資料
+            AllImages.Items.Clear();
+            DeleteImagesList.Items.Clear();
+
             string query = @"
-SELECT
-    YachtsModel.Id AS Id, 
-    YachtsModel.Model AS Title, 
-    STRING_AGG(YachtImgs.ImgPath, ',') AS PinUpImgs,  -- 所有圖片
-    STRING_AGG(CAST(YachtImgs.Id AS NVARCHAR), ',') AS ImgId,  -- 所有圖片ID
-    (SELECT TOP 1 ImgPath FROM YachtImgs WHERE YachtId = YachtsModel.Id AND Cover = 1) AS PinUp, -- 取得封面圖
-    CONVERT(NVARCHAR, MAX(YachtImgs.CreatedAt), 111) AS CreatedAt -- 使用 MAX 取得最新時間
-FROM YachtsModel
-INNER JOIN YachtImgs ON YachtImgs.YachtId = YachtsModel.Id
-WHERE YachtsModel.Id = @Id 
-GROUP BY YachtsModel.Id, YachtsModel.Model;
-";
+        SELECT
+            YachtsModel.Id AS Id, 
+            YachtsModel.Model AS Title, 
+            YachtImgs.ImgPath AS PinUpImgs,  
+            YachtImgs.Id AS ImgId,  
+            (SELECT TOP 1 ImgPath FROM YachtImgs WHERE YachtId = YachtsModel.Id AND Cover = 1) AS PinUp
+        FROM YachtsModel
+        INNER JOIN YachtImgs ON YachtImgs.YachtId = YachtsModel.Id
+        WHERE YachtsModel.Id = @Id 
+        ORDER BY YachtImgs.CreatedAt ASC;
+    ";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.Parameters.AddWithValue(@"Id", Id);
+                cmd.Parameters.AddWithValue("@Id", Request.QueryString["id"]);
                 SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+
+                while (reader.Read())
                 {
-                    Model.Text = reader["Title"].ToString().Trim();
                     string selectedCover = reader["PinUp"] != DBNull.Value ? reader["PinUp"].ToString() : "";
 
-                    if (reader["PinUpImgs"] != DBNull.Value)
+                    ListItem img = new ListItem($"<img src='{reader["PinUpImgs"]}' style='object-fit:cover; width:100px; height:75px;'>", reader["PinUpImgs"].ToString());
+                    AllImages.Items.Add(img);
+
+                    ListItem imgforDelete = new ListItem($"<img src='{reader["PinUpImgs"]}' style='object-fit:cover; width:100px; height:75px;'>", reader["ImgId"].ToString());
+                    DeleteImagesList.Items.Add(imgforDelete);
+
+                    if (selectedCover == reader["PinUpImgs"].ToString())
                     {
-                        string[] imgs = reader["PinUpImgs"].ToString().Split(',');
-                        string[] imgId = reader["ImgId"].ToString().Split(',');
-                        int getIdIndex = 0;
-                        foreach (string i in imgs)
-                        {
-                            ListItem img = new ListItem($"<img src='{i}' style='object-fit:cover; width:100px; height:75px;'>", i);
-                            AllImages.Items.Add(img);
-                            ListItem imgforDelete = new ListItem($"<img src='{i}' style='object-fit:cover; width:100px; height:75px;'>", imgId[getIdIndex]);
-                            DeleteImagesList.Items.Add(imgforDelete);
-                            if (reader["PinUp"].ToString() == i)
-                            {
-                                img.Selected = true;
-                                PreviewImage.ImageUrl = i;
-                            }
-                            getIdIndex++;
-                        }
+                        img.Selected = true;
+                        PreviewImage.ImageUrl = selectedCover;
                     }
                 }
             }
         }
+
 
 
         protected void changePinUp(object sender, EventArgs e)
@@ -128,7 +125,7 @@ GROUP BY YachtsModel.Id, YachtsModel.Model;
                             return;
                         }
                         //deleteLocalImg(item.Value);
-                        SqlCommand cmd = new SqlCommand("DELETE FROM NewsImgs WHERE Id = @ImgId", connection);
+                        SqlCommand cmd = new SqlCommand("DELETE FROM YachtImgs WHERE Id = @ImgId", connection);
                         cmd.Parameters.AddWithValue("@ImgId", item.Value);
                         cmd.ExecuteNonQuery();
                     }
@@ -192,9 +189,10 @@ GROUP BY YachtsModel.Id, YachtsModel.Model;
                             cmd.Parameters.AddWithValue(@"cover", 0);
                             cmd.ExecuteNonQuery();
                             img.SaveAs(imgLocalPath);
+                            show();
                         }
                     }
-                    show();
+
                 }
             }
         }

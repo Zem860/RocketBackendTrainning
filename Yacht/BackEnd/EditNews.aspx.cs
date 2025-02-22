@@ -73,7 +73,7 @@ News.NewsContent,
 CONVERT(NVARCHAR, News.CreatedAt, 111) AS CreatedAt
 FROM News
 INNER JOIN NewsImgs ON NewsImgs.newsId = News.Id
-WHERE News.Id =1 AND Cover = 1;";
+WHERE News.Id =@Id AND Cover = 1;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

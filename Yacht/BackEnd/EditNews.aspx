@@ -44,11 +44,7 @@
                     <p>CoverPhoto</p>
                     <asp:Image ID="PreviewImage" runat="server" Width="300" Height="200" />
                 </div>
-                <div class="mb-3">
-                    <label for="FileUpload1" class="form-label">News Photos</label>
-                    <asp:Image ID="Image1" runat="server" class="img-fluid" />
-                    <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="True" CssClass="form-control" />
-                </div>
+
                 <!-- News Content -->
                 <div class="mb-3">
                     <label for="editor" class="form-label">News Content</label>
