@@ -11,10 +11,10 @@
         }
     </script>
     <style>
-        img {
+        .dealerPoto {
             max-width: 200px;
             width: 100%;
-            height: auto;
+            height: 150px;
             display: block;
             object-fit: cover;
         }
@@ -49,7 +49,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="ProfilePhoto">
                 <ItemTemplate>
-                    <img src="<%# Eval("DPhoto") %>" class="img-fluid" alt="Profile Photo">
+                    <img class="dealerPoto" src="<%# Eval("DPhoto") %>" class="img-fluid" alt="Profile Photo">
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Dealer">

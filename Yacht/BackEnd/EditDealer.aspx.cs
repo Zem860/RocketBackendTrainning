@@ -14,6 +14,7 @@ namespace Yacht.BackEnd
 {
     public partial class EditDealer : System.Web.UI.Page
     {
+        protected string connectionString = WebConfigurationManager.ConnectionStrings["TestConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -28,14 +29,33 @@ namespace Yacht.BackEnd
             }
         }
 
+        public void getCityDropDown(string countryId)
+        {
+            string query = "SELECT Id, City FROM Cities WHERE CountryId = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@id", countryId);
+                SqlDataReader reader = cmd.ExecuteReader();
 
+                // 先清空 CitySwitch 以免重複添加
+                CitySwitch.Items.Clear();
 
+                // 逐筆新增城市選項
+                while (reader.Read())
+                {
+                    ListItem newItem = new ListItem(reader["City"].ToString(), reader["Id"].ToString());
+                    CitySwitch.Items.Add(newItem);
+                }
 
+                // 確保資料綁定
+            }
+        }
 
         public void getData()
         {
             string companyId = Request.QueryString["Id"];
-            string connectionString = WebConfigurationManager.ConnectionStrings["TestConnectionString"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -64,6 +84,7 @@ namespace Yacht.BackEnd
                 if (reader.Read())
                 {
                     string countryId = Convert.ToString(reader["CountryId"]);
+                    string cityId = Convert.ToString(reader["CityId"]);
                     string companyName = Convert.ToString(reader["CompanyName"]);
                     string dealerName = Convert.ToString(reader["DealerName"]);
                     string dealerPhoto = Convert.ToString(reader["DealerPhoto"]);
@@ -90,7 +111,9 @@ namespace Yacht.BackEnd
                     }
                 }
             }
+            getCityDropDown(CountrySwitch.SelectedValue);
         }
+            
 
         public void getDropDown(string countryId ="1")
         {
