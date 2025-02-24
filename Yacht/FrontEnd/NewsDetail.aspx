@@ -29,10 +29,8 @@
         }
 
         .news-content img {
-            max-width: 300px;
+            max-width: 600px;
             width: 100%;
-            max-height: 200px;
-            height: 100%;
             object-fit: cover;
         }
 
@@ -127,7 +125,7 @@
             <!--------------------------------左邊選單結束---------------------------------------------------->
 
             <!--------------------------------右邊選單開始---------------------------------------------------->
-            <div id="crumb"><a href="#">Home</a> >> <a href="#">News </a>>> <a href="#"><span class="on1">News & Events</span></a></div>
+            <div id="crumb"><a href="Home.aspx">Home</a> >> <a href="News.aspx">News </a>>> <a href="#"><span class="on1">News & Events</span></a></div>
             <div class="right">
                 <div class="right1">
                     <div class="title"><span>News & Events</span></div>
