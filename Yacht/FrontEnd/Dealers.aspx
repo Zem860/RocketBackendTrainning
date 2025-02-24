@@ -40,7 +40,7 @@
     <form id="form1" runat="server">
         <div class="contain">
             <div class="sub">
-                <p><a href="Homepage.aspx">Home</a></p>
+                <p><a href="Home.aspx">Home</a></p>
             </div>
 
             <!--------------------------------選單開始---------------------------------------------------->
@@ -190,10 +190,6 @@
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </div>
-                            <div class="pagenumber">| <span>1</span> | <a href="#">2</a> | <a href="#">3</a> | <a href="#">4</a> | <a href="#">5</a> |  <a href="#">Next</a>  <a href="#">LastPage</a></div>
-                            <div class="pagenumber1">Items：<span>89</span>  |  Pages：<span>1/9</span></div>
-
-
                         </div>
 
                         <!--------------------------------內容結束------------------------------------------------------>
