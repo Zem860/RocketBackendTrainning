@@ -55,11 +55,11 @@ namespace Yacht.FrontEnd
             content = Regex.Replace(content, @"\s+", " ").Trim();
 
             // 6. 截取 25 個字，確保長度受限
-            var words = content.Take(100);
+            var words = content.Take(150);
             string limitedText = string.Join("", words);
 
             // 7. 如果超過 25 字，加上 "..."
-            if (content.Length > 100)
+            if (content.Length > 150)
             {
                 limitedText += "...";
             }

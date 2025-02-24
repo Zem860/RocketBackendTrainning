@@ -13,6 +13,12 @@
     <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
 
     <style>
+        .newsImg {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover
+        }
+
         .newsContent {
             max-width: 100%;
             word-wrap: break-word; /* 強制換行 */
@@ -25,7 +31,7 @@
     </style>
     <div class="contain">
         <div class="sub">
-            <p><a href="#">Home</a></p>
+            <p><a href="Home.aspx">Home</a></p>
         </div>
 
         <!--------------------------------選單開始---------------------------------------------------->
@@ -137,7 +143,7 @@
                                                             <asp:HyperLink ID="btnNewsDetail"
                                                                 runat="server"
                                                                 NavigateUrl='<%# "NewsDetail.aspx?pos=" + Eval("Id") %>'>
-                                    <img  src='<%# Eval("NewsImg") %>' alt="&quot;&quot;" />
+                                    <img class="newsImg"  src='<%# Eval("NewsImg") %>' alt="&quot;&quot;" />
                                 </asp:HyperLink>
 
                                                         </p>
@@ -152,21 +158,7 @@
                                     </li>
                                 </ItemTemplate>
                             </asp:Repeater>
-                            <li>
-                                <div class="list01">
-                                    <ul>
-                                        <li>
-                                            <div>
-                                                <p>
-                                                    <img src="/Tayanahtml/html/tayana/html/images/pit006.jpg" alt="&quot;&quot;" width="300" />
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li><span>2012-01-28</span><br />
-                                            Tayana 58 CE Certificates are available</li>
-                                    </ul>
-                                </div>
-                            </li>
+
                         </ul>
                         <asp:Repeater ID="PageRepeater" runat="server">
                             <ItemTemplate>
