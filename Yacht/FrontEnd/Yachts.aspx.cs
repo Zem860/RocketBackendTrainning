@@ -8,11 +8,18 @@ using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
-
+using Yacht.BackEnd;
 namespace Yacht.FrontEnd
 {
     public partial class Yachts : System.Web.UI.Page
     {
+
+        public class SpecData
+        {
+            public string Title { get; set; }
+            public List<string> Details { get; set; }
+        }
+
         protected string connectionString = WebConfigurationManager.ConnectionStrings["TestConnectionString"].ConnectionString;
         protected string defaultModel = "";
         protected void Page_Load(object sender, EventArgs e)
@@ -36,7 +43,31 @@ namespace Yacht.FrontEnd
                 SetActiveView(pos);
                 getBreadCrumb(model, pos);
                 getReaptPhotos();
+                getFiles();
                 ShipName.Text = Request.QueryString["model"];
+            }
+        }
+
+        public void getFiles()
+        {
+            string query = @"SELECT FileName FROM OverviewFiles WHERE YachtId = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@id", getId());
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (!reader.HasRows) // 不消耗 reader，只檢查是否有資料
+                {
+                    fileBox.Visible = false;
+                }
+                else
+                {
+                    FileRepeater.DataSource = reader;
+                    FileRepeater.DataBind();
+                }
             }
         }
 
@@ -56,11 +87,13 @@ namespace Yacht.FrontEnd
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue(@"model", Request.QueryString["model"]);
                 SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read()) {
+                if (reader.Read())
+                {
 
                     curId = reader["Id"].ToString();
-                
-                } else
+
+                }
+                else
                 {
                     curId = "0";
                 }
@@ -108,7 +141,7 @@ namespace Yacht.FrontEnd
 
         protected string filterType(object isNew)
         {
-            string newTag="";
+            string newTag = "";
             switch (isNew)
             {
                 case "New Building":
@@ -135,7 +168,8 @@ namespace Yacht.FrontEnd
                 SqlCommand cmd = new SqlCommand(query, connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                if (reader.Read()) {
+                if (reader.Read())
+                {
                     defaultModel = reader["Model"].ToString();
                 }
             }
@@ -152,7 +186,7 @@ namespace Yacht.FrontEnd
                 cmd.Parameters.AddWithValue(@"id", id);
                 SqlDataReader reader = cmd.ExecuteReader();
                 DeckPlan.DataSource = reader;
-                DeckPlan.DataBind();    
+                DeckPlan.DataBind();
 
 
             }
@@ -184,18 +218,20 @@ namespace Yacht.FrontEnd
 
         public void getSailPlanImg()
         {
-            string query = "SELECT DimensionSailImg FROM OverviewDimensions WHERE YachtId = @Id";
+            string query = "SELECT DimensionSailImg FROM OverviewImg WHERE YachtId = @Id";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue(@"Id", getId());
                 SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read()) {
+                if (reader.Read())
+                {
                     if (String.IsNullOrEmpty(reader["DimensionSailImg"].ToString()))
                     {
                         imgsection.Visible = false;
-                    } else
+                    }
+                    else
                     {
                         imgsection.Visible = true;
                         SailPlanImg.ImageUrl = reader["DimensionSailImg"].ToString();
@@ -249,6 +285,65 @@ namespace Yacht.FrontEnd
                 DimensionRepeater.DataBind();
             }
         }
+
+        //public void getSpecs1()
+        //{
+        //    string query = @"
+        //SELECT st.SpecType AS Title, sd.Detail 
+        //FROM SpecificationType st 
+        //JOIN SpecDetails sd ON st.Id = sd.SpecId 
+        //WHERE YachtId = @id 
+        //ORDER BY sd.CreatedAt;";
+
+        //    Dictionary<string, List<string>> specs = new Dictionary<string, List<string>>();
+
+        //    using (SqlConnection conn = new SqlConnection(connectionString))
+        //    using (SqlCommand cmd = new SqlCommand(query, conn))
+        //    {
+        //        cmd.Parameters.AddWithValue("@id", getId());
+        //        conn.Open();
+        //        using (SqlDataReader reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                string title = reader["Title"].ToString();
+        //                string detail = reader["Detail"].ToString();
+
+        //                if (!specs.ContainsKey(title))
+        //                {
+        //                    specs[title] = new List<string>();
+        //                }
+
+        //                specs[title].Add(detail);
+        //            }
+        //        }
+        //    }
+
+        //    // 轉換成 List<dynamic> 來綁定 Repeater
+        //    var specList = specs.Select(kvp => new { Title = kvp.Key, Details = kvp.Value }).ToList();
+        //    SpecRepeater.DataSource = specList;
+        //    SpecRepeater.DataBind();
+        //}
+
+        public void getSpec2()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"SELECT SpecContent FROM Specification2 WHERE YachtId = @id";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"id", getId());
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    // 從 reader 中取得 SpecContent 欄位的資料，並轉換成字串
+                    Literal2.Text = reader["SpecContent"].ToString();
+                }
+            }
+        }
+
+
+
         protected void SetActiveView(string pos)
         {
             switch (pos)
@@ -265,13 +360,16 @@ namespace Yacht.FrontEnd
                     break;
                 case "spec":
                     MultiView1.SetActiveView(Spec);
+                    //getSpecs1();
+                    getSpec2();
                     break;
                 default:
                     MultiView1.SetActiveView(Overview);
+
                     break;
             }
         }
     }
 
-  
-    }
+
+}

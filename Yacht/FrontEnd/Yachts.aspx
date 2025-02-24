@@ -216,6 +216,26 @@
 
 
                                     </div>
+                                    <div class="downloads" runat="server" id="fileBox">
+                                        <p>
+                                            <img src="/Tayanahtml/html/tayana/html/images/downloads.gif" alt="&quot;&quot;" />
+                                        </p>
+                                        <ul>
+                                            <asp:Repeater ID="FileRepeater" runat="server">
+                                                <ItemTemplate>
+                                                    <li>
+                                                        <asp:HyperLink ID="lnkDownload"
+                                                            runat="server"
+                                                            NavigateUrl='<%# ResolveUrl("~/OverviewFiles/") + Eval("FileName") %>'
+                                                            Text='<%# Eval("FileName") %>'
+                                                            Download='<%# Eval("FileName") %>'>
+                  </asp:HyperLink>
+                                                    </li>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+
+                                        </ul>
+                                    </div>
 
                                 </asp:View>
 
@@ -239,32 +259,28 @@
                                 </asp:View>
                                 <asp:View ID="Spec" runat="server">
                                     <div class="title"><span>Layout</span></div>
-
                                     <div class="box5">
                                         <h4>DETAIL SPECIFICATION</h4>
 
-                                        <p>HULL STRUCTURE & DECKS</p>
-                                        <ul>
-                                            <li>Yanmar 4LHA-HTP 160HP (or equal)</li>
-                                            <li>White formica counters in hgalley. Teak veneer ctt</li>
-                                            <li>White formica counters in hgalley. Teak veneer c</li>
-                                            <li>White formica counters in hgalley. Teak veneer c</li>
-                                            <li>WTeak veneer ctte table 0005</li>
-                                            <li>WTeak veneer ctte table 0005</li>
-                                        </ul>
-
-                                        <p>HULL STRUCTURE & DECKS</p>
-                                        <ul>
-                                            <li>Yanmar 4LHA-HTP 160HP (or equal)</li>
-                                            <li>White formica counters in hgalley. Teak veneer ctt</li>
-                                            <li>White formica counters in hgalley. Teak veneer c</li>
-                                            <li>White formica counters in hgalley. Teak veneer c</li>
-                                            <li>WTeak veneer ctte table 0005</li>
-                                            <li>WTeak veneer ctte table 0005</li>
-                                        </ul>
-
-
+                                        <asp:Literal ID="Literal2" runat="server"></asp:Literal>
                                     </div>
+
+                                    <%-- <div class="box5">
+                                        <h4>DETAIL SPECIFICATION</h4>
+
+                                        <asp:Repeater ID="SpecRepeater" runat="server">
+                                            <ItemTemplate>
+                                                <!-- 每個規格類別 (Title) 只顯示一次 -->
+                                                <p><%# Eval("Title") %></p>
+                                                <ul>
+                                                    <%# string.Join("", ((List<string>)Eval("Details")).Select(d => $"<li>{d}</li>").ToArray()) %>
+                                                </ul>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>--%>
+
+                                   
+
                                 </asp:View>
                             </asp:MultiView>
                         </ContentTemplate>
@@ -272,11 +288,14 @@
                     <p class="topbuttom">
                         <img src="/Tayanahtml/html/tayana/html/images/top.gif" alt="top" />
                     </p>
+                    <!--下載開始-->
+
+                    <!--下載結束-->
 
                     <!--------------------------------內容結束------------------------------------------------------>
+
                 </div>
             </div>
-
             <!--------------------------------右邊選單結束---------------------------------------------------->
         </div>
 
