@@ -21,6 +21,11 @@
 <asp:Content ID="Content10" ContentPlaceHolderID="EditNews" runat="server">
 </asp:Content>
 <asp:Content ID="Content11" ContentPlaceHolderID="EditNewsPhoto" runat="server">
+        <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+        </script>
     <style>
         img {
             width: 100%; /* 讓圖片寬度占滿容器寬度 */

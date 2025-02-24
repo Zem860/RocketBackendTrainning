@@ -61,13 +61,9 @@ namespace Yacht.BackEnd
                             img.SaveAs(imgLocalPath);
                         }
                     }
-                    show();
-
-                   
+                    show();                
             }
             }
-           
-
         }
 
         protected void changePinUp(object sender, EventArgs e)
@@ -97,48 +93,59 @@ namespace Yacht.BackEnd
 
         public void show()
         {
-
-            if (String.IsNullOrEmpty(Id))
+            if (String.IsNullOrEmpty(Request.QueryString["id"]))
             {
-                Response.Redirect("News.aspx");
+                Response.Redirect("NewsList.aspx"); // 🔥 確保 `id` 存在，否則返回
             }
+
+            string id = Request.QueryString["id"]; // 🚀 直接從 `QueryString` 取得 ID，確保是最新的
+
+            // 🔥 先清空 ListBox，確保 UI 重新載入
+            AllImages.Items.Clear();
+            DeleteImagesList.Items.Clear();
+
             string query = @"
-                SELECT
-                News.Id AS Id, 
-                News.Title AS NewsTitle, 
-                STRING_AGG(NewsImgs.imagePath, ',') AS PinUpImgs,  -- 所有圖片
-                STRING_AGG(NewsImgs.Id, ',') AS ImgId,  -- 所有圖片
-                (SELECT TOP 1 imagePath FROM NewsImgs WHERE newsId = News.Id AND Cover = 1) AS PinUp, -- 取得封面圖
-                News.NewsContent, 
-                CONVERT(NVARCHAR, News.CreatedAt, 111) AS CreatedAt
-                FROM News
-                INNER JOIN NewsImgs ON NewsImgs.newsId = News.Id
-                WHERE News.Id =@Id 
-                GROUP BY News.Id, News.Title, News.NewsContent, News.CreatedAt";
+        SELECT
+            N.Id AS Id, 
+            N.Title AS NewsTitle, 
+            ISNULL(STRING_AGG(NI.imagePath, ','), '') AS PinUpImgs, -- 避免 NULL
+            ISNULL(STRING_AGG(CAST(NI.Id AS NVARCHAR), ','), '') AS ImgId, -- 避免 NULL
+            (SELECT TOP 1 imagePath FROM NewsImgs WHERE newsId = N.Id AND Cover = 1) AS PinUp, 
+            N.NewsContent, 
+            CONVERT(NVARCHAR, N.CreatedAt, 111) AS CreatedAt
+        FROM News N
+        LEFT JOIN NewsImgs NI ON NI.newsId = N.Id
+        WHERE N.Id = @Id 
+        GROUP BY N.Id, N.Title, N.NewsContent, N.CreatedAt";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.Parameters.AddWithValue(@"Id", Id);
+                cmd.Parameters.AddWithValue("@Id", id); // 🚀 確保 ID 是從 `QueryString` 取得的
+
                 SqlDataReader reader = cmd.ExecuteReader();
+
                 if (reader.Read())
                 {
                     NewsTitle.Text = reader["NewsTitle"].ToString().Trim();
                     string selectedCover = reader["PinUp"] != DBNull.Value ? reader["PinUp"].ToString() : "";
 
-                    if (reader["PinUpImgs"] != DBNull.Value)
+                    if (!string.IsNullOrEmpty(reader["PinUpImgs"].ToString())) // 確保不為空
                     {
                         string[] imgs = reader["PinUpImgs"].ToString().Split(',');
                         string[] imgId = reader["ImgId"].ToString().Split(',');
                         int getIdIndex = 0;
+
                         foreach (string i in imgs)
                         {
                             ListItem img = new ListItem($"<img src='{i}' style='object-fit:cover; width:100px; height:75px;'>", i);
                             AllImages.Items.Add(img);
+
                             ListItem imgforDelete = new ListItem($"<img src='{i}' style='object-fit:cover; width:100px; height:75px;'>", imgId[getIdIndex]);
                             DeleteImagesList.Items.Add(imgforDelete);
-                            if (reader["PinUp"].ToString() == i)
+
+                            if (selectedCover == i)
                             {
                                 img.Selected = true;
                                 PreviewImage.ImageUrl = i;
@@ -149,6 +156,7 @@ namespace Yacht.BackEnd
                 }
             }
         }
+
 
         protected void DeleteSelectedImages(object sender, EventArgs e)
         {

@@ -15,7 +15,11 @@
 <asp:Content ID="Content7" ContentPlaceHolderID="Cities" runat="server">
 </asp:Content>
 <asp:Content ID="Content8" ContentPlaceHolderID="AddNews" runat="server">
-
+        <script>
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
+        </script>
  <div class="container mt-5">
          <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         <!-- Row: 容納列元素 -->
@@ -52,18 +56,51 @@
             </div>
         </div>
      </div>
+   
 
-    <script>
+    <script >
 
-        ClassicEditor.create(document.querySelector('#editor'), {
-            licenseKey: 'GPL',
-            ckfinder: {
-                uploadUrl: 'https://ckeditor.com/apps/ckfinder/3.5.0/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-            }, 
-            resize_enabled: true,  // 啟用大小調整功能
-        }).catch(error => {
-            console.error(error);
-        });
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                licenseKey: 'GPL',
+                ckfinder: {
+                    uploadUrl: 'https://ckeditor.com/apps/ckfinder/3.5.0/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+                },
+                toolbar: {
+                    items: [
+                        'ckfinder', '|',
+                        'exportPDF', 'exportWord', '|',
+                        'findAndReplace', 'selectAll', '|',
+                        'heading', '|',
+                        'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+                        'bulletedList', 'numberedList', 'todoList', '|',
+                        'outdent', 'indent', '|',
+                        'undo', 'redo',
+                        '-',
+                        'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
+                        'alignment', '|',
+                        'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+                        'specialCharacters', 'horizontalLine', 'pageBreak', '|',
+                        'textPartLanguage', '|',
+                        'sourceEditing' // 修正 'SourceDialog' 為 'sourceEditing'
+                    ]
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+
+
+        //ClassicEditor.create(document.querySelector('#editor'), {
+        //    licenseKey: 'GPL',
+        //    ckfinder: {
+        //        uploadUrl: 'https://ckeditor.com/apps/ckfinder/3.5.0/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+        //    },
+        //    toolbar:["sourcearea"],
+        //}).catch(error => {
+        //    console.error(error);
+        //});
 
 
     </script>

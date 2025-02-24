@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection;
@@ -26,19 +27,75 @@ namespace Yacht.BackEnd
             }
         }
 
+
+        public string HandleCkImgs(int id, string editorContent)
+        {
+            string localPathHeading = Server.MapPath("~/Test/");
+
+            // 確保 /Test/ 資料夾存在
+            if (!Directory.Exists(localPathHeading))
+            {
+                Directory.CreateDirectory(localPathHeading);
+            }
+
+            // 取得所有圖片的原始 URL（未被修改的 `src`）
+            string imgPattern = @"<img\s+[^>]*?src=['""](https?:\/\/[^'""]+)['""][^>]*?>";
+            MatchCollection matches = Regex.Matches(editorContent, imgPattern);
+
+            if (matches.Count == 0)
+            {
+                return editorContent; // 沒有圖片則直接返回原內容
+            }
+            string query = @"UPDATE NewsContentImgs SET ImagePath = @img WHERE NewsId = @id";
+            //string query = @"INSERT INTO NewsImgs (NewsId, ImagePath, Cover) VALUES (@id, @img, @cover)";
+            int count = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+
+                foreach (Match match in matches)
+                {
+                    string imageUrl = match.Groups[1].Value; // 原始圖片網址
+                    string imgName = Path.GetFileName(new Uri(imageUrl).LocalPath); // 取得圖片名稱
+                    string localPath = Path.Combine(localPathHeading, imgName); // 儲存圖片的路徑
+                    string imgMappingPath = "/Test/" + imgName; // 新的本地 URL
+
+                    try
+                    {
+                        // 下載圖片
+                        using (var client = new System.Net.WebClient())
+                        {
+                            client.DownloadFile(imageUrl, localPath);
+                        }
+
+                        // **儲存圖片資訊到資料庫**
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue(@"id", id);
+                        cmd.Parameters.AddWithValue(@"img", imgMappingPath);
+
+                        cmd.ExecuteNonQuery();
+                        count++;
+
+                        // **更新 `editorContent`，替換 `src`**
+                        editorContent = editorContent.Replace(imageUrl, imgMappingPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"圖片下載失敗: {imageUrl}, 錯誤: {ex.Message}");
+                    }
+                }
+            }
+
+            return editorContent; // **回傳更新後的內容**
+        }
+
         protected void sendEdit(object sender, EventArgs e)
         {
             string editorContent = Request.Unvalidated.Form["editor1"];
 
-            // 修正圖片標籤，使其包含 src
-            string pattern = @"<img[^>]*?data-ck-upload-id=""([^""]+)""[^>]*?>";
-            editorContent = Regex.Replace(editorContent, pattern, match =>
-            {
-                string uploadId = match.Groups[1].Value;
-                string newSrc = "/NewsImgs/" + uploadId + ".jpg";
-
-                return $"<img src=\"{newSrc}\" />";
-            });
+            editorContent = HandleCkImgs(Convert.ToInt32(Request.QueryString["Id"]), editorContent);
 
             string query = @"
             UPDATE News SET Title = @title, NewsContent = @content WHERE Id = @Id;";
