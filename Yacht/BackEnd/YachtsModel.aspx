@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BackEnd/Dashboard.Master" AutoEventWireup="true" CodeBehind="YachtsModel.aspx.cs" Inherits="Yacht.BackEnd.YachtsModel" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Default" runat="server">
@@ -30,45 +31,56 @@
 <asp:Content ID="Content15" ContentPlaceHolderID="Specification" runat="server">
 </asp:Content>
 <asp:Content ID="Content16" ContentPlaceHolderID="YachtsModel" runat="server">
+        <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+        </script>
     <p>Yachts Model</p>
-    <asp:GridView ID="YachtsGridView" runat="server" AutoGenerateColumns="false" DataKeyNames="Id"
+    <asp:GridView ID="YachtsGridView" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" OnRowDataBound="YachtsGridView_RowDataBound"
+        CssClass="table table-striped table-bordered text-center" OnRowEditing="YachtsGridView_RowEditing" OnRowCancelingEdit="YachtsGridView_RowCancelingEdit" OnRowUpdating="YachtsGridView_RowUpdating" OnRowDeleting="YachtsGridView_RowDeleting">
+        <Columns>
+            <asp:TemplateField HeaderText="YachtsName">
+                <ItemTemplate>
+                    <asp:Label ID="NameLabel" runat="server" Text='<%# Eval("YachtName") %>' CssClass="fw-bold text-info"></asp:Label>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:TextBox ID="NameText" runat="server" Text='<%# Bind("YachtName") %>' CssClass="form-control"></asp:TextBox>
+                </EditItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Yachts">
+                <ItemTemplate>
+                    <asp:Label ID="ModelLabel" runat="server" Text='<%# Eval("Model") %>' CssClass="fw-bold text-info"></asp:Label>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:TextBox ID="ModelText" runat="server" Text='<%# Bind("Model") %>' CssClass="form-control"></asp:TextBox>
+                </EditItemTemplate>
+            </asp:TemplateField>
+             <asp:TemplateField HeaderText="YachtDesign">
+     <ItemTemplate>
+         <asp:RadioButtonList ID="DesignRadioButtons" runat="server" RepeatDirection="Horizontal"
+             AutoPostBack="true" OnSelectedIndexChanged="changeDesign">
+         </asp:RadioButtonList>
+     </ItemTemplate>
+ </asp:TemplateField>
 
-    CssClass="table table-striped table-bordered text-center" OnRowEditing="YachtsGridView_RowEditing" OnRowCancelingEdit="YachtsGridView_RowCancelingEdit" OnRowUpdating="YachtsGridView_RowUpdating" OnRowDeleting="YachtsGridView_RowDeleting">
-    <Columns>
-<asp:TemplateField HeaderText="YachtsName">
-    <ItemTemplate>
-        <asp:Label ID="NameLabel" runat="server" Text='<%# Eval("YachtName") %>' CssClass="fw-bold text-info"></asp:Label>
-    </ItemTemplate>
-    <EditItemTemplate>
-        <asp:TextBox ID="NameText" runat="server" Text='<%# Bind("YachtName") %>' CssClass="form-control"></asp:TextBox>
-    </EditItemTemplate>
-</asp:TemplateField>
-        <asp:TemplateField HeaderText="Yachts">
-    <ItemTemplate>
-        <asp:Label ID="ModelLabel" runat="server" Text='<%# Eval("Model") %>' CssClass="fw-bold text-info"></asp:Label>
-    </ItemTemplate>
-    <EditItemTemplate>
-        <asp:TextBox ID="ModelText" runat="server" Text='<%# Bind("Model") %>' CssClass="form-control"></asp:TextBox>
-    </EditItemTemplate>
-</asp:TemplateField>
-
-        <asp:TemplateField HeaderText="Delete">
-            <ItemTemplate>
-                <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-danger btn-sm"
-                    CommandName="Delete" CommandArgument='<%# Eval("Id") %>' 
-                    OnClientClick="return confirm('Are you sure you want to delete this item?');" />
-            </ItemTemplate>
-        </asp:TemplateField>
+            <asp:TemplateField HeaderText="Delete">
+                <ItemTemplate>
+                    <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-danger btn-sm"
+                        CommandName="Delete" CommandArgument='<%# Eval("Id") %>'
+                        OnClientClick="return confirm('Are you sure you want to delete this item?');" />
+                </ItemTemplate>
+            </asp:TemplateField>
 
 
             <asp:TemplateField HeaderText="Edit">
                 <ItemTemplate>
                     <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-primary btn-sm"
                         CommandName="Edit" CommandArgument='<%# Eval("Id") %>' />
-                    
-                            <asp:HyperLink ID="HyperLink1" CssClass="btn btn-secondary" runat="server" NavigateUrl='<%# "EditShipPhotos.aspx?Id=" + Eval("Id") %>'>
+
+                    <asp:HyperLink ID="HyperLink1" CssClass="btn btn-secondary" runat="server" NavigateUrl='<%# "EditShipPhotos.aspx?Id=" + Eval("Id") %>'>
                                     Edit(Imgs)
-                            </asp:HyperLink>
+                    </asp:HyperLink>
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:Button ID="btnUpdate" runat="server" Text="Save" CssClass="btn btn-success btn-sm"
@@ -79,7 +91,7 @@
             </asp:TemplateField>
 
 
-    </Columns>
-</asp:GridView>
+        </Columns>
+    </asp:GridView>
 </asp:Content>
 

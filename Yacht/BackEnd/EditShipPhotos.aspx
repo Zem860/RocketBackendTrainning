@@ -47,17 +47,14 @@
        }
    </style>
    <div class="container mt-5">
-       <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-
        <!-- Row: 容納列元素 -->
        <div class="row d-flex justify-content-center border-1 border-dark p-3">
            <!-- Col: 占 12 列中的 6 列，畫面小於768px時會自動換行 -->
            <div class="col-md-6">
                <!-- News Title -->
                <div class="mb-3">
-                   <label for="Model" class="form-label">News Title</label>
+                   <label for="Model" class="form-label">Ship Model</label>
                    <asp:TextBox ID="Model" Enabled="false" runat="server" CssClass="form-control" />
-
                </div>
 
                <!-- News Photos -->

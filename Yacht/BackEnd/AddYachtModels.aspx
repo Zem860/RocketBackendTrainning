@@ -42,8 +42,6 @@
             </div>
         </div>
         <div class="mb-3 row align-items-center d-flex">
-            <label for="YachtModel" class="col-sm-4 col-form-label fw-bold">Yacht Design</label>
-
             <div class="mb-3 row align-items-center d-flex">
                 <label for="YachtModel" class="col-sm-4 col-form-label fw-bold">Yacht Design</label>
 
@@ -78,5 +76,6 @@
                 <asp:Button ID="Submit" runat="server" CssClass="btn btn-primary px-4 py-2" Text="Submit" OnClick="addModel" />
             </div>
         </div>
+</div>
 </asp:Content>
 

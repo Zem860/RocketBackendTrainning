@@ -59,6 +59,7 @@ namespace Yacht.BackEnd
 
                 while (reader.Read())
                 {
+                    Model.Text = reader["Title"].ToString();
                     string selectedCover = reader["PinUp"] != DBNull.Value ? reader["PinUp"].ToString() : "";
 
                     ListItem img = new ListItem($"<img src='{reader["PinUpImgs"]}' style='object-fit:cover; width:100px; height:75px;'>", reader["PinUpImgs"].ToString());

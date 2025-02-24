@@ -27,6 +27,21 @@ namespace Yacht.BackEnd
             }
         }
 
+        public void getDesignType()
+        {
+            string query = "SELECT Id, DesignType FROM YachtsDesign";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    
+                }
+            }
+        }
+
 
         private string GetModelName(string model)
         {
@@ -114,5 +129,103 @@ namespace Yacht.BackEnd
             }
             getModel();
         }
+        private void BindDesignTypes(RadioButtonList radioButtonList, int yachtId)
+        {
+            string query = "SELECT Id, DesignType FROM YachtsDesign";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                radioButtonList.Items.Clear(); // 確保不重複綁定
+
+                while (reader.Read())
+                {
+                    ListItem item = new ListItem(reader["DesignType"].ToString(), reader["Id"].ToString());
+
+                    // 檢查該 Yacht 是否已經選擇這個 DesignType
+                    if (IsDesignSelected(yachtId, Convert.ToInt32(reader["Id"])))
+                    {
+                        item.Selected = true; // 預設勾選
+                    }
+
+                    radioButtonList.Items.Add(item);
+                }
+
+                reader.Close();
+            }
+        }
+
+
+        protected void changeDesign(object sender, EventArgs e)
+        {
+            // 找到觸發事件的 RadioButtonList
+            RadioButtonList radioButtonList = (RadioButtonList)sender;
+
+            // 找到這個 RadioButtonList 所在的 GridViewRow
+            GridViewRow row = (GridViewRow)radioButtonList.NamingContainer;
+
+            if (row != null)
+            {
+                // 取得該行的 YachtId
+                int yachtId = Convert.ToInt32(YachtsGridView.DataKeys[row.RowIndex].Value);
+
+                // 取得使用者選擇的 DesignId
+                int selectedDesignId = Convert.ToInt32(radioButtonList.SelectedValue);
+
+                // 更新資料庫
+                string query = "UPDATE YachtsModel SET designId = @DesignId WHERE Id = @YachtId";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@DesignId", selectedDesignId);
+                    cmd.Parameters.AddWithValue("@YachtId", yachtId);
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+        }
+
+
+        private bool IsDesignSelected(int yachtId, int designId)
+        {
+            string query = "SELECT COUNT(*) FROM YachtsModel WHERE Id = @YachtId AND DesignId = @DesignId";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@YachtId", yachtId);
+                cmd.Parameters.AddWithValue("@DesignId", designId);
+
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count > 0; // 如果找到對應數據，表示該設計已經選擇
+            }
+        }
+
+
+
+        protected void YachtsGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow) // 只處理數據行
+            {
+                // 取得當前行的 Yacht Id
+                int yachtId = Convert.ToInt32(YachtsGridView.DataKeys[e.Row.RowIndex].Value);
+
+                // 找到該行的 RadioButtonList 控件
+                RadioButtonList radioButtonList = (RadioButtonList)e.Row.FindControl("DesignRadioButtons");
+
+                if (radioButtonList != null)
+                {
+                    BindDesignTypes(radioButtonList, yachtId);
+                }
+            }
+        }
+
+
     }
 }
