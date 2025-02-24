@@ -22,10 +22,31 @@ namespace Yacht.BackEnd
         {
             if (!IsPostBack)
             {
-                getDropDown();
-                getOverviewText();
-                getDimensions();
-                getSailPlanImg();
+                show();
+            }
+        }
+
+        public void show()
+        {
+            getDropDown();
+            getOverviewText();
+            getDimensions();
+            getSailPlanImg();
+            getFiles();
+        }
+        public void getFiles()
+        {
+            string query = @"SELECT Id AS FileId, FileName AS FileName, FilePath As FilePath
+                                FROM OverviewFiles                             
+                                WHERE YachtId = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"id", YachtModel.SelectedValue);
+                SqlDataReader reader = cmd.ExecuteReader();
+                FileGridView.DataSource = reader;
+                FileGridView.DataBind();
             }
         }
 
@@ -87,6 +108,7 @@ namespace Yacht.BackEnd
             getOverviewText();
             getDimensions();
             getSailPlanImg();
+            getFiles();
 
         }
 
@@ -106,6 +128,8 @@ namespace Yacht.BackEnd
                 cmd.Parameters.AddWithValue(@"text", editorContent);
                 cmd.ExecuteNonQuery();
             }
+
+            getOverviewText();
         }
 
 
@@ -136,10 +160,10 @@ namespace Yacht.BackEnd
 
         public void UploadPhoto()
         {
-            if (!String.IsNullOrEmpty(TempImg.ImageUrl))
+            if (!String.IsNullOrEmpty(Image1.ImageUrl))
             {
                 //string localStorePath = "~" + TempImg.ImageUrl;
-                string query = "UPDATE OverviewDimensions Set DimensionSailImg = @img WHERE YachtId = @id";
+                string query = "UPDATE OverviewImg Set DimensionSailImg = @img WHERE YachtId = @id";
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -148,9 +172,23 @@ namespace Yacht.BackEnd
                     cmd.Parameters.AddWithValue(@"id", YachtModel.SelectedValue);
                     cmd.ExecuteNonQuery();
                 }
-                Response.Redirect("~/BackEnd/Overview.aspx");
-            }  
-            
+                
+            } else
+            {
+                string query = "INSERT INTO OverviewImg (YachtId, DimensionSailImg) VALUES (@id, @img)";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue(@"img", TempImg.ImageUrl);
+                    cmd.Parameters.AddWithValue(@"id", YachtModel.SelectedValue);
+                    cmd.ExecuteNonQuery();
+                    Image1.Visible = true;
+                   
+                }
+            }
+            getSailPlanImg();
 
         }
         public void saveLocalPhoto()
@@ -388,32 +426,39 @@ namespace Yacht.BackEnd
 
         public void getSailPlanImg()
         {
-            string query = "SELECT DimensionSailImg FROM OverviewDimensions WHERE YachtId = @id";
+            string query = "SELECT DimensionSailImg FROM OverviewImg WHERE YachtId = @id";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
+                
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue(@"id", YachtModel.SelectedValue);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    Image1.ImageUrl = reader["DimensionSailImg"].ToString();
 
+                     Image1.ImageUrl = reader["DimensionSailImg"].ToString();
+                    Image1.Visible = true;
                     ReplacePhoto.Visible = true;
-                    if (String.IsNullOrEmpty(reader["DimensionSailImg"].ToString()))
-                    {
-                        ReplacePhoto.Visible = false;
+                    TempImg.Visible = false;
+                  
+                    
+                }else
+                {
+                    Image1.ImageUrl = "";
+                    Image1.Visible = false;
+                    ReplacePhoto.Visible = true;
 
-                    }
                 }
             }
 
         }
         protected void UploadImgs(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(TempImg.ImageUrl))
+            if (String.IsNullOrEmpty(TempImg.ImageUrl)&&String.IsNullOrEmpty(Image1.ImageUrl))
             {
                 Response.Write("<script>alert('Sth went wrong')</script>");
+                return;
             }
             UploadPhoto();
         }
@@ -427,6 +472,73 @@ namespace Yacht.BackEnd
             saveLocalPhoto();
 
         }
-    }
 
+        protected void AddFiles(object sender, EventArgs e)
+        {
+            if (FileUpload2.HasFile)
+            {
+                string localPathHeading = Server.MapPath("~/OverviewFiles/");
+                string query = @"INSERT INTO OverviewFiles (YachtId, FileName, FilePath) VALUES (@id, @name,@path)";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    foreach (var file in FileUpload2.PostedFiles)
+                    {
+                        int fileMemory = file.ContentLength;
+                        string fileName = Path.GetFileName(file.FileName);
+                        string imgExtension = Path.GetExtension(file.FileName).ToLower();
+                        string localPath = Path.Combine(localPathHeading, fileName);
+                        if (fileMemory > 1000000)
+                        {
+                            continue;
+                        }
+                        else if (imgExtension != ".pdf" && imgExtension != ".txt")
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            string fileMappingPath = "/OverviewFiles/" + fileName;
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue(@"id", YachtModel.SelectedValue);
+                            cmd.Parameters.AddWithValue(@"path", fileMappingPath);
+                            cmd.Parameters.AddWithValue(@"name", fileName);
+                            file.SaveAs(localPath);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    show();
+                }
+            }
+        }
+
+
+        protected void DeleteImg(object sender, EventArgs e)
+        {
+            string query = "DELETE FROM OverviewImg WHERE YachtId = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"id", YachtModel.SelectedValue);
+                cmd.ExecuteNonQuery();
+            }
+            getSailPlanImg();
+        }
+
+        protected void FileGridView_RowDeleting1(object sender, GridViewDeleteEventArgs e)
+        {
+            int fileId = Convert.ToInt32(FileGridView.DataKeys[e.RowIndex].Value);
+            string query = "DELETE FROM OverviewFiles WHERE Id = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue(@"id", fileId);
+                cmd.ExecuteNonQuery();
+            }
+            getFiles();
+        }
+    }
 }
