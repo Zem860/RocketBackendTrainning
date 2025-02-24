@@ -15,4 +15,3 @@
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="Cities" runat="server">
 </asp:Content>
-    

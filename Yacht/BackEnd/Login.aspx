@@ -57,16 +57,10 @@
                                 <label for="floatingInput">User Account</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <asp:TextBox CssClass="form-control" ID="Password" runat="server"></asp:TextBox>
+                                <asp:TextBox CssClass="form-control" ID="Password" runat="server" TextMode="Password"></asp:TextBox>
                                 <label for="floatingInput1">Password</label>
                             </div>
-                            <div class="d-flex mt-1 justify-content-between">
-                                <div class="form-check">
-                                    <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
-                                    <label class="form-check-label text-muted" for="customCheckc1">Remember me</label>
-                                </div>
-                                <h5 class="text-secondary">Forgot Password?</h5>
-                            </div>
+                            
                             <div class="d-grid mt-4">
                                 <asp:Button ID="Signin" CssClass="btn btn-secondary" runat="server" Text="Sign In" OnClick="CheckLogin" />
                             </div>

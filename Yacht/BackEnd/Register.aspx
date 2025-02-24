@@ -3,28 +3,112 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+    <title>Login Page</title>
+    <!-- [Favicon] icon -->
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/x-icon" />
+    <!-- [Google Font] Family -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" id="main-font-link" />
+    <!-- [phosphor Icons] https://phosphoricons.com/ -->
+    <link rel="stylesheet" href="../assets/fonts/phosphor/duotone/style.css" />
+    <!-- [Tabler Icons] https://tablericons.com -->
+    <link rel="stylesheet" href="../assets/fonts/tabler-icons.min.css" />
+    <!-- [Feather Icons] https://feathericons.com -->
+    <link rel="stylesheet" href="../assets/fonts/feather.css" />
+    <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+    <link rel="stylesheet" href="../assets/fonts/fontawesome.css" />
+    <!-- [Material Icons] https://fonts.google.com/icons -->
+    <link rel="stylesheet" href="../assets/fonts/material.css" />
+    <!-- [Template CSS Files] -->
+    <link rel="stylesheet" href="../assets/css/style.css" id="main-style-link" />
+    <link rel="stylesheet" href="../assets/css/style-preset.css" />
 </head>
+
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1">
-                <Columns>
-                    <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
-                    <asp:BoundField DataField="Account" HeaderText="Account" SortExpression="Account" />
-                    <asp:BoundField DataField="HashPwd" HeaderText="HashPwd" SortExpression="HashPwd" />
-                    <asp:BoundField DataField="Salt" HeaderText="Salt" SortExpression="Salt" />
-                </Columns>
-            </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TestConnectionString %>" ProviderName="<%$ ConnectionStrings:TestConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Admins]"></asp:SqlDataSource>
-            <asp:TextBox ID="Account" runat="server"></asp:TextBox>
-            <asp:TextBox ID="Password" runat="server"></asp:TextBox>
-            <asp:Button ID="Submit" runat="server" Text="Register" OnClick="addUser" />
-            <asp:Label ID="Error" ForeColor="Red" Visible="false" runat="server" Text="Label"></asp:Label>
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/BackEnd/Login.aspx">HyperLink</asp:HyperLink>
+    <form id="form2" runat="server">
+        <!-- [ Pre-loader ] start -->
+        <div class="loader-bg">
+            <div class="loader-track">
+                <div class="loader-fill"></div>
+            </div>
         </div>
+        <!-- [ Pre-loader ] End -->
+
+        <div class="auth-main">
+            <div class="auth-wrapper v3">
+                <div class="auth-form">
+                    <div class="card my-5">
+                        <div class="card-body">
+                            <a href="#" class="d-flex justify-content-center">
+                                <img src="/assets/images/fluffy.svg" alt="image" class="img-fluid w-25 h-25" />
+                            </a>
+                            <div class="row">
+                                <div class="d-flex justify-content-center">
+                                    <div class="auth-header">
+                                        <h2 class="text-secondary mt-5"><b>Hi, Welcome Back</b></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="my-4 d-flex justify-content-center">Register an account</h5>
+                            <div class="form-floating mb-3">
+                                <asp:TextBox CssClass="form-control" ID="Account" runat="server"></asp:TextBox>
+                                <label for="floatingInput">User Account</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <asp:TextBox CssClass="form-control" ID="Password" runat="server" TextMode="Password"></asp:TextBox>
+                                <label for="floatingInput1">Password</label>
+                                <asp:Label ID="Error" ForeColor="Red" Visible="false" runat="server" Text="Label"></asp:Label>
+
+                            </div>
+
+                            <div class="d-grid mt-4">
+                                <asp:Button ID="Submit" CssClass="btn btn-secondary" runat="server" Text="Register" OnClick="addUser" />
+                            </div>
+                            <hr />
+                            <h5 class="d-flex justify-content-center">Don't have an account?</h5>
+                            <div class="d-grid mt-4">
+                                <asp:HyperLink ID="HyperLink2" CssClass="btn btn-secondary" runat="server" NavigateUrl="Login.aspx">Go Login</asp:HyperLink>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ Main Content ] end -->
+        <!-- Required Js -->
+        <script src="../assets/js/plugins/popper.min.js"></script>
+        <script src="../assets/js/plugins/simplebar.min.js"></script>
+        <script src="../assets/js/plugins/bootstrap.min.js"></script>
+        <script src="../assets/js/fonts/custom-font.js"></script>
+        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/theme.js"></script>
+        <script src="../assets/js/plugins/feather.min.js"></script>
+        <script>
+            layout_change('light');
+        </script>
+
+        <script>
+            font_change('Roboto');
+        </script>
+
+        <script>
+            change_box_container('false');
+        </script>
+
+        <script>
+            layout_caption_change('true');
+        </script>
+
+        <script>
+            layout_rtl_change('false');
+        </script>
+
+        <script>
+            preset_change('preset-1');
+        </script>
     </form>
+
 </body>
 </html>
