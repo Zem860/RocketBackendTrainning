@@ -125,7 +125,7 @@
                             </a>
                         </li>
 
-                        <li class="pc-item pc-caption">
+                     <%--   <li class="pc-item pc-caption">
                             <label>Pages</label>
                             <i class="ti ti-news"></i>
                         </li>
@@ -192,15 +192,12 @@
                         <div class="badge theme-version badge rounded-pill bg-light text-dark f-12"></div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
         </nav>
-
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column gap-3">
             <div>
                 <div class="pc-header">
-
-
-                    <div class="header-wrapper">
+                    <div>
                         <%--三條線menu--%>
 
                         <!-- [Mobile Media Block] start -->
@@ -242,8 +239,8 @@
                                         <input type="search" class="form-control" placeholder="Search here. . ." />
                                         <button class="btn btn-light-secondary btn-search"><i class="ti ti-adjustments-horizontal"></i></button>
                                     </form>
-                                </li>--%>
-                            </ul>
+                                </li>
+                            </ul>--%>
                     </div>
                     <!-- [Mobile Media Block end] -->
                     <div class="ms-auto">
