@@ -84,17 +84,7 @@
                 licenseKey: 'GPL',
                 ckfinder: {
                     uploadUrl: 'https://ckeditor.com/apps/ckfinder/3.5.0/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-                },
-                toolbar: {
-                    items: [
-                        'ckfinder', '|',
-                        'bold', 'italic', 'underline', 'removeFormat', '|',
-                        'bulletedList', 'numberedList', '|',
-                        'outdent', 'indent', '|',
-                        'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', '|',
-                        'sourceEditing'
-                    ]
-                }
+                },              
             })
             .catch(error => {
                 console.error(error);
