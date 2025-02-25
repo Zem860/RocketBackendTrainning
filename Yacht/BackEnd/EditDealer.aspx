@@ -30,7 +30,7 @@
                 <div class="d-flex align-items-center">
                     <asp:Image ID="Image1" runat="server" CssClass="img-thumbnail me-3" Width="150" Height="150" ImageUrl="https://placehold.co/150x150" />
                     <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" />
-                    <asp:Button ID="Button1" runat="server" Text="Upload Image" CssClass="btn btn-secondary ms-2" />
+                    <asp:Button ID="Button1" runat="server" Text="Preview" CssClass="btn btn-secondary ms-2" OnClick="Preview" />
                 </div>
             </div>
 

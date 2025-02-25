@@ -52,7 +52,6 @@ namespace Yacht.BackEnd
                 // 確保資料綁定
             }
         }
-
         public void getData()
         {
             string companyId = Request.QueryString["Id"];
@@ -116,9 +115,7 @@ namespace Yacht.BackEnd
             
 
         public void getDropDown(string countryId ="1")
-        {
-            string connectionString = WebConfigurationManager.ConnectionStrings["TestConnectionString"].ConnectionString;
-           
+        {           
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -153,7 +150,6 @@ namespace Yacht.BackEnd
         public string[] handlePhoto()
         {
             string[] ImageData = new string[3];
-            string connectionString = WebConfigurationManager.ConnectionStrings["TestConnectionString"].ConnectionString;
             string dealerImagePath = Server.MapPath("~/BackEnd/DealerImages/");
             HttpPostedFile Image = FileUpload1.PostedFile;
             string imageExtension = Path.GetExtension(Image.FileName).ToLower(); // 取得 單一檔案 檔名變數，並轉成小寫
@@ -260,6 +256,45 @@ namespace Yacht.BackEnd
                 cmd.ExecuteNonQuery();
             }
             Response.Redirect("Dealers.aspx");
+        }
+
+        protected void Preview(object sender, EventArgs e)
+        {
+            if (FileUpload1.HasFile)
+            {
+                string dealerImagePath = Server.MapPath("~/BackEnd/DealerImages/");
+                HttpPostedFile Image = FileUpload1.PostedFile;
+                string imageExtension = Path.GetExtension(Image.FileName).ToLower(); // 取得 單一檔案 檔名變數，並轉成小寫
+                string FilePath = Path.Combine(dealerImagePath, Image.FileName);  // 取得 單一檔案 儲存路徑
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    int FileMemory = Image.ContentLength;
+
+                    if (FileMemory > 1000000)
+                    {
+                        Response.Write("<script>alert('檔案太大了')</script>");
+                        return;
+                    }
+                    else if (imageExtension != ".png" && imageExtension != ".jpg")
+                    {
+                        Response.Write("<script>alert('圖片檔案格式不服')</script>");
+                        return;
+                    }
+                    else    // 4-3. 如果 單一檔案 吻合格式
+                    {
+                        // 5. 進行 資料庫 寫入
+
+                        Image.SaveAs(FilePath);
+                        Image1.ImageUrl = "DealerImages/"+ Image.FileName;
+                    }
+                }
+            } else
+            {
+                Response.Write("<script>alert('must upload at least one photo!')</script>");
+                return;
+            }
         }
     }
 }
