@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BackEnd/Dashboard.Master" AutoEventWireup="true" CodeBehind="Overview.aspx.cs" Inherits="Yacht.BackEnd.Overview" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BackEnd/Dashboard.Master" MaintainScrollPositionOnPostBack="true" AutoEventWireup="true" CodeBehind="Overview.aspx.cs" Inherits="Yacht.BackEnd.Overview" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -50,6 +50,18 @@
         <asp:DropDownList ID="YachtModel" AutoPostBack="true" runat="server" CssClass="form-select" OnSelectedIndexChanged="YachtModel_SelectedIndexChanged"></asp:DropDownList>
     </div>
 
+      <!-- Content（內容）區塊 -->
+  <div class="card mb-4">
+      <div class="card-header fw-bold">Yacht Content</div>
+      <div class="card-body">
+          <textarea id="editor" name="editor1" class="form-control w-100" rows="6">
+              <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+          </textarea>
+      </div>
+      <div class="card-footer text-end">
+          <asp:Button ID="Button1" runat="server" CssClass="btn btn-secondary" Text="Save Content" OnClick="addOverviewText" />
+      </div>
+  </div>
     <!-- 圖片區塊 -->
     <div class="card mb-4">
         <div class="card-header fw-bold">Sail Plan Img</div>
@@ -72,9 +84,6 @@
         </div>
     </div>
 
-    <%--檔案區塊--%>
-
-
     <!-- 檔案區塊 -->
     <div class="card mb-4">
         <div class="card-header fw-bold">Related Files</div>
@@ -83,35 +92,7 @@
             <asp:Button ID="UploadFileBtn" runat="server" CssClass="btn btn-primary" Text="Upload Files" OnClick="AddFiles" />
         </div>
 
-        <!-- 檔案列表區 -->
-        <div class="card-footer">
-            <asp:GridView ID="FileGridView" runat="server"
-                AutoGenerateColumns="False"
-                CssClass="table table-bordered"  DataKeyNames="FileID" OnRowDeleting="FileGridView_RowDeleting1" >
-
-                <Columns>
-                    <asp:TemplateField HeaderText="File Name">
-                        <ItemTemplate>
-                            <asp:HyperLink ID="FileLink" runat="server" NavigateUrl='<%# Eval("FilePath") %>' Text='<%# Eval("FileName") %>' Target="_blank"></asp:HyperLink>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                    <asp:TemplateField HeaderText="Actions">
-                        <ItemTemplate>
-                            <asp:LinkButton ID="btnDeleteFile" runat="server" CommandName="Delete"
-                                CommandArgument='<%# Eval("FileID") %>' CssClass="btn btn-sm btn-danger"
-                                OnClientClick="return confirm('Are you sure you want to delete this file?');">
-                            Delete
-                            </asp:LinkButton>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Columns>
-
-            </asp:GridView>
-        </div>
-    </div>
-
-    <!-- Overview（概覽）區塊 -->
+            <!-- Overview（概覽）區塊 -->
     <div class="card mb-4">
         <div class="card-header fw-bold">Fill In Dimensions</div>
         <div class="card-body">
@@ -174,18 +155,37 @@
         </div>
     </div>
 
-    <!-- Content（內容）區塊 -->
-    <div class="card mb-4">
-        <div class="card-header fw-bold">Yacht Content</div>
-        <div class="card-body">
-            <textarea id="editor" name="editor1" class="form-control w-100" rows="6">
-                <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-            </textarea>
-        </div>
-        <div class="card-footer text-end">
-            <asp:Button ID="Button1" runat="server" CssClass="btn btn-secondary" Text="Save Content" OnClick="addOverviewText" />
+        <!-- 檔案列表區 -->
+        <div class="card-footer">
+            <asp:GridView ID="FileGridView" runat="server"
+                AutoGenerateColumns="False"
+                CssClass="table table-bordered"  DataKeyNames="FileID" OnRowDeleting="FileGridView_RowDeleting1" >
+
+                <Columns>
+                    <asp:TemplateField HeaderText="File Name">
+                        <ItemTemplate>
+                            <asp:HyperLink ID="FileLink" runat="server" NavigateUrl='<%# Eval("FilePath") %>' Text='<%# Eval("FileName") %>' Target="_blank"></asp:HyperLink>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Actions">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="btnDeleteFile" runat="server" CommandName="Delete"
+                                CommandArgument='<%# Eval("FileID") %>' CssClass="btn btn-sm btn-danger"
+                                OnClientClick="return confirm('Are you sure you want to delete this file?');">
+                            Delete
+                            </asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+
+            </asp:GridView>
         </div>
     </div>
+
+
+
+  
 
     <script>
         ClassicEditor
