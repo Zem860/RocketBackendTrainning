@@ -59,6 +59,7 @@ namespace Yacht.FrontEnd
             {
                 countryName = getFirstCountry();
             }
+            Title.Text = countryName;
             string getThatCountryDealers = @"
 SELECT Cities.City AS CityName, Companies.CompanyName AS CompanyName,
        Dealers.DealerGender AS DealerGender, Dealers.DealerName AS DealerName,

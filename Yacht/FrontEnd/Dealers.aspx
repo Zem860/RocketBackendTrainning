@@ -142,7 +142,10 @@
                 <div id="crumb"><a href="#">Home</a> >> <a href="#">Dealers </a>>> <a href="#"><span class="on1">Unite States</span></a></div>
                 <div class="right">
                     <div class="right1">
-                        <div class="title"><span>Unite States</span></div>
+                        <div class="title">
+                            <span>
+                                <asp:Label ID="Title" runat="server" Text="Label"></asp:Label></span>
+                        </div>
 
                         <!--------------------------------內容開始---------------------------------------------------->
                         <div class="box2_list">
