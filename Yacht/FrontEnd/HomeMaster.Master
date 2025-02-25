@@ -24,6 +24,8 @@
             <asp:ContentPlaceHolder ID="Yacht" runat="server"></asp:ContentPlaceHolder>
             <asp:ContentPlaceHolder ID="Contact" runat="server"></asp:ContentPlaceHolder>
             <asp:ContentPlaceHolder ID="Yachts" runat="server"></asp:ContentPlaceHolder>
+                    <asp:ContentPlaceHolder ID="Dealers" runat="server"></asp:ContentPlaceHolder>
+
 
     </form>
 </body>

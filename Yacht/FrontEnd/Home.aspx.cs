@@ -66,7 +66,7 @@ namespace Yacht.FrontEnd
             Y.DesignId AS DesignId
         FROM YachtsModel Y 
         INNER JOIN YachtImgs I ON Y.Id = I.YachtId 
-        WHERE I.Cover = 1";
+        WHERE I.Cover = 1 ORDER BY Y.designId DESC";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

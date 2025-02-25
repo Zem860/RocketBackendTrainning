@@ -13,6 +13,12 @@
             object-fit: contain; /* 避免裁切 */
             width: 100px;
         }
+
+        .newsImg {
+            max-width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
         /*
 
         .banner img {
@@ -126,7 +132,7 @@
 
                                 <div class="news02p1">
                                     <p class="news02p1img">
-                                        <img src='<%# Eval("PinUpImg") %>' alt="&quot;&quot;" />
+                                        <img class="newsImg" src='<%# Eval("PinUpImg") %>' alt="&quot;&quot;" />
                                     </p>
                                 </div>
                                 <p class="news02p2">
