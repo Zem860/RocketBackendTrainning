@@ -64,51 +64,75 @@ namespace Yacht.BackEnd
             HttpPostedFile Image = FileUpload1.PostedFile;
             string imageExtension = Path.GetExtension(Image.FileName).ToLower(); // 取得 單一檔案 檔名變數，並轉成小寫
             string FilePath = Path.Combine(dealerImagePath, Image.FileName);  // 取得 單一檔案 儲存路徑
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (FileUpload1.HasFile)
             {
-                connection.Open();
-
-                int FileMemory = Image.ContentLength;
-
-                if (FileMemory > 1000000)
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    Response.Write("<script>alert('檔案太大了')</script>");
-                    return null;
-                }
-                else if (imageExtension != ".png" && imageExtension != ".jpg")
-                {
-                    Response.Write("<script>alert('圖片檔案格式不服')</script>");
-                    return null;
-                }
-                else    // 4-3. 如果 單一檔案 吻合格式
-                {
-                    // 5. 進行 資料庫 寫入
-                    string pathStore = "DealerImages/" + Image.FileName;
-                    ImageData[0] = pathStore;
-                    ImageData[1] = Image.FileName;
-                    Image.SaveAs(FilePath);
+                    connection.Open();
 
-                }
+                    int FileMemory = Image.ContentLength;
 
-                return ImageData;
+                    if (FileMemory > 1000000)
+                    {
+                        Response.Write("<script>alert('檔案太大了')</script>");
+                        return null;
+                    }
+                    else if (imageExtension != ".png" && imageExtension != ".jpg")
+                    {
+                        Response.Write("<script>alert('圖片檔案格式不服')</script>");
+                        return null;
+                    }
+                    else    // 4-3. 如果 單一檔案 吻合格式
+                    {
+                        // 5. 進行 資料庫 寫入
+                        string pathStore = "DealerImages/" + Image.FileName;
+                        ImageData[0] = pathStore;
+                        ImageData[1] = Image.FileName;
+                        Image.SaveAs(FilePath);
+
+                    }
+                    
+                }           
             }
-
+            return ImageData;
         }
 
+
+        public bool alarmRequiredField()
+        {
+            
+            if (DealerName.Text == null|| DealerGender.SelectedValue == null|| (Image1.ImageUrl == "https://placehold.co/150x150" && !FileUpload1.HasFile))
+            {
+                Response.Write("<script>alert('Name, Photo, Gender Fields are Required')</script>");
+                PhotoLabel.Visible = true;
+                NameLabel.Visible = true;
+                GenderLabel.Visible = true;
+                return false;
+            }
+            return true;
+        }
         protected void addData(object sender, EventArgs e)
         {
+            if (!alarmRequiredField())
+            {               
+                return;
+            }
+
             string[] ImageData = handlePhoto();
             string dealerPhoto = "";
+            //alarmRequiredField會先檢查需要的欄位是否都已填寫(此時已經有照片)
+            //handlephoto之後理論上圖片以檢查沒問題或是有問題的話會返回Null
             if (ImageData == null)
+                
+            {
+                //Response.Write("<script>alert('Dealer Photo is required')</script>");
+                //NameLabel.Visible = true;
+                return;
+                ////將原來路徑放回資料庫即可
+            } else if (Image1.ImageUrl!=null && Image1.ImageUrl != "https://placehold.co/150x150")
             {
                 dealerPhoto = Image1.ImageUrl;
-                //Response.Write("<script>alert('你沒上傳檔案')</script>");
-                //return;
-                //將原來路徑放回資料庫即可
-            } else if (String.IsNullOrEmpty(Image1.ImageUrl))
-            {
-                Response.Write("<script>alert('你沒上傳檔案')</script>");
-                return;
+
             }
             else
             {

@@ -51,6 +51,15 @@ namespace Yacht.BackEnd
         protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
 
         /// <summary>
+        /// PhotoLabel 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PhotoLabel;
+
+        /// <summary>
         /// Button1 控制項。
         /// </summary>
         /// <remarks>
@@ -69,6 +78,15 @@ namespace Yacht.BackEnd
         protected global::System.Web.UI.WebControls.TextBox DealerName;
 
         /// <summary>
+        /// NameLabel 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NameLabel;
+
+        /// <summary>
         /// DealerGender 控制項。
         /// </summary>
         /// <remarks>
@@ -76,6 +94,15 @@ namespace Yacht.BackEnd
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList DealerGender;
+
+        /// <summary>
+        /// GenderLabel 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label GenderLabel;
 
         /// <summary>
         /// DealerPhone 控制項。

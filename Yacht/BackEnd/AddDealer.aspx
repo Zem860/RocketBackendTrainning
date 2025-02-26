@@ -28,7 +28,12 @@
                 <label class="form-label">Profile Photo</label>
                 <div class="d-flex align-items-center">
                     <asp:Image ID="Image1" runat="server" CssClass="img-thumbnail me-3" Width="150" Height="150" ImageUrl="https://placehold.co/150x150" />
-                    <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" />
+                    <div class="d-flex flex-column w-100">
+                        <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" />
+                        <asp:Label ID="PhotoLabel" Visible="false" ForeColor="Red" runat="server" Text="Dealer require a photo"></asp:Label>
+                    </div>
+
+
                     <asp:Button ID="Button1" runat="server" Text="Preview" CssClass="btn btn-secondary ms-2" OnClick="Preview" />
                 </div>
             </div>
@@ -37,14 +42,16 @@
             <div class="mb-3">
                 <label class="form-label">Dealer Name</label>
                 <asp:TextBox ID="DealerName" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:Label ID="NameLabel" Visible="false" ForeColor="Red" runat="server" Text="Dealer Name is required!"></asp:Label>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Dealer Gender</label>
-                <asp:RadioButtonList ID="DealerGender" runat="server" CssClass="form-check">
+                <asp:RadioButtonList ID="DealerGender" runat="server" CssClass="form-check" RepeatDirection="Horizontal">
                     <asp:ListItem Text="男" Value="1"></asp:ListItem>
                     <asp:ListItem Text="女" Value="0"></asp:ListItem>
                 </asp:RadioButtonList>
+                <asp:Label ID="GenderLabel" runat="server" Visible="false" ForeColor="Red" Text="Gender is required!"></asp:Label>
             </div>
 
             <div class="mb-3">
