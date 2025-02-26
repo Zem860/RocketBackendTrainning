@@ -31,7 +31,7 @@
         .news-content img {
             max-width: 600px;
             width: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .news-content p:empty {
@@ -40,17 +40,17 @@
     </style>
     <div class="contain">
         <div class="sub">
-            <p><a href="#">Home</a></p>
+            <p><a href="Home.aspx">Home</a></p>
         </div>
 
         <!--------------------------------選單開始---------------------------------------------------->
         <div class="menu">
             <ul>
-                <li class="menuli01"><a href="#">Yachts</a></li>
-                <li class="menuli02"><a href="#">NEWS</a></li>
-                <li class="menuli03"><a href="#">COMPANY</a></li>
-                <li class="menuli04"><a href="#">DEALERS</a></li>
-                <li class="menuli05"><a href="#">CONTACT</a></li>
+                <li class="menuli01"><a href="Yachts.aspx">Yachts</a></li>
+                <li class="menuli02"><a href="News.aspx">NEWS</a></li>
+                <li class="menuli03"><a href="Company.aspx">COMPANY</a></li>
+                <li class="menuli04"><a href="HomeDealers.aspx">DEALERS</a></li>
+                <li class="menuli05"><a href="Contact.aspx">CONTACT</a></li>
             </ul>
         </div>
         <!--------------------------------選單開始結束---------------------------------------------------->
@@ -138,21 +138,22 @@
                         </h4>
 
                         <asp:Literal ID="News" runat="server"></asp:Literal>
+                        <hr>
+                        <br>
                         <div>
                             <asp:Repeater ID="ImgRepeater" runat="server">
                                 <ItemTemplate>
 
-                                    <li style="display:inline">
+                                    <li style="display: inline">
                                         <asp:HyperLink ID="lnkViewImage"
                                             runat="server"
                                             NavigateUrl='<%# Eval("ImagePath") %>'
                                             Target="_blank">
-                                            <img style="max-width:300px; width:100%; object-fit:cover; height:200px;" src="<%# Eval("ImagePath") %>" alt="Click to View" />
+                                            <img style="max-width:300px; width:100%; object-fit:contain; height:200px;" src="<%# Eval("ImagePath") %>" alt="Click to View" />
                                         </asp:HyperLink>
                                     </li>
                                 </ItemTemplate>
                             </asp:Repeater>
-
                         </div>
                     </div>
 
@@ -164,7 +165,7 @@
                         <ul>
                             <asp:Repeater ID="FileRepeater" runat="server">
                                 <ItemTemplate>
-                                    <li>
+                                    <li class="imgGallery">
                                         <asp:HyperLink ID="lnkDownload"
                                             runat="server"
                                             NavigateUrl='<%# ResolveUrl("~/NewsFiles/") + Eval("FileName") %>'
