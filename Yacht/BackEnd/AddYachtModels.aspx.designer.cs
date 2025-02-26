@@ -24,6 +24,15 @@ namespace Yacht.BackEnd
         protected global::System.Web.UI.WebControls.TextBox YachtName;
 
         /// <summary>
+        /// YachtNameLabel 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label YachtNameLabel;
+
+        /// <summary>
         /// YachtModel 控制項。
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace Yacht.BackEnd
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox YachtModel;
+
+        /// <summary>
+        /// YachtModelLabel 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label YachtModelLabel;
 
         /// <summary>
         /// ModelDesign 控制項。
@@ -58,6 +76,15 @@ namespace Yacht.BackEnd
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+
+        /// <summary>
+        /// YachtImageLabel 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label YachtImageLabel;
 
         /// <summary>
         /// Submit 控制項。

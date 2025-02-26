@@ -33,6 +33,8 @@
             <div class="col-sm-8">
                 <asp:TextBox CssClass="form-control" ID="YachtName" runat="server" placeholder="Enter yacht name"></asp:TextBox>
             </div>
+                     <asp:Label ID="YachtNameLabel" Visible="false" ForeColor="Red" runat="server" Text="You must add Yacht Name!"></asp:Label>
+
         </div>
 
         <div class="mb-3 row align-items-center">
@@ -40,6 +42,8 @@
             <div class="col-sm-8">
                 <asp:TextBox CssClass="form-control" ID="YachtModel" runat="server" placeholder="Enter yacht model"></asp:TextBox>
             </div>
+         <asp:Label ID="YachtModelLabel" Visible="false" ForeColor="Red" runat="server" Text="You must add at least one photo!"></asp:Label>
+
         </div>
         <div class="mb-3 row align-items-center d-flex">
             <div class="mb-3 row align-items-center d-flex">
@@ -70,6 +74,7 @@
                 <div class="col-sm-8">
                     <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="true" CssClass="form-control" />
                 </div>
+                <asp:Label ID="YachtImageLabel"  Visible="false" ForeColor="Red" runat="server" Text="You must add at least one photo!"></asp:Label>
             </div>
 
             <div class="text-center">

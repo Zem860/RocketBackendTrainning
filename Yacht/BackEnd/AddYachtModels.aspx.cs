@@ -19,18 +19,28 @@ namespace Yacht.BackEnd
 
         }
 
+
         public void addShipModel()
         {
             if (!FileUpload1.HasFiles)
             {
                 Response.Write("<script>alert('Please upload at least one photo');</script>");
+                YachtImageLabel.Visible = true;
                 return;
             }
             else if (String.IsNullOrEmpty(YachtModel.Text))
             {
                 Response.Write("<script>alert('Please enter a Yacht Model');</script>");
+                YachtModelLabel.Visible = true;
                 return;
             }
+            else if (String.IsNullOrEmpty(YachtName.Text))
+            {
+                Response.Write("<script>alert('Please enter a Yacht Name');</script>");
+                YachtNameLabel.Visible = true;
+                return;
+            }
+
 
             // 確認是否為最新船型（CheckBox）
             //int isNewValue = IsNewModel.Checked ? 1 : 0;
