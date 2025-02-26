@@ -84,13 +84,6 @@
         </div>
     </div>
 
-    <!-- 檔案區塊 -->
-    <div class="card mb-4">
-        <div class="card-header fw-bold">Related Files</div>
-        <div class="card-body">
-            <asp:FileUpload ID="FileUpload2" runat="server" AllowMultiple="True" CssClass="form-control mb-3" />
-            <asp:Button ID="UploadFileBtn" runat="server" CssClass="btn btn-primary" Text="Upload Files" OnClick="AddFiles" />
-        </div>
 
             <!-- Overview（概覽）區塊 -->
     <div class="card mb-4">
@@ -154,6 +147,13 @@
 
         </div>
     </div>
+        <!-- 檔案區塊 -->
+    <div class="card mb-4">
+        <div class="card-header fw-bold">Related Files</div>
+        <div class="card-body">
+            <asp:FileUpload ID="FileUpload2" runat="server" AllowMultiple="True" CssClass="form-control mb-3" />
+            <asp:Button ID="UploadFileBtn" runat="server" CssClass="btn btn-primary" Text="Upload Files" OnClick="AddFiles" />
+        </div>
 
         <!-- 檔案列表區 -->
         <div class="card-footer">
