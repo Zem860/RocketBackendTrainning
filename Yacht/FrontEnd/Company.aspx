@@ -10,7 +10,7 @@
     <link href="/Tayanahtml/html/tayana/html/css/reset.css" rel="stylesheet" type="text/css" />
     <div class="contain">
         <div class="sub">
-            <p><a href="Homepage.aspx">Home</a></p>
+            <p><a href="Home.aspx">Home</a></p>
         </div>
 
         <!--------------------------------選單開始---------------------------------------------------->
@@ -122,6 +122,7 @@
                                         <p>
                                             <img src="/Tayanahtml/html/tayana/html/images/pit010.jpg" alt="&quot;&quot;" width="274" height="192" />
                                         </p>
+
                                         Founded in 1973, Ta Yang Building Co., Ltd. Has built over 1400 blue water cruising yachts to date. This world renowned custom yacht builder offers a large compliment of sailboats ranging from 37’ to 72’, many offer aft or center cockpit design, deck saloon or pilothouse options.<br />
                                         <br />
                                         In 2003, Tayana introduced the new Tayana 64 Deck Saloon, designed by Robb Ladd, which offers the latest in building techniques, large sail area and a beam of 18 feet.
@@ -141,12 +142,13 @@
 
                                         <h4>This page contains certification information about Tayana Yachts.</h4>
                                         <br />
-                                        <img src="https://i.pinimg.com/736x/3a/a9/22/3aa922544cc3b77e24572d4a77dc5b34.jpg" alt="Alternate Text" />
-                                        Overwatch has its development origins rooted in Titan, a Blizzard project that was cancelled in 2013. Elements of Titan were reworked into Overwatch, which was announced at BlizzCon in November 2014.<br />
+                                        <img src="https://www.nmma.org/lib/images/nmma/nmma_yacht_certification.jpg" alt="Alternate Text" />
                                         <br />
-                                        Overwatch was an online team-based game generally played as a first-person shooter. The game featured several different game modes, principally designed around squad-based combat with two opposing teams of six players each.
+                                        Yachts come in various forms, each tailored for specific purposes, cruising experiences, and owner preferences. While motor yachts dominate the luxury segment with their power and speed, sailing yachts appeal to traditionalists who value the art of seamanship.<br />
                                         <br />
-                                        At its heart, Overwatch has borrowed plenty from the superhero genre, but it does so while tipping the entire thing on its head, reinventing what has come before and pushing against the boundaries that have been set out in the past.<br />
+                                        The yacht industry is governed by an extensive framework of international and regional regulations designed to ensure the safety, seaworthiness, and environmental compliance of vessels. Various certification authorities, classification societies, and maritime organizations play crucial roles in maintaining industry standards.
+                                        <br />
+                                        These builders maintain dedicated research and development teams to push the boundaries of design and innovation. Yachts from these brands often feature custom interiors, advanced automation, and eco-friendly technologies.<br />
                                     </div>
                                 </asp:View>
                             </asp:MultiView>
