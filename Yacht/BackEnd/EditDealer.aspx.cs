@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -147,43 +148,6 @@ namespace Yacht.BackEnd
             getDropDown(id);
 
         }
-        public string[] handlePhoto()
-        {
-            string[] ImageData = new string[3];
-            string dealerImagePath = Server.MapPath("~/BackEnd/DealerImages/");
-            HttpPostedFile Image = FileUpload1.PostedFile;
-            string imageExtension = Path.GetExtension(Image.FileName).ToLower(); // 取得 單一檔案 檔名變數，並轉成小寫
-            string FilePath = Path.Combine(dealerImagePath, Image.FileName);  // 取得 單一檔案 儲存路徑
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                int FileMemory = Image.ContentLength;
-
-                if (FileMemory > 1000000)
-                {
-                    Response.Write("<script>alert('檔案太大了')</script>");
-                    return null;
-                }
-                else if (imageExtension != ".png" && imageExtension != ".jpg")
-                {
-                    Response.Write("<script>alert('圖片檔案格式不服')</script>");
-                    return null;
-                }
-                else    // 4-3. 如果 單一檔案 吻合格式
-                {
-                    // 5. 進行 資料庫 寫入
-                    string pathStore = "DealerImages/" + Image.FileName;
-                    ImageData[0] = pathStore;
-                    ImageData[1] = Image.FileName;
-                    Image.SaveAs(FilePath);
-
-                }
-
-                return ImageData;
-            }
-
-        }
 
         public string getDealerId()
         {
@@ -205,17 +169,61 @@ namespace Yacht.BackEnd
             return dealerId;
         }
 
-     
+        public string[] handlePhoto()
+        {
+            if (!FileUpload1.HasFile)
+            {
+                return null;
+            }
+            string[] ImageData = new string[3];
+            string dealerImagePath = Server.MapPath("~/BackEnd/DealerImages/");
+            HttpPostedFile Image = FileUpload1.PostedFile;
+            string imageExtension = Path.GetExtension(Image.FileName).ToLower(); // 取得 單一檔案 檔名變數，並轉成小寫
+            string FilePath = Path.Combine(dealerImagePath, Image.FileName);  // 取得 單一檔案 儲存路徑
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                int FileMemory = Image.ContentLength;
+
+                if (FileMemory > 1000000)
+                {
+                    Response.Write("<script>alert('檔案太大了')</script>");
+                    return null;
+                }
+                else if (imageExtension != ".png" && imageExtension != ".jpg")
+                {
+                    Response.Write("<script>alert('圖片檔案格式不服')</script>");
+                    return null;
+                }
+                else    // 4-3. 如果 單一檔案 吻合格式
+                {
+                    // 5. 進行 資料庫 寫入
+                    //編輯的部分好像不需要這行
+                    string pathStore = "DealerImages/" + Image.FileName;
+                    ImageData[0] = pathStore;
+                    ImageData[1] = Image.FileName;
+                    Image.SaveAs(FilePath);
+                }
+
+                return ImageData;
+            }
+
+        }
+
         protected void ConfirmEdit(object sender, EventArgs e)
         {
             string connectionString = WebConfigurationManager.ConnectionStrings["TestConnectionString"].ConnectionString;
             string[] ImageData = handlePhoto();
+            //handlephoto之後理論上圖片以檢查沒問題或是有問題的話會返回Null
             string dealerPhoto = "";
             if (ImageData == null)
             {
                 dealerPhoto = Image1.ImageUrl;
+                //return;
                 //Response.Write("<script>alert('你沒上傳檔案')</script>");
-                //將原來路徑放回資料庫即可
+                ////將原來路徑放回資料庫即可
             }
             else
             {
