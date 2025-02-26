@@ -71,7 +71,7 @@ namespace Yacht.BackEnd
         public void showPage()
         {
             string selectedCountryId = countrySwitch.SelectedValue;
-            string query = @"SELECT COUNT(*) FROM Companies";
+            string query = @"SELECT COUNT(*) FROM Companies WHERE SoftDelete = 0";
             if (selectedCountryId != "0")
             {
                 query = @"SELECT COUNT(*) FROM Companies 
@@ -118,7 +118,7 @@ namespace Yacht.BackEnd
                 INNER JOIN Countries Co ON Co.Id = Ci.CountryId
                 INNER JOIN Dealers D ON Com.DealerId = D.Id
                 WHERE SoftDelete = 0 AND  Ci.CountryId = @countryId
-                ORDER BY Ci.CountryId
+                ORDER BY   Ci.CountryId, Com.Id
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY;
                 ";
             } else
@@ -132,7 +132,7 @@ namespace Yacht.BackEnd
                 INNER JOIN Countries Co ON Co.Id = Ci.CountryId
                 INNER JOIN Dealers D ON Com.DealerId = D.Id
                 WHERE SoftDelete = 0 
-                ORDER BY Ci.CountryId
+                ORDER BY Ci.CountryId, Com.Id
                 OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY;
                 ";
             }

@@ -100,9 +100,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
-    </asp:GridView>
-
-    <                               
+    </asp:GridView>                             
     <asp:Repeater ID="PageRepeater" runat="server">
         <ItemTemplate>
             <span>
