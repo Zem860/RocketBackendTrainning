@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\zemmy\\Desktop\\TestRecipe\\TestRecipe\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F6452638-B8DA-4F27-B4E0-AD2085A07CC5}|TestRecipe\\TestRecipe.csproj|c:\\users\\zemmy\\desktop\\testrecipe\\testrecipe\\testrecipe\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{F6452638-B8DA-4F27-B4E0-AD2085A07CC5}|TestRecipe\\TestRecipe.csproj|solutionrelative:testrecipe\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6452638-B8DA-4F27-B4E0-AD2085A07CC5}|TestRecipe\\TestRecipe.csproj|c:\\users\\zemmy\\desktop\\testrecipe\\testrecipe\\testrecipe\\default.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6452638-B8DA-4F27-B4E0-AD2085A07CC5}|TestRecipe\\TestRecipe.csproj|solutionrelative:testrecipe\\default.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6452638-B8DA-4F27-B4E0-AD2085A07CC5}|TestRecipe\\TestRecipe.csproj|c:\\users\\zemmy\\desktop\\testrecipe\\testrecipe\\testrecipe\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{F6452638-B8DA-4F27-B4E0-AD2085A07CC5}|TestRecipe\\TestRecipe.csproj|solutionrelative:testrecipe\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Default.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\zemmy\\Desktop\\TestRecipe\\TestRecipe\\TestRecipe\\Default.aspx.cs",
+              "RelativeDocumentMoniker": "TestRecipe\\Default.aspx.cs",
+              "ToolTip": "C:\\Users\\zemmy\\Desktop\\TestRecipe\\TestRecipe\\TestRecipe\\Default.aspx.cs",
+              "RelativeToolTip": "TestRecipe\\Default.aspx.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAQwA0AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-01T06:07:04.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\zemmy\\Desktop\\TestRecipe\\TestRecipe\\TestRecipe\\Web.config",
+              "RelativeDocumentMoniker": "TestRecipe\\Web.config",
+              "ToolTip": "C:\\Users\\zemmy\\Desktop\\TestRecipe\\TestRecipe\\TestRecipe\\Web.config",
+              "RelativeToolTip": "TestRecipe\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-01T04:50:12.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Default.aspx",
+              "DocumentMoniker": "C:\\Users\\zemmy\\Desktop\\TestRecipe\\TestRecipe\\TestRecipe\\Default.aspx",
+              "RelativeDocumentMoniker": "TestRecipe\\Default.aspx",
+              "ToolTip": "C:\\Users\\zemmy\\Desktop\\TestRecipe\\TestRecipe\\TestRecipe\\Default.aspx*",
+              "RelativeToolTip": "TestRecipe\\Default.aspx*",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-03-01T03:32:29.867Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
