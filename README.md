@@ -1,0 +1,4 @@
+嘗試著做出連續回放的youtube video
+瀏覽器會限制禁音才能autoplay
+必須把影片先轉成embed網址加入控制時間
+主要的資料庫存的是Youtube的影片
