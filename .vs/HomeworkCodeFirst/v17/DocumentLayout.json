@@ -1,0 +1,579 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\2025\\HomeworkCodeFirst\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\ad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\ad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\productscategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\productscategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\migrations\\202503090607245_fix-products-productscategorytimetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\202503090607245_fix-products-productscategorytimetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\productsfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\productsfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\migrations\\202503090555464_feat-products-productsimgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\202503090555464_feat-products-productsimgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\productsimgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\productsimgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|C:\\2025\\HomeworkCodeFirst\\homeworkcodefirst\\models\\homework.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\homework.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\msgtopics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\msgtopics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\migrations\\202503090541155_feat-products-productsfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\202503090541155_feat-products-productsfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\productssubcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\productssubcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\productsbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\productsbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\migrations\\202503090518552_feat-products-products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\202503090518552_feat-products-products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\migrations\\202503090454418_feat-products-brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\202503090454418_feat-products-brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\migrations\\202503090445484_feat-products-categoriesandsubcategories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\202503090445484_feat-products-categoriesandsubcategories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\album.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\album.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\adimgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\adimgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\migrations\\202503090403352_feat-ad-adimgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\202503090403352_feat-ad-adimgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\migrations\\202503090343317_feat-ad-ads.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\202503090343317_feat-ad-ads.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\adcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\adcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\file.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\file.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\filecategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\filecategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\migrations\\202503090322243_feat-ad-adcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\202503090322243_feat-ad-adcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|C:\\2025\\HomeworkCodeFirst\\homeworkcodefirst\\models\\msgusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\msgusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\migrations\\202503090254238_feat-msgboardhomework2-posts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\202503090254238_feat-msgboardhomework2-posts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\models\\msgposts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\msgposts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\migrations\\202503090229440_update-msgboardhomework2-stopforeignkeyconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\202503090229440_update-msgboardhomework2-stopforeignkeyconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|C:\\2025\\HomeworkCodeFirst\\homeworkcodefirst\\migrations\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|C:\\2025\\HomeworkCodeFirst\\homeworkcodefirst\\models\\msgboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\msgboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|c:\\2025\\homeworkcodefirst\\homeworkcodefirst\\migrations\\202503090207150_feat-msgboardhomework2-topics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\202503090207150_feat-msgboardhomework2-topics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|C:\\2025\\HomeworkCodeFirst\\homeworkcodefirst\\models\\youtube.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\models\\youtube.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|C:\\2025\\HomeworkCodeFirst\\homeworkcodefirst\\migrations\\202503081531497_feat-msgboardhomework1-userandboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\migrations\\202503081531497_feat-msgboardhomework1-userandboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|C:\\2025\\HomeworkCodeFirst\\homeworkcodefirst\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{C47E73D1-6F6D-419E-AF63-917842BDA877}|HomeworkCodeFirst\\HomeworkCodeFirst.csproj|solutionrelative:homeworkcodefirst\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 18,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "202503090607245_fix-Products-ProductsCategoryTimeType.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090607245_fix-Products-ProductsCategoryTimeType.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\202503090607245_fix-Products-ProductsCategoryTimeType.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090607245_fix-Products-ProductsCategoryTimeType.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\202503090607245_fix-Products-ProductsCategoryTimeType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T06:07:29.312Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "202503090555464_feat-Products-ProductsImgs.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090555464_feat-Products-ProductsImgs.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\202503090555464_feat-Products-ProductsImgs.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090555464_feat-Products-ProductsImgs.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\202503090555464_feat-Products-ProductsImgs.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T05:55:51.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductsImgs.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\ProductsImgs.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\ProductsImgs.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\ProductsImgs.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\ProductsImgs.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAADwvxEAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T05:42:19.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "202503090541155_feat-Products-ProductsFile.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090541155_feat-Products-ProductsFile.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\202503090541155_feat-Products-ProductsFile.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090541155_feat-Products-ProductsFile.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\202503090541155_feat-Products-ProductsFile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T05:41:20.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductsFiles.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\ProductsFiles.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\ProductsFiles.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\ProductsFiles.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\ProductsFiles.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAmwCIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T05:26:15.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "202503090518552_feat-Products-Products.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090518552_feat-Products-Products.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\202503090518552_feat-Products-Products.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090518552_feat-Products-Products.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\202503090518552_feat-Products-Products.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T05:19:00.351Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Products.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\Products.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\Products.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\Products.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\Products.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAA9wDsAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T04:55:07.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "202503090454418_feat-Products-Brand.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090454418_feat-Products-Brand.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\202503090454418_feat-Products-Brand.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090454418_feat-Products-Brand.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\202503090454418_feat-Products-Brand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T04:54:46.867Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ProductsBrand.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\ProductsBrand.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\ProductsBrand.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\ProductsBrand.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\ProductsBrand.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAkwCMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T04:46:53.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "202503090445484_feat-Products-CategoriesAndSubCategories.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090445484_feat-Products-CategoriesAndSubCategories.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\202503090445484_feat-Products-CategoriesAndSubCategories.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090445484_feat-Products-CategoriesAndSubCategories.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\202503090445484_feat-Products-CategoriesAndSubCategories.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T04:45:53.845Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ProductsSubCategory.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\ProductsSubCategory.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\ProductsSubCategory.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\ProductsSubCategory.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\ProductsSubCategory.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAkwCsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T04:30:05.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductsCategory.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\ProductsCategory.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\ProductsCategory.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\ProductsCategory.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\ProductsCategory.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T04:10:47.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "202503090403352_feat-Ad-AdImgs.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090403352_feat-Ad-AdImgs.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\202503090403352_feat-Ad-AdImgs.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090403352_feat-Ad-AdImgs.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\202503090403352_feat-Ad-AdImgs.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T04:03:40.97Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AdImgs.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\AdImgs.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\AdImgs.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\AdImgs.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\AdImgs.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAwwCcAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T03:45:08.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "202503090343317_feat-Ad-Ads.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090343317_feat-Ad-Ads.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\202503090343317_feat-Ad-Ads.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090343317_feat-Ad-Ads.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\202503090343317_feat-Ad-Ads.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T03:43:35.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Album.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\Album.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\Album.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\Album.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\Album.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAA/wCYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T03:41:53.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "File.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\File.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\File.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\File.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\File.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T03:27:50.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "FileCategory.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\FileCategory.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\FileCategory.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\FileCategory.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\FileCategory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T02:18:21.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Ad.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\Ad.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\Ad.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\Ad.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\Ad.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAwCcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T03:24:17.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "202503090322243_feat-Ad-AdCategory.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090322243_feat-Ad-AdCategory.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\202503090322243_feat-Ad-AdCategory.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090322243_feat-Ad-AdCategory.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\202503090322243_feat-Ad-AdCategory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T03:22:29.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AdCategory.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\AdCategory.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\AdCategory.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\AdCategory.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\AdCategory.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAYwCIAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T03:01:09.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "202503090254238_feat-MSGBoardHomework2-Posts.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090254238_feat-MSGBoardHomework2-Posts.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\202503090254238_feat-MSGBoardHomework2-Posts.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090254238_feat-MSGBoardHomework2-Posts.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\202503090254238_feat-MSGBoardHomework2-Posts.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T02:54:28.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "MsgPosts.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\MsgPosts.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\MsgPosts.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\MsgPosts.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\MsgPosts.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAuwCkAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T02:37:27.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "202503090229440_update-MSGBoardHomework2-stopforeignkeyconnect.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090229440_update-MSGBoardHomework2-stopforeignkeyconnect.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\202503090229440_update-MSGBoardHomework2-stopforeignkeyconnect.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090229440_update-MSGBoardHomework2-stopforeignkeyconnect.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\202503090229440_update-MSGBoardHomework2-stopforeignkeyconnect.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T02:29:49.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "202503090207150_feat-MSGBoardHomework2-Topics.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090207150_feat-MSGBoardHomework2-Topics.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\202503090207150_feat-MSGBoardHomework2-Topics.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503090207150_feat-MSGBoardHomework2-Topics.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\202503090207150_feat-MSGBoardHomework2-Topics.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAwAEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T02:07:20.059Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "MsgUsers.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\MsgUsers.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\MsgUsers.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\MsgUsers.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\MsgUsers.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAADwvzIAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T15:40:52.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MsgTopics.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\MsgTopics.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\MsgTopics.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\MsgTopics.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\MsgTopics.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAmwC8AAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T15:33:53.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "202503081531497_feat-MsgBoardHomework1-UserAndBoard.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503081531497_feat-MsgBoardHomework1-UserAndBoard.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\202503081531497_feat-MsgBoardHomework1-UserAndBoard.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\202503081531497_feat-MsgBoardHomework1-UserAndBoard.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\202503081531497_feat-MsgBoardHomework1-UserAndBoard.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T15:31:54.677Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "MsgBoard.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\MsgBoard.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\MsgBoard.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\MsgBoard.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\MsgBoard.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAABAwCoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T15:02:32.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Youtube.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\Youtube.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\Youtube.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\Youtube.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\Youtube.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAADwvy0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T14:55:59.874Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Web.config",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Web.config",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Web.config",
+              "RelativeToolTip": "HomeworkCodeFirst\\Web.config",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAFEAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-08T12:59:26.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Configuration.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\Configuration.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Migrations\\Configuration.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Migrations\\Configuration.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Migrations\\Configuration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T12:59:11.152Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Homework.cs",
+              "DocumentMoniker": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\Homework.cs",
+              "RelativeDocumentMoniker": "HomeworkCodeFirst\\Models\\Homework.cs",
+              "ToolTip": "C:\\2025\\HomeworkCodeFirst\\HomeworkCodeFirst\\Models\\Homework.cs",
+              "RelativeToolTip": "HomeworkCodeFirst\\Models\\Homework.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAgwCoAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T12:56:15.891Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
