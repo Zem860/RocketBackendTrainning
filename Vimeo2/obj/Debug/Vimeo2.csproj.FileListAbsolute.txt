@@ -109,3 +109,5 @@ C:\Users\zemmy\Desktop\TestVimeo\Vimeo2\Vimeo2\bin\System.Numerics.Vectors.xml
 C:\Users\zemmy\Desktop\TestVimeo\Vimeo2\Vimeo2\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\zemmy\Desktop\TestVimeo\Vimeo2\Vimeo2\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\zemmy\Desktop\TestVimeo\Vimeo2\Vimeo2\bin\System.Web.Http.Cors.xml
+C:\Users\zemmy\Desktop\TestVimeo\Vimeo2\Vimeo2\bin\CloudinaryDotNet.dll
+C:\Users\zemmy\Desktop\TestVimeo\Vimeo2\Vimeo2\bin\CloudinaryDotNet.xml

@@ -2,3 +2,44 @@
     <input type="file" name="videoFile" accept="video/*">
     <input type="submit" value="Upload">
 </form>
+<button class="VimeoGet">VimeoGet</button>
+
+<form action="https://localhost:44339/api/Cloudinary/Upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="videoFile" accept="video/*">
+    <input type="submit" value="Upload">
+</form>
+<button class="VimeoGet">VimeoGet</button>
+<button class="sayHello">Hello</button>
+<script>
+    const sayHello = document.querySelector(".sayHello").addEventListener("click", async ()=>{
+        const response = await fetch(
+            "https://localhost:44339/api/Cloudinary/hello",
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "text",
+                },
+            }
+            
+        )
+        const data = await response
+        console.log(data)
+    })
+    
+    const vimeoBtn = document.querySelector(
+        ".VimeoGet"
+    )
+    vimeoBtn.addEventListener("click", async () => {
+        const response = await fetch(
+            "https://localhost:44339/api/Vimeo/GetVideos",
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        )
+        const data = await response.json()
+        console.log(data)
+    })
+</script>

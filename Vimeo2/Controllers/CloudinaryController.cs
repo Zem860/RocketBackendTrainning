@@ -1,142 +1,153 @@
 ﻿using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Newtonsoft.Json.Linq;
 using System.Configuration;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
-using System.Security.Cryptography;
-using System.Text;
+using System.Net.Http;
+using System.Net;
 
-namespace Cloudinary.Controllers
+namespace CloudinaryAPI.Controllers
 {
-    [RoutePrefix("api/Cloudinary")] // 設定 API 前綴
+    [RoutePrefix("api/Cloudinary")]
     public class CloudinaryController : ApiController
     {
-        private readonly string cloudName = ConfigurationManager.AppSettings["CloudinaryCloudName"];
-        private readonly string apiKey = ConfigurationManager.AppSettings["CloudinaryApiKey"];
-        private readonly string apiSecret = ConfigurationManager.AppSettings["CloudinaryApiSecret"];
+        private readonly CloudinaryDotNet.Cloudinary _cloudinary;
 
-        private readonly string cloudinaryBaseUrl = "https://api.cloudinary.com/v1_1/";
+        public CloudinaryController()
+        {
+            // 從 Web.config 讀取 Cloudinary 設定
+            var cloudName = ConfigurationManager.AppSettings["CloudinaryCloudName"];
+            var apiKey = ConfigurationManager.AppSettings["CloudinaryApiKey"];
+            var apiSecret = ConfigurationManager.AppSettings["CloudinaryApiSecret"];
 
-        // 測試 API 是否正常運作
+            if (string.IsNullOrEmpty(cloudName) || string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(apiSecret))
+            {
+                throw new Exception("Cloudinary 設定錯誤，請檢查 Web.config");
+            }
+
+            var account = new Account(cloudName, apiKey, apiSecret);
+            _cloudinary = new CloudinaryDotNet.Cloudinary(account);
+        }
+
+        // 測試 API 是否正常
         [HttpGet]
         [Route("hello")]
         public IHttpActionResult GetHello()
         {
-            Console.WriteLine($"CloudName: {cloudName}, ApiKey: {apiKey}, ApiSecret: {apiSecret}");
-
-            return Ok(new { message = $"CloudName: {cloudName}, ApiKey: {apiKey}, ApiSecret: {apiSecret}" });
+            return Ok(new { message = "Cloudinary API 運作正常" });
         }
 
-        // 取得 Cloudinary 影片列表
-        //[HttpGet]
-        //[Route("GetVideos")]
-        //public async Task<IHttpActionResult> GetVideos(int maxResults = 10)
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        string apiUrl = $"{cloudinaryBaseUrl}{cloudName}/resources/video?max_results={maxResults}&api_key={apiKey}";
+        // 📌 修正 UploadVideo
+        [HttpPost]
+        [Route("Upload")]
+        public async Task<IHttpActionResult> UploadVideo()
+        {
+            try
+            {
+                if (!Request.Content.IsMimeMultipartContent())
+                    return Content(HttpStatusCode.BadRequest, new { message = "請使用 Multipart 表單上傳影片" });
 
-        //        HttpResponseMessage response = await client.GetAsync(apiUrl);
-        //        string responseContent = await response.Content.ReadAsStringAsync();
+                var provider = new MultipartMemoryStreamProvider();
+                await Request.Content.ReadAsMultipartAsync(provider);
+                var file = provider.Contents.FirstOrDefault();
 
-        //        Console.WriteLine($"Response Content: {responseContent}"); // Debug
+                if (file == null)
+                    return Content(HttpStatusCode.BadRequest, new { message = "未接收到影片檔案" });
 
-        //        if (!response.IsSuccessStatusCode)
-        //        {
-        //            return BadRequest($"無法取得影片: {response.ReasonPhrase}");
-        //        }
+                var fileStream = await file.ReadAsStreamAsync();
+                var uploadParams = new VideoUploadParams()
+                {
+                    File = new FileDescription("video", fileStream),
+                    Folder = "assets"
+                };
 
-        //        JObject json = JObject.Parse(responseContent);
-        //        return Ok(json["resources"]);
-        //    }
-        //}
+                var uploadResult = await _cloudinary.UploadAsync(uploadParams);
 
+                // ✅ 印出 Cloudinary 回應，檢查錯誤
+                Console.WriteLine("Upload Response: " + uploadResult.JsonObj);
 
+                if (uploadResult?.SecureUrl == null)
+                {
+                    return Content(HttpStatusCode.BadRequest, new
+                    {
+                        message = "影片上傳失敗",
+                        error = uploadResult.Error?.Message
+                    });
+                }
 
+                return Ok(new
+                {
+                    message = "影片上傳成功",
+                    url = uploadResult.SecureUrl
+                });
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+    
+
+        // 透過 PublicId 取得影片資訊
+        [HttpGet]
+        [Route("GetVideoById")]
+        public async Task<IHttpActionResult> GetVideoById(string publicId)
+        {
+            try
+            {
+                var resource = await _cloudinary.GetResourceAsync(new GetResourceParams(publicId)
+                {
+                    ResourceType = ResourceType.Video
+                });
+
+                if (resource == null)
+                    return NotFound();
+
+                return Ok(new
+                {
+                    public_id = resource.PublicId,
+                    url = resource.SecureUrl,
+                    format = resource.Format
+                });
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        // 取得所有影片（最多 10 筆）
         [HttpGet]
         [Route("GetVideos")]
         public async Task<IHttpActionResult> GetVideos(int maxResults = 10)
         {
-            using (var client = new HttpClient())
+            try
             {
-                long timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
-                string signatureString = $"max_results={maxResults}&timestamp={timestamp}{apiSecret}";
-                string signatureHash = ComputeSHA1Hash(signatureString);
-
-                var content = new FormUrlEncodedContent(new[]
+                var result = await _cloudinary.ListResourcesAsync(new ListResourcesParams()
                 {
-            new KeyValuePair<string, string>("api_key", apiKey),
-            new KeyValuePair<string, string>("timestamp", timestamp.ToString()),
-            new KeyValuePair<string, string>("max_results", maxResults.ToString()),
-            new KeyValuePair<string, string>("type", "upload"),  // 確保查詢的是已上傳的影片
-            new KeyValuePair<string, string>("signature", signatureHash),
-        });
+                    Type = "upload",
+                    ResourceType = ResourceType.Video,
+                    MaxResults = maxResults
+                });
 
-                string apiUrl = $"{cloudinaryBaseUrl}{cloudName}/resources/video";
+                if (result.Resources == null || !result.Resources.Any())
+                    return Ok(new { message = "沒有找到任何影片，請確認是否已上傳！" });
 
-                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-                string responseContent = await response.Content.ReadAsStringAsync();
-
-                Console.WriteLine($"Response Content: {responseContent}"); // Debug
-
-                if (!response.IsSuccessStatusCode)
+                var videos = result.Resources.Select(v => new
                 {
-                    return BadRequest($"無法取得影片: {response.ReasonPhrase}");
-                }
+                    v.PublicId,
+                    v.SecureUrl
+                }).ToList();
 
-                JObject json = JObject.Parse(responseContent);
-                return Ok(json["resources"]);
+                return Ok(new { videos });
             }
-        }
-
-
-        // 計算 SHA1 簽名
-        private static string ComputeSHA1Hash(string input)
-    {
-        using (SHA1 sha1 = SHA1.Create())
-        {
-            byte[] hashBytes = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
-            return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
-        }
-    }
-
-
-
-
-    // 上傳影片到 Cloudinary（透過 URL）
-    [HttpPost]
-        [Route("UploadVideo")]
-        public async Task<IHttpActionResult> UploadVideo([FromBody] JObject request)
-        {
-            if (request == null || !request.ContainsKey("videoUrl"))
-                return BadRequest("請提供影片 URL");
-
-            string videoUrl = request["videoUrl"].ToString();
-            string apiUrl = $"{cloudinaryBaseUrl}{cloudName}/video/upload";
-
-            using (var client = new HttpClient())
+            catch (Exception ex)
             {
-                var content = new MultipartFormDataContent
-                {
-                    { new StringContent(apiKey), "api_key" },
-                    { new StringContent(videoUrl), "file" }
-                };
-
-                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-                string responseContent = await response.Content.ReadAsStringAsync();
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    return BadRequest($"上傳失敗: {response.ReasonPhrase}");
-                }
-
-                JObject jsonResponse = JObject.Parse(responseContent);
-                return Ok(jsonResponse);
+                return InternalServerError(ex);
             }
         }
     }
