@@ -18,7 +18,7 @@ namespace Vimeo.Controllers
     [RoutePrefix("api/Vimeo")] // 設定 API 前綴
     public class VimeoController : ApiController
     {
-        private readonly string vimeoAccessToken = "455c3157a9963ea1e6e42b97f672a76f"; // 替換為你的 Vimeo API Key
+        private readonly string vimeoAccessToken = ""; // 替換為你的 Vimeo API Key
 
         // 取得 Vimeo 影片列表
         [HttpGet]
