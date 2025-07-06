@@ -79,8 +79,8 @@ namespace RecursionHome.Controllers
             int count = 0;
 
             // 處理當前節點
-            string targetName = node.Element("中文單位名稱")?.Value ?? "無名稱";
-            if (targetName.Contains("派出所"))
+            //string targetName = node.Element("中文單位名稱")?.Value ?? "無名稱";
+            if (!node.Elements("unit").Any())
             {
                 count++;
             }
