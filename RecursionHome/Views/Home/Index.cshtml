@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    string[] nine = ViewBag.Nine.Split(',');
+    int count = 0;
+    int station = ViewBag.PoliceCount;
+}
+
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .grid-item {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+        font-family: monospace;
+        background: #f9f9f9;
+        border-radius: 5px;
+    }
+</style>
+
+<div>
+    @ViewBag.Factorial;
+</div>
+
+
+
+<div class="grid-container">
+    @foreach (var item in nine)
+    {
+        <div class="grid-item">
+            @foreach (var line in item.Split(' '))
+{
+                <p>@line</p>
+                if (line == null)
+                    {
+
+                    }
+            }
+        </div>
+    }
+    </div>
+
+<div>
+
+    @station;
+</div>

@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<main aria-labelledby="title">
+    <div class="tree"></div>
+    <script src="~/dist/tree.min.js"></script>
+
+    <script>
+    // prettier-ignore
+    //let data = [
+    //    {
+    //        "id": "A",
+    //        "text": "使用者管理",
+    //    },
+    //    {
+    //        "id": "B",
+    //        "text": "組織管理",
+    //    },
+    //    {
+    //        "id": "C",
+    //        "text": "公告管理",
+    //        "children": [
+    //            {
+    //                "id": "C01",
+    //                "text": "新聞管理"
+    //            },
+    //            {
+    //                "id": "C02",
+    //                "text": "公告類別管理"
+    //            },
+
+    //        ]
+    //    }
+    //]
+
+    let data = @Html.Raw(ViewBag.TreeData);
+
+
+
+    let tree = new Tree('.tree', {
+        data,
+        closeDepth: 1,
+        loaded: function () {
+            //新增可以不要
+            //this.values = ['0-0-0', '0-1-1'];
+            //console.log(this.selectedNodes);
+            //console.log(this.values);
+            //this.disables = ['0-0-0', '0-0-1', '0-0-2']
+
+        },
+        onChange: function () {
+            //$('#Permission').val(this.values)
+        }
+    })
+    </script>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+
+    }
+
+    }
+
+
+</main>

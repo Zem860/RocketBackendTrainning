@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "台南市警察局 TreeView";
+}
+<h2>台南市警察局單位結構</h2>
+
+<div id="treeview">
+    @Html.Raw(ViewBag.PoliceTree)
+</div>
+
+<style>
+    ul {
+        list-style-type: none;
+    }
+
+    li {
+        margin: 5px;
+    }
+</style>
