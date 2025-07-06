@@ -80,6 +80,7 @@ namespace RecursionHome.Controllers
 
             // 處理當前節點
             //string targetName = node.Element("中文單位名稱")?.Value ?? "無名稱";
+            //本來是用targetName.Contains("派出所")|| targetName.Contains("駐點")
             if (!node.Elements("unit").Any())
             {
                 count++;
